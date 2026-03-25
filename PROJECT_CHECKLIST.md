@@ -21,6 +21,13 @@
   - [x] Pathauto
   - [x] Token
   - [x] Other required modules: Serialization
+- [x] **CMS-002a**: Configure multilingual support
+  - [x] Language module
+  - [x] Content Translation module
+  - [x] Configuration Translation module
+  - [x] Interface Translation (locale) module
+  - [x] Add Bengali (bn) as secondary language
+  - [x] Configure URL path prefix (en=default, bn=/bn)
 
 ### Content Architecture
 - [ ] **CMS-003**: Define content types
@@ -170,6 +177,12 @@
 
 ### Recent Changes
 <!-- Log recent important changes -->
+- **2026-03-26**: Completed CMS-002a - Configured multilingual support:
+  - Enabled Language, Content Translation, Config Translation, and Interface Translation modules
+  - Added Bengali (বাংলা) as secondary language
+  - English set as primary/default language
+  - URL path prefix configured: en=default (/), bn=/bn
+  - Imported 510+ Bengali translations for Drupal core and contrib modules
 - **2026-03-25**: Completed CMS-002 - Installed and configured required modules:
   - JSON:API (core module) for RESTful API access
   - REST and Serialization modules for web services
