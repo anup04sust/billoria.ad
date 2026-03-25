@@ -28,6 +28,11 @@
   - [x] Interface Translation (locale) module
   - [x] Add Bengali (bn) as secondary language
   - [x] Configure URL path prefix (en=default, bn=/bn)
+- [x] **CMS-002b**: Install AI modules for content translation
+  - [x] AI Core module (v1.3.1)
+  - [x] AI Translate module (v1.3.1)
+  - [x] AI Provider: Ollama (v1.2.0-rc2)
+  - [x] Key module (v1.22.0 - for API key management)
 
 ### Content Architecture
 - [ ] **CMS-003**: Define content types
@@ -177,6 +182,12 @@
 
 ### Recent Changes
 <!-- Log recent important changes -->
+- **2026-03-26**: Completed CMS-002b - Installed AI modules:
+  - AI Core (v1.3.1) - Framework for AI integrations
+  - AI Translate (v1.3.1) - AI-powered translation capabilities
+  - AI Provider: Ollama (v1.2.0-rc2) - Local LLM provider support
+  - Key module (v1.22.0) - Secure API key management
+  - Bengali translations imported for all AI modules
 - **2026-03-26**: Completed CMS-002a - Configured multilingual support:
   - Enabled Language, Content Translation, Config Translation, and Interface Translation modules
   - Added Bengali (বাংলা) as secondary language

@@ -112,13 +112,13 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { lang: string } }) {
-  const apiUrl = params.lang === 'bn' 
+  const apiUrl = params.lang === 'bn'
     ? 'https://billoria-ad-api.ddev.site/bn/jsonapi/node/article'
     : 'https://billoria-ad-api.ddev.site/jsonapi/node/article'
-    
+
   const response = await fetch(apiUrl)
   const data = await response.json()
-  
+
   return <ArticleList articles={data.data} />
 }
 ```
