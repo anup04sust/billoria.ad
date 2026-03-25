@@ -1,0 +1,195 @@
+# Billoria Project .gitignore
+# Root level gitignore for the entire project
+
+###################
+# IDE & Editors
+###################
+# VSCode
+.vscode/
+*.code-workspace
+
+# PhpStorm / IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+###################
+# Operating System
+###################
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+###################
+# DDEV
+###################
+# Note: Each .ddev/ directory has its own .gitignore file
+# that handles what should be ignored. We don't need to
+# duplicate those rules here.
+# Important: config.yaml and custom commands should be committed!
+
+###################
+# Project Files
+###################
+# Environment files - Apply to all subdirectories
+**/.env
+**/.env.*
+!**/.env.example
+**/.env.local
+**/.env.*.local
+**/.env.production
+**/.env.development
+**/.env.test
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+
+# Log files
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+.cache/
+
+###################
+# CMS API (Drupal)
+###################
+# Composer dependencies
+/cmsapi/vendor/
+
+# Drupal core (managed by Composer)
+/cmsapi/web/core/
+
+# Contributed modules, themes, profiles (managed by Composer)
+/cmsapi/web/modules/contrib/
+/cmsapi/web/themes/contrib/
+/cmsapi/web/profiles/contrib/
+/cmsapi/web/libraries/
+
+# User-uploaded files
+/cmsapi/web/sites/*/files/
+/cmsapi/web/sites/*/private/
+
+# Configuration files with sensitive data
+/cmsapi/web/sites/*/settings.local.php
+/cmsapi/web/sites/*/settings.ddev.php
+/cmsapi/web/sites/*/services.yml
+# Only ignore main settings.php if you manage it via scripts
+# /cmsapi/web/sites/*/settings.php
+
+# Drupal simpletest
+/cmsapi/web/sites/simpletest/
+
+# Drush
+/cmsapi/drush/contrib/
+/cmsapi/drush/sites/
+
+# Composer lock (uncomment if you want to ignore it - not recommended for most projects)
+# /cmsapi/composer.lock
+
+###################
+# Frontend App
+###################
+# Note: frontendapp has its own .gitignore
+# The following are additional patterns not typically in Next.js defaults
+
+# Generated files
+/frontendapp/.next/
+/frontendapp/out/
+/frontendapp/build/
+/frontendapp/dist/
+
+###################
+# Backup & Dumps
+###################
+*.sql
+*.sql.gz
+*.sql.zip
+*.bak
+*.backup
+backup/
+backups/
+dumps/
+
+###################
+# Documentation
+###################
+# Uncomment if you want to ignore generated docs
+# /docs/_build/
+# /docs/.doctrees/
+
+###################
+# Security
+###################
+# SSH keys
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+
+# Certificates
+*.crt
+*.cert
+*.p12
+
+###################
+# Misc
+###################
+# Node modules at root (if any)
+/node_modules/
+
+# Package manager
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# Testing
+/coverage/
+/.nyc_output/
+
+# Build artifacts
+*.tsbuildinfo
+
+# Project-specific
+PROJECT_NOTES.md
+TODO.md
+SCRATCH.md

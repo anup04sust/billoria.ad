@@ -1,0 +1,88 @@
+# Drupal .gitignore for CMS API
+
+# Environment files - NEVER commit these!
+.env
+.env.*
+!.env.example
+.env.local
+.env.*.local
+.env.production
+.env.development
+.env.test
+
+# Ignore core when managing all of a project's dependencies with Composer
+# including Drupal core.
+/web/core/
+
+# Ignore dependencies that are managed with Composer.
+# Generally you should only ignore the root vendor directory. It's important
+# that core/assets/vendor and any other vendor directories within contrib or
+# custom module, theme, etc., are not ignored unless you purposely do so.
+/vendor/
+
+# Ignore Drupal's file directory
+/web/sites/*/files/
+/web/sites/*/private/
+
+# Ignore configuration files that may contain sensitive information
+/web/sites/*/settings.local.php
+/web/sites/*/services.yml
+# Uncomment if you want to ignore the main settings file too
+# /web/sites/*/settings.php
+
+# Ignore SimpleTest multi-site environment
+/web/sites/simpletest/
+
+# Ignore contributed modules, themes, profiles (these are managed by Composer)
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+
+# Ignore libraries (managed by Composer)
+/web/libraries/
+
+# Ignore Drush
+/drush/contrib/
+/drush/Commands/contrib/
+/drush/sites/
+
+# Ignore Drupal Console
+/.console/
+/.drupal/
+
+# Ignore build and packaging artifacts
+*.tar.gz
+*.zip
+
+# Ignore sync directory (if you use config split or similar)
+# /config/sync/
+
+# Ignore temporary and cache files
+.tmp
+.temp
+*.swp
+*.swo
+
+# Ignore editor and IDE files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore backup files
+*.bak
+*.backup
+*.orig
+
+# Ignore database dumps
+*.sql
+*.sql.gz
+
+# Keep important example and scaffold files
+!/web/.htaccess
+!/web/robots.txt
+!/web/sites/example.settings.local.php

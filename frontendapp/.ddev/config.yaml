@@ -1,0 +1,24 @@
+name: billoria-ad
+type: generic
+docroot: ""
+webserver_type: generic
+
+nodejs_version: "22"
+corepack_enable: true
+
+omit_containers:
+  - db
+
+use_dns_when_possible: true
+xdebug_enabled: false
+
+web_extra_daemons:
+  - name: nextjs
+    command: "pnpm dev"
+    directory: /var/www/html
+
+web_extra_exposed_ports:
+  - name: nextjs
+    container_port: 3000
+    http_port: 3000
+    https_port: 3001
