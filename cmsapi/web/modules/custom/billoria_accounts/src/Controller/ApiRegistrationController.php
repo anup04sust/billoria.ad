@@ -35,7 +35,10 @@ class ApiRegistrationController extends ControllerBase {
   /**
    * Constructs a new ApiRegistrationController.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, PasswordInterface $password_hasher) {
+  public function __construct(
+    EntityTypeManagerInterface $entity_type_manager,
+    PasswordInterface $password_hasher
+  ) {
     $this->entityTypeManager = $entity_type_manager;
     $this->passwordHasher = $password_hasher;
   }
@@ -53,7 +56,7 @@ class ApiRegistrationController extends ControllerBase {
   /**
    * Register new user with organization.
    *
-   * POST /api/register
+   * POST /api/v1/register
    *
    * Expected JSON payload:
    * {
@@ -77,6 +80,8 @@ class ApiRegistrationController extends ControllerBase {
    *     ...type-specific fields
    *   }
    * }
+   *
+   * Security: CSRF validation and rate limiting handled by BilloriaCoreSubscriber middleware.
    */
   public function register(Request $request) {
     $data = json_decode($request->getContent(), TRUE);
@@ -161,7 +166,7 @@ class ApiRegistrationController extends ControllerBase {
       $this->sendVerificationEmail($user, $token);
 
       // Return success response
-      return new JsonResponse([
+      $response = new JsonResponse([
         'success' => TRUE,
         'message' => 'Registration successful. Please check your email for verification.',
         'data' => [
@@ -171,6 +176,8 @@ class ApiRegistrationController extends ControllerBase {
           'verificationRequired' => TRUE,
         ],
       ], 201);
+
+      return $response;
 
     } catch (\Exception $e) {
       \Drupal::logger('billoria_accounts')->error('Registration failed: @message', [
