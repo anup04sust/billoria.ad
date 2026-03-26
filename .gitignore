@@ -124,6 +124,11 @@ yarn-error.log*
 # Composer lock (uncomment if you want to ignore it - not recommended for most projects)
 # /cmsapi/composer.lock
 
+# Import scripts and data files (local development only)
+/cmsapi/scripts/
+/cmsapi/*.csv
+/cmsapi/*.xlsx
+
 ###################
 # Frontend App
 ###################
@@ -151,7 +156,10 @@ dumps/
 ###################
 # Documentation
 ###################
-# Uncomment if you want to ignore generated docs
+# Ignore project documentation (local reference only)
+/docs/
+
+# Ignore only generated documentation builds
 # /docs/_build/
 # /docs/.doctrees/
 
