@@ -1,0 +1,59 @@
+administer billoria:
+  title: 'Administer Billoria platform'
+  description: 'Full administrative access to all Billoria features'
+  restrict access: true
+
+verify billboard:
+  title: 'Verify billboards'
+  description: 'Approve or reject billboard submissions'
+  restrict access: true
+
+verify agency_profile:
+  title: 'Verify agency profiles'
+  description: 'Approve or reject agency profile submissions'
+  restrict access: true
+
+verify vendor_profile:
+  title: 'Verify vendor profiles'
+  description: 'Approve or reject vendor profile submissions'
+  restrict access: true
+
+manage own billboards:
+  title: 'Manage own billboards'
+  description: 'Create, edit, and delete own billboard listings'
+
+view all billboards:
+  title: 'View all billboards'
+  description: 'Access to view all billboard listings regardless of status'
+
+create booking requests:
+  title: 'Create booking requests'
+  description: 'Submit booking requests for billboards'
+
+manage own bookings:
+  title: 'Manage own bookings'
+  description: 'View and manage own booking requests'
+
+manage agency bookings:
+  title: 'Manage agency bookings'
+  description: 'View and manage bookings for agency billboards'
+
+approve booking requests:
+  title: 'Approve booking requests'
+  description: 'Approve or reject booking requests'
+
+view booking analytics:
+  title: 'View booking analytics'
+  description: 'Access booking reports and analytics'
+
+manage pricing:
+  title: 'Manage pricing'
+  description: 'Update billboard pricing and discounts'
+
+send notifications:
+  title: 'Send notifications'
+  description: 'Send manual notifications to users'
+
+access billoria api:
+  title: 'Access Billoria API'
+  description: 'Access custom API endpoints'

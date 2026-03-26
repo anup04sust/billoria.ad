@@ -1,0 +1,38 @@
+services:
+  billoria_core.billboard_manager:
+    class: Drupal\billoria_core\Service\BillboardManager
+    arguments: ['@entity_type.manager', '@current_user', '@logger.factory']
+
+  billoria_core.booking_manager:
+    class: Drupal\billoria_core\Service\BookingManager
+    arguments: ['@entity_type.manager', '@current_user', '@logger.factory', '@billoria_core.billboard_manager']
+
+  billoria_core.agency_manager:
+    class: Drupal\billoria_core\Service\AgencyManager
+    arguments: ['@entity_type.manager', '@current_user', '@logger.factory']
+
+  billoria_core.notification_service:
+    class: Drupal\billoria_core\Service\NotificationService
+    arguments: ['@entity_type.manager', '@logger.factory', '@plugin.manager.mail']
+
+  billoria_core.pricing_calculator:
+    class: Drupal\billoria_core\Service\PricingCalculator
+    arguments: ['@logger.factory']
+
+  billoria_core.verification_service:
+    class: Drupal\billoria_core\Service\VerificationService
+    arguments: ['@entity_type.manager', '@current_user', '@logger.factory']
+
+  billoria_core.api_helper:
+    class: Drupal\billoria_core\Service\ApiHelper
+    arguments: ['@entity_type.manager', '@logger.factory']
+
+  billoria_core.workflow_manager:
+    class: Drupal\billoria_core\Service\WorkflowManager
+    arguments: ['@entity_type.manager', '@current_user', '@logger.factory', '@billoria_core.notification_service']
+
+  billoria_core.event_subscriber:
+    class: Drupal\billoria_core\EventSubscriber\BilloriaCoreSubscriber
+    arguments: ['@billoria_core.notification_service', '@logger.factory']
+    tags:
+      - { name: event_subscriber }

@@ -1,0 +1,204 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for Billoria Core module.
+ */
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install().
+ */
+function billoria_core_install(): void {
+  // Create custom user roles.
+  _billoria_core_create_roles();
+  
+  // Set up default permissions for roles.
+  _billoria_core_assign_permissions();
+  
+  \Drupal::messenger()->addStatus(t('Billoria Core module installed successfully.'));
+  \Drupal::logger('billoria_core')->info('Billoria Core module installed.');
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function billoria_core_uninstall(): void {
+  // Clean up configuration.
+  \Drupal::configFactory()->getEditable('billoria_core.settings')->delete();
+  
+  \Drupal::messenger()->addStatus(t('Billoria Core module uninstalled.'));
+  \Drupal::logger('billoria_core')->info('Billoria Core module uninstalled.');
+}
+
+/**
+ * Create custom user roles.
+ */
+function _billoria_core_create_roles(): void {
+  $roles = [
+    'platform_admin' => 'Platform Administrator',
+    'billboard_owner' => 'Billboard Owner',
+    'agency' => 'Agency',
+    'brand_user' => 'Brand User',
+    'vendor' => 'Vendor',
+  ];
+
+  foreach ($roles as $role_id => $role_label) {
+    $role = Role::load($role_id);
+    
+    if (!$role) {
+      $role = Role::create([
+        'id' => $role_id,
+        'label' => $role_label,
+      ]);
+      $role->save();
+      
+      \Drupal::logger('billoria_core')->info('Created role: @role', ['@role' => $role_label]);
+    }
+  }
+}
+
+/**
+ * Assign default permissions to roles.
+ */
+function _billoria_core_assign_permissions(): void {
+  $permissions_map = [
+    'platform_admin' => [
+      'administer billoria',
+      'verify billboard',
+      'verify agency_profile',
+      'verify vendor_profile',
+      'view all billboards',
+      'approve booking requests',
+      'view booking analytics',
+      'manage pricing',
+      'send notifications',
+      'access billoria api',
+    ],
+    'billboard_owner' => [
+      'manage own billboards',
+      'view all billboards',
+      'manage own bookings',
+      'access billoria api',
+    ],
+    'agency' => [
+      'view all billboards',
+      'manage agency bookings',
+      'approve booking requests',
+      'access billoria api',
+    ],
+    'brand_user' => [
+      'view all billboards',
+      'create booking requests',
+      'manage own bookings',
+      'access billoria api',
+    ],
+    'vendor' => [
+      'view all billboards',
+      'manage own bookings',
+      'access billoria api',
+    ],
+  ];
+
+  foreach ($permissions_map as $role_id => $permissions) {
+    $role = Role::load($role_id);
+    
+    if ($role) {
+      foreach ($permissions as $permission) {
+        $role->grantPermission($permission);
+      }
+      $role->save();
+      
+      \Drupal::logger('billoria_core')->info('Assigned permissions to role: @role', [
+        '@role' => $role_id,
+      ]);
+    }
+  }
+}
+
+/**
+ * Implements hook_schema().
+ */
+function billoria_core_schema(): array {
+  $schema = [];
+
+  // Booking tracking table (if not using custom entity).
+  $schema['billoria_booking'] = [
+    'description' => 'Stores billboard booking requests',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary key',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'billboard_nid' => [
+        'description' => 'Billboard node ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'user_uid' => [
+        'description' => 'Requesting user ID',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'start_date' => [
+        'description' => 'Booking start date',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ],
+      'end_date' => [
+        'description' => 'Booking end date',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ],
+      'status' => [
+        'description' => 'Booking status',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => 'pending',
+      ],
+      'budget' => [
+        'description' => 'Requested budget',
+        'type' => 'float',
+        'size' => 'big',
+      ],
+      'final_price' => [
+        'description' => 'Final agreed price',
+        'type' => 'float',
+        'size' => 'big',
+      ],
+      'notes' => [
+        'description' => 'Booking notes',
+        'type' => 'text',
+      ],
+      'created' => [
+        'description' => 'Created timestamp',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'updated' => [
+        'description' => 'Updated timestamp',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'billboard' => ['billboard_nid'],
+      'user' => ['user_uid'],
+      'status' => ['status'],
+      'dates' => ['start_date', 'end_date'],
+    ],
+  ];
+
+  return $schema;
+}

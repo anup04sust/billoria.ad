@@ -1,0 +1,181 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Billoria Core module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Session\AccountInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function billoria_core_theme($existing, $type, $theme, $path): array {
+  return [
+    'billboard_card' => [
+      'variables' => [
+        'billboard' => NULL,
+        'view_mode' => 'default',
+      ],
+      'template' => 'billboard-card',
+    ],
+    'agency_profile' => [
+      'variables' => [
+        'agency' => NULL,
+      ],
+      'template' => 'agency-profile',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_node_presave().
+ */
+function billoria_core_node_presave(NodeInterface $node): void {
+  // Auto-generate billboard code if empty.
+  if ($node->bundle() === 'billboard' && $node->hasField('field_billboard_code')) {
+    if ($node->get('field_billboard_code')->isEmpty()) {
+      $billboard_code = _billoria_core_generate_billboard_code($node);
+      $node->set('field_billboard_code', $billboard_code);
+    }
+  }
+}
+
+/**
+ * Implements hook_node_access().
+ */
+function billoria_core_node_access(NodeInterface $node, $operation, AccountInterface $account) {
+  $type = $node->bundle();
+
+  // Billboard access control.
+  if ($type === 'billboard') {
+    // Owner can edit their own billboards.
+    if ($operation === 'update') {
+      if ($node->hasField('field_owner') && !$node->get('field_owner')->isEmpty()) {
+        $owner_id = $node->get('field_owner')->target_id;
+        if ($owner_id == $account->id()) {
+          return AccessResult::allowed()->cachePerUser()->addCacheableDependency($node);
+        }
+      }
+    }
+  }
+
+  // Agency profile access.
+  if ($type === 'agency_profile') {
+    if ($operation === 'update' && $account->hasRole('agency')) {
+      if ($node->getOwnerId() === $account->id()) {
+        return AccessResult::allowed()->cachePerUser()->addCacheableDependency($node);
+      }
+    }
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function billoria_core_entity_insert(EntityInterface $entity): void {
+  if ($entity->getEntityTypeId() === 'node') {
+    // Trigger notifications for new billboards.
+    if ($entity->bundle() === 'billboard') {
+      \Drupal::service('billoria_core.notification_service')
+        ->notifyNewBillboard($entity);
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function billoria_core_entity_update(EntityInterface $entity): void {
+  if ($entity->getEntityTypeId() === 'node') {
+    // Track status changes.
+    if ($entity->bundle() === 'billboard') {
+      $original = $entity->original ?? NULL;
+      if ($original && $entity->hasField('field_verification_status')) {
+        $old_status = $original->get('field_verification_status')->value;
+        $new_status = $entity->get('field_verification_status')->value;
+        
+        if ($old_status !== $new_status) {
+          \Drupal::service('billoria_core.notification_service')
+            ->notifyBillboardStatusChange($entity, $old_status, $new_status);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Generate unique billboard code.
+ *
+ * @param \Drupal\node\NodeInterface $node
+ *   The billboard node.
+ *
+ * @return string
+ *   Generated billboard code.
+ */
+function _billoria_core_generate_billboard_code(NodeInterface $node): string {
+  $district = '';
+  if ($node->hasField('field_district') && !$node->get('field_district')->isEmpty()) {
+    $term = $node->get('field_district')->entity;
+    if ($term) {
+      $district = strtoupper(substr($term->label(), 0, 3));
+    }
+  }
+  
+  $timestamp = substr(time(), -6);
+  $random = strtoupper(substr(md5(uniqid()), 0, 4));
+  
+  return sprintf('BB-%s-%s-%s', $district ?: 'GEN', $timestamp, $random);
+}
+
+/**
+ * Implements hook_mail().
+ */
+function billoria_core_mail($key, &$message, $params): void {
+  $options = [
+    'langcode' => $message['langcode'],
+  ];
+
+  switch ($key) {
+    case 'billboard_notification':
+      $message['subject'] = t('New Billboard: @title', ['@title' => $params['title']], $options);
+      $message['body'][] = $params['message'];
+      break;
+
+    case 'booking_notification':
+      $message['subject'] = t('Booking Update: @title', ['@title' => $params['title']], $options);
+      $message['body'][] = $params['message'];
+      break;
+
+    case 'verification_update':
+      $message['subject'] = t('Verification Status Update', [], $options);
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function billoria_core_cron(): void {
+  // Clean up expired bookings or perform maintenance tasks.
+  \Drupal::service('billoria_core.workflow_manager')->processScheduledTasks();
+}
+
+/**
+ * Implements hook_jsonapi_entity_filter_access().
+ */
+function billoria_core_jsonapi_entity_filter_access(EntityInterface $entity, AccountInterface $account) {
+  // Control JSON:API filtering for billboards based on user role.
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'billboard') {
+    // Allow filtering but respect access control.
+    return AccessResult::neutral();
+  }
+  
+  return AccessResult::neutral();
+}

@@ -1,0 +1,18 @@
+billoria_core.billboard_search:
+  path: '/api/billoria/billboards/search'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::search'
+    _title: 'Search Billboards'
+  requirements:
+    _permission: 'access billoria api'
+  methods: [GET]
+
+billoria_core.billboard_availability:
+  path: '/api/billoria/billboards/{billboard_id}/availability'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::checkAvailability'
+    _title: 'Check Billboard Availability'
+  requirements:
+    _permission: 'access billoria api'
+    billboard_id: \d+
+  methods: [GET]

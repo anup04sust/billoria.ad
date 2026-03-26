@@ -1,0 +1,21 @@
+name: Billoria Core
+type: module
+description: 'Core business logic module for the Billoria billboard advertising platform.'
+package: Billoria
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:node
+  - drupal:user
+  - drupal:taxonomy
+  - drupal:field
+  - drupal:text
+  - drupal:link
+  - drupal:datetime
+  - drupal:image
+  - drupal:file
+  - drupal:jsonapi
+  - drupal:rest
+  - drupal:language
+  - drupal:content_translation
+  - pathauto:pathauto
+  - token:token
