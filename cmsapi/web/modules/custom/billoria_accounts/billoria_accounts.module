@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Billoria Onboarding module hooks and mail implementation.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function billoria_accounts_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.billoria_accounts':
+      return '<p>' . t('User registration and onboarding system for Brands, Agencies, and Billboard Owners.') . '</p>';
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function billoria_accounts_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'verify_email':
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      $message['headers']['Content-Type'] = 'text/plain; charset=UTF-8;';
+      break;
+
+    case 'verify_phone':
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+
+    case 'organization_approved':
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+
+    case 'organization_rejected':
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['body'];
+      break;
+  }
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function billoria_accounts_user_login($account) {
+  // Redirect to dashboard if user has organization
+  if (!empty($account->get('field_organization')->getValue())) {
+    $response = new \Symfony\Component\HttpFoundation\RedirectResponse(
+      \Drupal\Core\Url::fromRoute('billoria_accounts.organization_dashboard')->toString()
+    );
+    $response->send();
+  }
+}

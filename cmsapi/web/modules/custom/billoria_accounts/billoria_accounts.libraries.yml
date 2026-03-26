@@ -1,0 +1,9 @@
+registration:
+  css:
+    theme:
+      css/registration.css: {}
+
+dashboard:
+  css:
+    theme:
+      css/dashboard.css: {}

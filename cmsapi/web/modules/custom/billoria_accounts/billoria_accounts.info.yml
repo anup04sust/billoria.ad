@@ -1,0 +1,11 @@
+name: Billoria Accounts
+description: 'User account management and authentication system for Brands, Agencies, and Billboard Owners'
+type: module
+core_version_requirement: ^11
+package: Billoria
+
+dependencies:
+  - drupal:user
+  - drupal:node
+  - drupal:field
+  - billoria_core

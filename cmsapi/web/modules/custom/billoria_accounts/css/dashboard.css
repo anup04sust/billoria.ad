@@ -1,0 +1,174 @@
+/* Organization Dashboard Styles */
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #E0E0E0;
+}
+
+.dashboard-header h1 {
+  color: #2C3E50;
+  margin-bottom: 0.5rem;
+}
+
+.org-name {
+  font-size: 1.1rem;
+  color: #34495E;
+}
+
+.org-type {
+  color: #7F8C8D;
+  font-size: 0.9rem;
+}
+
+.dashboard-verification,
+.profile-completion-widget,
+.verification-steps,
+.dashboard-actions {
+  background: #FFFFFF;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-verification h3,
+.profile-completion-widget h3,
+.verification-steps h3,
+.dashboard-actions h3 {
+  margin-top: 0;
+  color: #2C3E50;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.status-badge.status-success {
+  background: #D5F4E6;
+  color: #27AE60;
+}
+
+.status-badge.status-warning {
+  background: #FFF4E5;
+  color: #F39C12;
+}
+
+.status-badge.status-error {
+  background: #FADBD8;
+  color: #E74C3C;
+}
+
+.status-badge.status-info {
+  background: #EBF5FB;
+  color: #3498DB;
+}
+
+.trust-score {
+  font-size: 1.1rem;
+  color: #34495E;
+}
+
+.trust-score strong {
+  color: #27AE60;
+  font-size: 1.3rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 24px;
+  background: #ECF0F1;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3498DB, #2ECC71);
+  transition: width 0.5s ease;
+}
+
+.profile-completion-widget p {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #34495E;
+  margin-bottom: 1rem;
+}
+
+.verification-steps .checklist {
+  list-style: none;
+  padding: 0;
+}
+
+.verification-steps .checklist li {
+  padding: 1rem;
+  border-bottom: 1px solid #ECF0F1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.verification-steps .checklist li:last-child {
+  border-bottom: none;
+}
+
+.verification-steps .checklist li.completed {
+  color: #27AE60;
+}
+
+.verification-steps .checklist li.pending {
+  color: #95A5A6;
+}
+
+.dashboard-actions ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dashboard-actions .button {
+  background: #3498DB;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.dashboard-actions .button:hover {
+  background: #2980B9;
+}
+
+.dashboard-actions .button--primary {
+  background: #27AE60;
+}
+
+.dashboard-actions .button--primary:hover {
+  background: #229954;
+}
+
+.dashboard-no-org {
+  text-align: center;
+  padding: 3rem;
+  background: #F8F9FA;
+  border-radius: 8px;
+}
+
+.dashboard-no-org h2 {
+  color: #2C3E50;
+  margin-bottom: 1rem;
+}
+
+.dashboard-no-org p {
+  color: #7F8C8D;
+  margin-bottom: 1.5rem;
+}

@@ -1,0 +1,59 @@
+# REST API Routes for headless Next.js frontend
+
+billoria_accounts.api.register:
+  path: '/api/v1/register'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiRegistrationController::register'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie', 'basic_auth']
+
+billoria_accounts.api.verify_email:
+  path: '/api/v1/verify-email'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::verifyEmail'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+
+billoria_accounts.api.verify_phone:
+  path: '/api/v1/verify-phone'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::verifyPhone'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+
+billoria_accounts.api.resend_verification:
+  path: '/api/v1/resend-verification'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::resendVerification'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+
+billoria_accounts.api.user_profile:
+  path: '/api/v1/user/profile'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiProfileController::getProfile'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [GET]
+
+billoria_accounts.api.organization_status:
+  path: '/api/v1/organization/{nid}/status'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiProfileController::getOrganizationStatus'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [GET]
+
+billoria_accounts.api.request_phone_otp:
+  path: '/api/v1/request-phone-otp'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::requestPhoneOtp'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
