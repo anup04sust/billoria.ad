@@ -1,0 +1,139 @@
+# Security configuration for Billoria API
+# Location: config/install/billoria_core.security.yml
+
+# Global security toggle (can be overridden via settings.php)
+# Set $settings['billoria_security_enabled'] = FALSE to disable globally
+enabled: true
+
+# CSRF Token Protection
+csrf:
+  enabled: true
+  token_lifetime: 1800  # 30 minutes
+  require_for_methods:
+    - POST
+    - PATCH
+    - PUT
+    - DELETE
+  exclude_paths:
+    - '/api/v1/csrf-token'
+  # Uses Drupal core csrf_token service
+
+# Rate Limiting Configuration
+rate_limit:
+  enabled: true
+
+  # IP addresses that bypass all rate limits
+  bypass_ips:
+    - '127.0.0.1'
+    - '::1'
+
+  # Endpoint-specific rate limits (uses Drupal flood service)
+  endpoints:
+    # Registration: 5 per hour per IP+email combination
+    api_register:
+      limit: 5
+      window: 3600
+      identifier: 'ip+email'
+      pattern_check: true
+
+    # Email verification: 10 attempts per hour per IP
+    api_verify:
+      limit: 10
+      window: 3600
+      identifier: 'ip'
+      pattern_check: false
+
+    # Resend verification: 3 per hour per IP+user
+    api_resend:
+      limit: 3
+      window: 3600
+      identifier: 'ip+user'
+      pattern_check: false
+
+    # Login attempts: 5 per 15 minutes per IP
+    api_login:
+      limit: 5
+      window: 900
+      identifier: 'ip'
+      pattern_check: true
+
+    # Profile updates: 30 per hour per user
+    api_profile_update:
+      limit: 30
+      window: 3600
+      identifier: 'user'
+      pattern_check: false
+
+    # Default for unspecified endpoints: 60 per hour
+    api_default:
+      limit: 60
+      window: 3600
+      identifier: 'ip'
+      pattern_check: false
+
+# Pattern Detection and Bot Prevention
+pattern_detection:
+  enabled: true
+
+  # Sequential email pattern detection
+  # Catches: email1@example.com, email2@example.com, email3@example.com
+  sequential_emails:
+    enabled: true
+    threshold: 3          # Flag if 3+ sequential emails from same IP
+    window: 3600          # Within 1 hour
+    action: 'block'       # Options: block, flag, log
+    block_duration: 86400 # Block IP for 24 hours
+
+  # Frontend browser fingerprint tracking
+  fingerprint:
+    enabled: true
+    max_accounts_per_fingerprint: 5   # Max accounts per browser
+    window: 86400                      # Within 24 hours
+    require_header: 'X-Client-Fingerprint'
+    # Frontend must send browser fingerprint hash
+
+  # Disposable/temporary email domain blocking
+  disposable_domains:
+    enabled: true
+    action: 'block'  # Options: block, flag, log
+    # Common disposable email domains
+    domains:
+      - 'tempmail.com'
+      - 'guerrillamail.com'
+      - '10minutemail.com'
+      - 'throwaway.email'
+      - 'mailinator.com'
+      - 'maildrop.cc'
+      - 'sharklasers.com'
+      - 'yopmail.com'
+      - 'temp-mail.org'
+      - 'getnada.com'
+      - 'trashmail.com'
+      - 'fakeinbox.com'
+      - 'emailondeck.com'
+      - 'tempinbox.com'
+      - 'guerrillamailblock.com'
+      - 'spam4.me'
+      - 'grr.la'
+      - 'mailnesia.com'
+      - 'mytemp.email'
+      - 'mohmal.com'
+
+  # Velocity detection (speed-based anomaly detection)
+  velocity:
+    enabled: true
+    max_registrations_per_minute: 1  # From same IP
+    suspicious_velocity: 3            # 3 registrations in 5 minutes = suspicious
+
+# Frontend Integration Settings
+frontend:
+  # CSRF token usage
+  csrf_header: 'X-CSRF-Token'
+  csrf_field: 'csrf_token'
+
+  # Browser fingerprint
+  fingerprint_header: 'X-Client-Fingerprint'
+
+  # Rate limit response headers
+  include_rate_limit_headers: true
+  # Returns: X-RateLimit-Limit, X-RateLimit-Remaining, Retry-After

@@ -13,10 +13,10 @@ use Drupal\user\Entity\Role;
 function billoria_core_install(): void {
   // Create custom user roles.
   _billoria_core_create_roles();
-  
+
   // Set up default permissions for roles.
   _billoria_core_assign_permissions();
-  
+
   \Drupal::messenger()->addStatus(t('Billoria Core module installed successfully.'));
   \Drupal::logger('billoria_core')->info('Billoria Core module installed.');
 }
@@ -27,7 +27,7 @@ function billoria_core_install(): void {
 function billoria_core_uninstall(): void {
   // Clean up configuration.
   \Drupal::configFactory()->getEditable('billoria_core.settings')->delete();
-  
+
   \Drupal::messenger()->addStatus(t('Billoria Core module uninstalled.'));
   \Drupal::logger('billoria_core')->info('Billoria Core module uninstalled.');
 }
@@ -46,14 +46,14 @@ function _billoria_core_create_roles(): void {
 
   foreach ($roles as $role_id => $role_label) {
     $role = Role::load($role_id);
-    
+
     if (!$role) {
       $role = Role::create([
         'id' => $role_id,
         'label' => $role_label,
       ]);
       $role->save();
-      
+
       \Drupal::logger('billoria_core')->info('Created role: @role', ['@role' => $role_label]);
     }
   }
@@ -103,13 +103,13 @@ function _billoria_core_assign_permissions(): void {
 
   foreach ($permissions_map as $role_id => $permissions) {
     $role = Role::load($role_id);
-    
+
     if ($role) {
       foreach ($permissions as $permission) {
         $role->grantPermission($permission);
       }
       $role->save();
-      
+
       \Drupal::logger('billoria_core')->info('Assigned permissions to role: @role', [
         '@role' => $role_id,
       ]);
@@ -122,6 +122,67 @@ function _billoria_core_assign_permissions(): void {
  */
 function billoria_core_schema(): array {
   $schema = [];
+
+  // Registration tracking for pattern detection and security analysis.
+  $schema['billoria_registration_log'] = [
+    'description' => 'Logs registration attempts for pattern detection',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary key',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'ip' => [
+        'description' => 'IP address',
+        'type' => 'varchar',
+        'length' => 45,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'description' => 'Email address',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'username' => [
+        'description' => 'Username',
+        'type' => 'varchar',
+        'length' => 60,
+        'not null' => TRUE,
+      ],
+      'fingerprint' => [
+        'description' => 'Browser fingerprint hash',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+      ],
+      'timestamp' => [
+        'description' => 'Registration attempt timestamp',
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'status' => [
+        'description' => 'Status: success, blocked, suspicious',
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+      ],
+      'pattern_flags' => [
+        'description' => 'JSON-encoded pattern detection flags',
+        'type' => 'text',
+        'size' => 'big',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'ip_timestamp' => ['ip', 'timestamp'],
+      'email' => ['email'],
+      'fingerprint' => ['fingerprint'],
+      'timestamp' => ['timestamp'],
+      'status' => ['status'],
+    ],
+  ];
 
   // Booking tracking table (if not using custom entity).
   $schema['billoria_booking'] = [

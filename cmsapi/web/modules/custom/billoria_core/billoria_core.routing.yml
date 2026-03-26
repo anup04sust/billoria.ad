@@ -1,3 +1,16 @@
+# API Security Endpoints
+
+billoria_core.api.csrf_token:
+  path: '/api/v1/csrf-token'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\ApiSecurityController::getCsrfToken'
+    _title: 'Get CSRF Token'
+  requirements:
+    _access: 'TRUE'
+  methods: [GET]
+
+# Billboard API Endpoints
+
 billoria_core.billboard_search:
   path: '/api/billoria/billboards/search'
   defaults:

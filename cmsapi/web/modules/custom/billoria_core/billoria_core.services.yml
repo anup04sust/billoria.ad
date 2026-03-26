@@ -1,4 +1,20 @@
 services:
+  # Security Services (CSRF, Rate Limiting, Pattern Detection)
+  billoria_core.pattern_detector:
+    class: Drupal\billoria_core\Service\PatternDetectionService
+    arguments: ['@database', '@config.factory', '@logger.factory']
+
+  billoria_core.security:
+    class: Drupal\billoria_core\Service\ApiSecurityService
+    arguments:
+      - '@csrf_token'
+      - '@flood'
+      - '@billoria_core.pattern_detector'
+      - '@config.factory'
+      - '@request_stack'
+      - '@logger.factory'
+
+  # Business Logic Services
   billoria_core.billboard_manager:
     class: Drupal\billoria_core\Service\BillboardManager
     arguments: ['@entity_type.manager', '@current_user', '@logger.factory']
@@ -33,6 +49,6 @@ services:
 
   billoria_core.event_subscriber:
     class: Drupal\billoria_core\EventSubscriber\BilloriaCoreSubscriber
-    arguments: ['@billoria_core.notification_service', '@logger.factory']
+    arguments: ['@billoria_core.notification_service', '@billoria_core.security', '@logger.factory']
     tags:
       - { name: event_subscriber }
