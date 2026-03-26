@@ -1,6 +1,6 @@
 # Billoria Project Checklist
 
-**Last Updated:** March 25, 2026
+**Last Updated:** March 26, 2026
 
 ## How to Use This Checklist
 - [ ] = Not Started
@@ -35,13 +35,23 @@
   - [x] Key module (v1.22.0 - for API key management)
 
 ### Content Architecture
+- [x] **CMS-002c**: Create custom business logic module (billoria_core)
+  - [x] Implement 8 core services with dependency injection
+  - [x] Create custom API endpoints (billboard search, availability)
+  - [x] Define 15 custom permissions
+  - [x] Auto-create 5 user roles (platform_admin, billboard_owner, agency, brand_user, vendor)
+  - [x] Implement database schema (billoria_booking table)
+  - [x] Add entity hooks and workflow automation
 - [ ] **CMS-003**: Define content types
-  - [ ] Article/Blog posts
-  - [ ] Pages
-  - [ ] Products (if e-commerce)
-  - [ ] Other: _____________
+  - [ ] Billboard (location, size, type, pricing, etc.)
+  - [ ] Agency Profile (company info, verified status)
+  - [ ] Vendor Profile (services, portfolio)
+  - [ ] Booking Request (custom entity)
 - [ ] **CMS-004**: Set up custom fields for content types
 - [ ] **CMS-005**: Configure taxonomies/vocabularies
+  - [ ] Billboard Type (digital, traditional, etc.)
+  - [ ] District (Dhaka, Chittagong, etc.)
+  - [ ] Pricing Model (daily, weekly, monthly, campaign)
 - [ ] **CMS-006**: Set up media entities (images, videos, files)
 
 ### API Configuration
