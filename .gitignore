@@ -159,7 +159,8 @@ dumps/
 # Ignore docs folder (local reference only)
 /docs/
 
-# GitHub Wiki is in /application-wiki (tracked)
+# GitHub Wiki is in /application-wiki (separate git repo)
+/application-wiki/
 # Ignore only generated documentation builds (if any)
 # /docs/_build/
 # /docs/.doctrees/
