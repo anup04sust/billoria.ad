@@ -107,7 +107,7 @@ class BillboardManager {
     }
 
     $nids = $query->execute();
-    
+
     return $nids ? $storage->loadMultiple($nids) : [];
   }
 
@@ -147,7 +147,7 @@ class BillboardManager {
 
     // TODO: Check for conflicting bookings in date range.
     // This will be implemented when booking custom entity is created.
-    
+
     return TRUE;
   }
 
@@ -198,7 +198,7 @@ class BillboardManager {
     // Update verification status.
     if ($billboard->hasField('field_verification_status')) {
       $billboard->set('field_verification_status', $status);
-      
+
       // Add notes if field exists.
       if ($billboard->hasField('field_legal_notes') && !empty($notes)) {
         $existing_notes = $billboard->get('field_legal_notes')->value ?? '';
@@ -283,6 +283,121 @@ class BillboardManager {
     }
 
     return FALSE;
+  }
+
+  /**
+   * Create a new billboard.
+   *
+   * @param array $data
+   *   Billboard data array.
+   *
+   * @return \Drupal\node\NodeInterface
+   *   The created billboard node.
+   *
+   * @throws \Exception
+   *   If required fields are missing or invalid.
+   */
+  public function createBillboard(array $data): NodeInterface {
+    // Validate required fields.
+    $required = ['title', 'field_owner_organization', 'field_media_format', 'field_latitude', 'field_longitude'];
+    foreach ($required as $field) {
+      if (empty($data[$field])) {
+        throw new \Exception("Required field $field is missing");
+      }
+    }
+
+    $storage = $this->entityTypeManager->getStorage('node');
+
+    // Prepare node values.
+    $values = [
+      'type' => 'billboard',
+      'title' => $data['title'],
+      'status' => 1,
+      'uid' => $this->currentUser->id(),
+    ];
+
+    // Map data to fields.
+    $field_mappings = [
+      'field_billboard_id', 'field_media_format', 'field_placement_type',
+      'field_road_name', 'field_road_type', 'field_division', 'field_district',
+      'field_upazila_thana', 'field_city_corporation', 'field_area_zone',
+      'field_traffic_direction', 'field_visibility_class', 'field_illumination_type',
+      'field_booking_mode', 'field_availability_status', 'field_latitude',
+      'field_longitude', 'field_facing_direction', 'field_visibility_distance',
+      'field_width_ft', 'field_height_ft', 'field_display_size', 'field_lane_count',
+      'field_has_divider', 'field_commercial_score', 'field_traffic_score',
+      'field_rate_card_price', 'field_currency', 'field_owner_organization',
+      'field_owner_vendor_name', 'field_owner_contact_number', 'field_is_premium',
+      'field_is_active', 'field_notes',
+    ];
+
+    foreach ($field_mappings as $field) {
+      if (isset($data[$field])) {
+        $values[$field] = $data[$field];
+      }
+    }
+
+    // Create the billboard.
+    $billboard = $storage->create($values);
+    $billboard->save();
+
+    $this->logger->info('Billboard @nid created by user @uid', [
+      '@nid' => $billboard->id(),
+      '@uid' => $this->currentUser->id(),
+    ]);
+
+    return $billboard;
+  }
+
+  /**
+   * Update an existing billboard.
+   *
+   * @param \Drupal\node\NodeInterface $billboard
+   *   The billboard node to update.
+   * @param array $data
+   *   Updated data array.
+   *
+   * @return \Drupal\node\NodeInterface
+   *   The updated billboard node.
+   *
+   * @throws \Exception
+   *   If validation fails.
+   */
+  public function updateBillboard(NodeInterface $billboard, array $data): NodeInterface {
+    if ($billboard->bundle() !== 'billboard') {
+      throw new \Exception('Not a billboard node');
+    }
+
+    // Update allowed fields.
+    $allowed_fields = [
+      'title', 'field_billboard_id', 'field_media_format', 'field_placement_type',
+      'field_road_name', 'field_road_type', 'field_division', 'field_district',
+      'field_upazila_thana', 'field_city_corporation', 'field_area_zone',
+      'field_traffic_direction', 'field_visibility_class', 'field_illumination_type',
+      'field_booking_mode', 'field_availability_status', 'field_latitude',
+      'field_longitude', 'field_facing_direction', 'field_visibility_distance',
+      'field_width_ft', 'field_height_ft', 'field_display_size', 'field_lane_count',
+      'field_has_divider', 'field_commercial_score', 'field_traffic_score',
+      'field_rate_card_price', 'field_currency', 'field_owner_contact_number',
+      'field_is_premium', 'field_is_active', 'field_notes',
+    ];
+
+    foreach ($allowed_fields as $field) {
+      if (isset($data[$field])) {
+        if ($billboard->hasField($field)) {
+          $billboard->set($field, $data[$field]);
+        }
+      }
+    }
+
+    $billboard->save();
+
+    $this->logger->info('Billboard @nid updated by user @uid', [
+      '@nid' => $billboard->id(),
+      '@uid' => $this->currentUser->id(),
+    ]);
+
+    return $billboard;
   }
 
 }

@@ -9,7 +9,7 @@ billoria_core.api.csrf_token:
     _access: 'TRUE'
   methods: [GET]
 
-# Billboard API Endpoints
+# Billboard API Endpoints (Legacy)
 
 billoria_core.billboard_search:
   path: '/api/billoria/billboards/search'
@@ -29,3 +29,59 @@ billoria_core.billboard_availability:
     _permission: 'access billoria api'
     billboard_id: \d+
   methods: [GET]
+
+# Billboard CRUD API Endpoints (v1)
+
+billoria_core.api.billboard_create:
+  path: '/api/v1/billboard/create'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::createBillboard'
+    _title: 'Create Billboard'
+  requirements:
+    _permission: 'create billboard content'
+  methods: [POST]
+  options:
+    _auth: ['cookie', 'basic_auth']
+
+billoria_core.api.billboard_list:
+  path: '/api/v1/billboard/list'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::list'
+    _title: 'List Billboards'
+  requirements:
+    _access: 'TRUE'
+  methods: [GET]
+
+billoria_core.api.billboard_read:
+  path: '/api/v1/billboard/{billboard_id}'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::read'
+    _title: 'Get Billboard'
+  requirements:
+    _access: 'TRUE'
+    billboard_id: \d+
+  methods: [GET]
+
+billoria_core.api.billboard_update:
+  path: '/api/v1/billboard/{billboard_id}'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::update'
+    _title: 'Update Billboard'
+  requirements:
+    _permission: 'edit own billboard content'
+    billboard_id: \d+
+  methods: [PATCH, PUT]
+  options:
+    _auth: ['cookie', 'basic_auth']
+
+billoria_core.api.billboard_delete:
+  path: '/api/v1/billboard/{billboard_id}'
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::delete'
+    _title: 'Delete Billboard'
+  requirements:
+    _permission: 'delete own billboard content'
+    billboard_id: \d+
+  methods: [DELETE]
+  options:
+    _auth: ['cookie', 'basic_auth']

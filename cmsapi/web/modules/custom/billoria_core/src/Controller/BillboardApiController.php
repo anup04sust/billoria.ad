@@ -173,4 +173,229 @@ class BillboardApiController extends ControllerBase {
     );
   }
 
+  /**
+   * Create billboard endpoint.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JSON response.
+   */
+  public function createBillboard(Request $request): JsonResponse {
+    // Check permission.
+    if (!$this->currentUser()->hasPermission('create billboard content')) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Access denied', 403),
+        403
+      );
+    }
+
+    $data = json_decode($request->getContent(), TRUE);
+    if (!$data) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Invalid JSON', 400),
+        400
+      );
+    }
+
+    try {
+      $billboard = $this->billboardManager->createBillboard($data);
+
+      return new JsonResponse(
+        $this->apiHelper->buildSuccessResponse([
+          'billboard_id' => $billboard->id(),
+          'message' => 'Billboard created successfully',
+        ]),
+        201
+      );
+    }
+    catch (\Exception $e) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse($e->getMessage(), 400),
+        400
+      );
+    }
+  }
+
+  /**
+   * Get billboard details endpoint.
+   *
+   * @param int $billboard_id
+   *   Billboard node ID.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JSON response.
+   */
+  public function read(int $billboard_id): JsonResponse {
+    $storage = $this->entityTypeManager()->getStorage('node');
+    $billboard = $storage->load($billboard_id);
+
+    if (!$billboard || $billboard->bundle() !== 'billboard') {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Billboard not found', 404),
+        404
+      );
+    }
+
+    // Check access.
+    if (!$billboard->access('view', $this->currentUser())) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Access denied', 403),
+        403
+      );
+    }
+
+    $formatted = $this->apiHelper->formatBillboard($billboard);
+
+    return new JsonResponse(
+      $this->apiHelper->buildSuccessResponse($formatted)
+    );
+  }
+
+  /**
+   * List billboards endpoint.
+   *
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JSON response.
+   */
+  public function list(Request $request): JsonResponse {
+    $filters = [
+      'division' => $request->query->get('division'),
+      'district' => $request->query->get('district'),
+      'area_zone' => $request->query->get('area_zone'),
+      'media_format' => $request->query->get('media_format'),
+      'availability_status' => $request->query->get('availability_status'),
+      'is_premium' => $request->query->get('is_premium'),
+      'min_price' => $request->query->get('min_price'),
+      'max_price' => $request->query->get('max_price'),
+      'owner_organization' => $request->query->get('owner_organization'),
+    ];
+
+    // Remove null values.
+    $filters = array_filter($filters, fn($value) => $value !== NULL && $value !== '');
+
+    $limit = (int) $request->query->get('limit', 20);
+    $offset = (int) $request->query->get('offset', 0);
+    $sort = $request->query->get('sort', 'created');
+    $order = $request->query->get('order', 'DESC');
+
+    $billboards = $this->billboardManager->getAvailableBillboards($filters, $limit, $offset, $sort, $order);
+    $formatted = $this->apiHelper->formatBillboards($billboards);
+
+    return new JsonResponse(
+      $this->apiHelper->buildSuccessResponse([
+        'billboards' => $formatted,
+        'count' => count($formatted),
+        'limit' => $limit,
+        'offset' => $offset,
+      ])
+    );
+  }
+
+  /**
+   * Update billboard endpoint.
+   *
+   * @param int $billboard_id
+   *   Billboard node ID.
+   * @param \Symfony\Component\HttpFoundation\Request $request
+   *   The request object.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JSON response.
+   */
+  public function update(int $billboard_id, Request $request): JsonResponse {
+    $storage = $this->entityTypeManager()->getStorage('node');
+    $billboard = $storage->load($billboard_id);
+
+    if (!$billboard || $billboard->bundle() !== 'billboard') {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Billboard not found', 404),
+        404
+      );
+    }
+
+    // Check permission.
+    if (!$billboard->access('update', $this->currentUser())) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Access denied', 403),
+        403
+      );
+    }
+
+    $data = json_decode($request->getContent(), TRUE);
+    if (!$data) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Invalid JSON', 400),
+        400
+      );
+    }
+
+    try {
+      $this->billboardManager->updateBillboard($billboard, $data);
+
+      return new JsonResponse(
+        $this->apiHelper->buildSuccessResponse([
+          'billboard_id' => $billboard->id(),
+          'message' => 'Billboard updated successfully',
+        ])
+      );
+    }
+    catch (\Exception $e) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse($e->getMessage(), 400),
+        400
+      );
+    }
+  }
+
+  /**
+   * Delete billboard endpoint.
+   *
+   * @param int $billboard_id
+   *   Billboard node ID.
+   *
+   * @return \Symfony\Component\HttpFoundation\JsonResponse
+   *   JSON response.
+   */
+  public function delete(int $billboard_id): JsonResponse {
+    $storage = $this->entityTypeManager()->getStorage('node');
+    $billboard = $storage->load($billboard_id);
+
+    if (!$billboard || $billboard->bundle() !== 'billboard') {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Billboard not found', 404),
+        404
+      );
+    }
+
+    // Check permission.
+    if (!$billboard->access('delete', $this->currentUser())) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Access denied', 403),
+        403
+      );
+    }
+
+    try {
+      $billboard->delete();
+
+      return new JsonResponse(
+        $this->apiHelper->buildSuccessResponse([
+          'billboard_id' => $billboard_id,
+          'message' => 'Billboard deleted successfully',
+        ])
+      );
+    }
+    catch (\Exception $e) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse($e->getMessage(), 400),
+        400
+      );
+    }
+  }
+
 }

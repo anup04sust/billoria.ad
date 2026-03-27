@@ -202,3 +202,7 @@ id_rsa.pub
 PROJECT_NOTES.md
 TODO.md
 SCRATCH.md
+
+#scraper
+/scraper
+/scraper/*
