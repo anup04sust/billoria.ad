@@ -62,7 +62,7 @@ export function Chatbot() {
       {/* Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="chatbot__button"
+        className={`chatbot__button ${isOpen ? 'chatbot__button--hidden-mobile' : ''}`}
         aria-label="Open chat"
       >
         <span className="chatbot__button-icon">

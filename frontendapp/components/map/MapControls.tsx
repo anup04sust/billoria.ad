@@ -26,9 +26,10 @@ interface MapControlsProps {
   onFilterClick?: () => void;
   onListViewClick?: () => void;
   filterActive?: boolean;
+  listViewActive?: boolean;
 }
 
-export function MapControls({ onFilterClick, onListViewClick, filterActive }: MapControlsProps) {
+export function MapControls({ onFilterClick, onListViewClick, filterActive, listViewActive }: MapControlsProps) {
   const map = useMap();
   const [locating, setLocating] = useState(false);
   const markerRef = useRef<L.Marker | null>(null);
@@ -142,7 +143,7 @@ export function MapControls({ onFilterClick, onListViewClick, filterActive }: Ma
       </button>
 
       <button
-        className="map-controls__btn"
+        className={`map-controls__btn ${listViewActive ? 'map-controls__btn--active-toggle' : ''}`}
         onClick={() => onListViewClick?.()}
         title="List View"
         aria-label="Switch to list view"

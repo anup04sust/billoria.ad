@@ -1,9 +1,11 @@
 'use client';
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import { MapControls } from './MapControls';
 import { MapFilterModal, EMPTY_FILTERS } from './MapFilterModal';
 import type { MapFilters } from './MapFilterModal';
+import { BillboardListWidget } from './BillboardListWidget';
+import { BillboardDetailWidget } from './BillboardDetailWidget';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import type { Billboard } from '@/types/billboard';
@@ -19,6 +21,21 @@ interface BillboardMapProps {
   billboards?: Billboard[];
 }
 
+/* Helper: flies map to a location */
+function MapFlyHandler({ target, onDone }: { target: { lat: number; lng: number } | null; onDone: () => void }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!target) return;
+    const { lat, lng } = target;
+    map.flyTo([lat, lng], 16, { duration: 1 });
+    map.once('moveend', onDone);
+    return () => { map.off('moveend', onDone); };
+  }, [target, map, onDone]);
+
+  return null;
+}
+
 export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) {
   const [isMounted, setIsMounted] = useState(false);
   const [billboards, setBillboards] = useState<Billboard[]>(propBillboards || []);
@@ -26,9 +43,28 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
   const [error, setError] = useState<string | null>(null);
   const [filterOpen, setFilterOpen] = useState(false);
   const [filters, setFilters] = useState<MapFilters>(EMPTY_FILTERS);
+  const [listOpen, setListOpen] = useState(false);
+  const [flyTarget, setFlyTarget] = useState<{ lat: number; lng: number } | null>(null);
+  const [selectedBillboard, setSelectedBillboard] = useState<Billboard | null>(null);
+  const [showScrollHint, setShowScrollHint] = useState(true);
+
+  const handleBillboardClick = useCallback((billboard: Billboard) => {
+    const lat = parseFloat(billboard.latitude!);
+    const lng = parseFloat(billboard.longitude!);
+    if (isNaN(lat) || isNaN(lng)) return;
+    setSelectedBillboard(billboard);
+    setFlyTarget({ lat, lng });
+  }, []);
+
+  const clearFlyTarget = useCallback(() => setFlyTarget(null), []);
 
   useEffect(() => {
     setIsMounted(true);
+
+    const handleScroll = () => {
+      setShowScrollHint(window.scrollY < 100);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Fetch from API if no billboards provided or empty array
     const shouldFetch = !propBillboards || propBillboards.length === 0;
@@ -37,6 +73,8 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
     if (shouldFetch) {
       fetchBillboards();
     }
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [propBillboards]);
 
   const fetchBillboards = async () => {
@@ -67,7 +105,8 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
 
   // Default center: Bangladesh (country-wide view)
   const defaultCenter: [number, number] = [23.685, 90.356];
-  const defaultZoom = 8;
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const defaultZoom = isMobile ? 6 : 8;
 
   // Get valid billboards with coordinates
   const validBillboards = useMemo(
@@ -141,10 +180,23 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
 
   return (
     <section className="billboard-map-section">
-      {filteredBillboards.length > 0 && (
+      {!listOpen && filteredBillboards.length > 0 && (
         <div className="billboard-map-counter">
           {filteredBillboards.length} billboard{filteredBillboards.length !== 1 ? 's' : ''} found
         </div>
+      )}
+      {listOpen && !selectedBillboard && (
+        <BillboardListWidget
+          billboards={filteredBillboards}
+          onClose={() => setListOpen(false)}
+          onBillboardClick={handleBillboardClick}
+        />
+      )}
+      {selectedBillboard && (
+        <BillboardDetailWidget
+          billboard={selectedBillboard}
+          onClose={() => setSelectedBillboard(null)}
+        />
       )}
       <MapFilterModal
         open={filterOpen}
@@ -162,6 +214,8 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
       >
         <MapControls
           onFilterClick={() => setFilterOpen(true)}
+          onListViewClick={() => setListOpen((v) => !v)}
+          listViewActive={listOpen}
           filterActive={
             filters.search !== '' ||
             filters.divisions.length > 0 ||
@@ -173,6 +227,7 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
             filters.statuses.length > 0
           }
         />
+        <MapFlyHandler target={flyTarget} onDone={clearFlyTarget} />
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -192,41 +247,27 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
             if (isNaN(lat) || isNaN(lng)) return null;
 
             return (
-              <Marker key={billboard.id} position={[lat, lng]} icon={getBillboardMarkerIcon(billboard)}>
-                <Popup className="billboard-map__popup">
-                  <div className="billboard-map-card">
-                    {billboard.hero_image && (
-                      <div className="billboard-map-card__image">
-                        <img
-                          src={billboard.hero_image.thumbnail}
-                          alt={billboard.hero_image.alt}
-                          className="billboard-map-card__img"
-                        />
-                      </div>
-                    )}
-                    <div className="billboard-map-card__content">
-                      <h4 className="billboard-map-card__title">{billboard.title}</h4>
-                      {billboard.area_zone && (
-                        <p className="billboard-map-card__location">
-                          {billboard.area_zone.label}
-                        </p>
-                      )}
-                      {billboard.rate_card_price && (
-                        <p className="billboard-map-card__price">
-                          BDT {parseFloat(billboard.rate_card_price).toLocaleString()}
-                        </p>
-                      )}
-                      <a href={`/billboard/${billboard.id}`} className="billboard-map-card__link">
-                        View Details →
-                      </a>
-                    </div>
-                  </div>
-                </Popup>
-              </Marker>
+              <Marker
+                key={billboard.id}
+                position={[lat, lng]}
+                icon={getBillboardMarkerIcon(billboard)}
+                eventHandlers={{
+                  click: () => handleBillboardClick(billboard),
+                }}
+              />
             );
           })}
         </MarkerClusterGroup>
       </MapContainer>
+
+      {/* Scroll down indicator */}
+      {showScrollHint && (
+        <div className="billboard-map-scroll-hint">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </div>
+      )}
     </section>
   );
 }

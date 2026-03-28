@@ -1,0 +1,253 @@
+/* === Billboard Detail Widget (offcanvas, right side) === */
+.detail-widget {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1001;
+  width: 380px;
+  background: var(--color-white);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: detail-widget-slide-in 0.3s ease-out;
+}
+
+@keyframes detail-widget-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.detail-widget--closing {
+  animation: detail-widget-slide-out 0.28s ease-in forwards;
+}
+
+@keyframes detail-widget-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* ── Header ── */
+.detail-widget__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-gray-200, #e5e7eb);
+  flex-shrink: 0;
+}
+
+.detail-widget__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.detail-widget__close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--color-gray-500);
+  transition: background 0.15s, color 0.15s;
+}
+
+.detail-widget__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.detail-widget__close:hover {
+  background: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-900);
+}
+
+/* ── Body ── */
+.detail-widget__body {
+  flex: 1;
+  overflow-y: auto;
+  animation: detail-content-flash 0.35s ease-out;
+}
+
+@keyframes detail-content-flash {
+  0% {
+    opacity: 0.3;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Image ── */
+.detail-widget__image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--color-gray-100, #f3f4f6);
+}
+
+.detail-widget__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Content ── */
+.detail-widget__content {
+  padding: 1rem;
+}
+
+.detail-widget__name {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin: 0 0 0.375rem;
+  line-height: 1.3;
+}
+
+.detail-widget__id {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--color-gray-500);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Status badge ── */
+.detail-widget__status {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.2rem 0.625rem;
+  border-radius: 999px;
+  background: var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-600);
+  letter-spacing: 0.03em;
+  margin-left: 0.5rem;
+}
+
+.detail-widget__status--available {
+  background: rgba(16, 185, 129, 0.12);
+  color: #059669;
+}
+
+.detail-widget__status--booked {
+  background: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+}
+
+.detail-widget__status--reserved {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+
+/* ── Price ── */
+.detail-widget__price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0.75rem 0;
+}
+
+.detail-widget__currency {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-gray-500);
+}
+
+/* ── Detail rows ── */
+.detail-widget__details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0.75rem 0;
+  border-top: 1px solid var(--color-gray-100, #f3f4f6);
+}
+
+.detail-widget__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-gray-100, #f3f4f6);
+}
+
+.detail-widget__label {
+  font-size: 0.8125rem;
+  color: var(--color-gray-500);
+  flex-shrink: 0;
+}
+
+.detail-widget__value {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-gray-900);
+  text-align: right;
+}
+
+/* ── CTA ── */
+.detail-widget__footer {
+  flex-shrink: 0;
+  padding: 0.75rem 1rem;
+  border-top: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.detail-widget__cta {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  text-align: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.detail-widget__cta:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .detail-widget {
+    position: fixed;
+    top: 4rem;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 4rem);
+    height: calc(100dvh - 4rem);
+    border-radius: 0;
+    z-index: 1050;
+  }
+
+  .detail-widget__body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}

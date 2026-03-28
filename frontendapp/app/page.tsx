@@ -19,11 +19,11 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* 1. Sticky Transparent Header */}
+      {/* 1. Fixed Solid Header */}
       <Header />
 
-      <main>
-        {/* 2. Full-Screen Map Section - No padding to allow full viewport height */}
+      <main style={{ paddingTop: '4rem' }}>
+        {/* 2. Full-Screen Map Section - starts below header */}
         <BillboardMapWrapper billboards={billboards} />
 
         {/* Sections below map have padding to account for header */}

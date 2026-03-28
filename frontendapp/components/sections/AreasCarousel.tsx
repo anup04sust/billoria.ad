@@ -70,7 +70,7 @@ export function AreasCarousel() {
           <div>
             <h2 className="areas-carousel__title">Tier 1 Premium Areas</h2>
             <p className="areas-carousel__subtitle">
-              Explore high-traffic locations in Bangladesh's major cities
+              Explore high-traffic locations in Bangladesh&apos;s major cities
             </p>
           </div>
           <div className="areas-carousel__controls">
@@ -79,19 +79,33 @@ export function AreasCarousel() {
               className="areas-carousel__button areas-carousel__button--prev"
               aria-label="Previous"
             >
-              ←
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
             </button>
             <button
               onClick={scrollRight}
               className="areas-carousel__button areas-carousel__button--next"
               aria-label="Next"
             >
-              →
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
             </button>
           </div>
         </div>
 
         <div className="areas-carousel">
+          <button
+            onClick={scrollLeft}
+            className="areas-carousel__button areas-carousel__button--prev areas-carousel__button--mobile"
+            aria-label="Previous"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+          </button>
+          <button
+            onClick={scrollRight}
+            className="areas-carousel__button areas-carousel__button--next areas-carousel__button--mobile"
+            aria-label="Next"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+          </button>
           <div className="areas-carousel__container" ref={scrollContainerRef}>
             {tier1Areas.map((area) => (
               <article key={area.id} className="area-card">
