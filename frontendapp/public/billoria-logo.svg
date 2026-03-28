@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="48" viewBox="0 0 180 48" fill="none">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C1121F"/>
+      <stop offset="100%" stop-color="#780000"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#003049"/>
+      <stop offset="100%" stop-color="#669BBC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Eye Icon -->
+  <g transform="translate(0, 8)">
+    <!-- Upper right eye outline (red) -->
+    <path d="M 16 8 Q 22 10 28 16 Q 26 18 24 19 L 23.5 18 Q 25 17 26 16 Q 21.5 11 16 9 Z" 
+          fill="url(#redGrad)"/>
+    
+    <!-- Lower left eye outline (blue) -->
+    <path d="M 16 8 Q 10 10 4 16 Q 6 18 8 19 L 8.5 18 Q 7 17 6 16 Q 10.5 11 16 9 Z" 
+          fill="url(#blueGrad)"/>
+
+    <!-- Bottom blue curve -->
+    <path d="M 8.5 18 Q 11 21 16 22 Q 19 21 21.5 19.5 L 22 20 Q 19 22 16 23 Q 10.5 21 7.5 19 Z"
+          fill="url(#blueGrad)"/>
+
+    <!-- Top right red curve -->
+    <path d="M 23.5 18 Q 21 21 16 22 Q 13 21 10.5 19.5 L 10 20 Q 13 22 16 23 Q 21.5 21 24.5 19 Z"
+          fill="url(#redGrad)"/>
+
+    <!-- Outer white ring -->
+    <circle cx="16" cy="16" r="6" fill="#FDF0D5"/>
+    
+    <!-- Outer iris ring (red) -->
+    <circle cx="16" cy="16" r="5.5" fill="#C1121F"/>
+    
+    <!-- Middle cream ring -->
+    <circle cx="16" cy="16" r="3.5" fill="#FDF0D5"/>
+    
+    <!-- Inner iris (dark red) -->
+    <circle cx="16" cy="16" r="3" fill="#780000"/>
+    
+    <!-- Pupil -->
+    <circle cx="16" cy="16" r="2" fill="#003049"/>
+    
+    <!-- White highlight -->
+    <ellipse cx="17.5" cy="15" rx="0.8" ry="1" fill="#FFFFFF" opacity="0.9"/>
+  </g>
+
+  <!-- Wordmark "Billoria" -->
+  <text x="42" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="700" letter-spacing="-0.5" fill="currentColor">
+    Billoria
+  </text>
+</svg>

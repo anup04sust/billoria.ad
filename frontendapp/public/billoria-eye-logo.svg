@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5B4E8B"/>
+      <stop offset="100%" stop-color="#6D5B9E"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#29ABE2"/>
+      <stop offset="100%" stop-color="#3BB9E3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Upper right eye outline (purple) -->
+  <path d="M 256 150 Q 350 180 450 256 Q 420 280 380 300 L 370 285 Q 400 270 420 256 Q 340 200 256 175 Z" 
+        fill="url(#purpleGrad)"/>
+  
+  <!-- Lower left eye outline (blue) -->
+  <path d="M 256 150 Q 162 180 62 256 Q 92 280 132 300 L 142 285 Q 112 270 92 256 Q 172 200 256 175 Z" 
+        fill="url(#blueGrad)"/>
+
+  <!-- Bottom blue curve -->
+  <path d="M 142 285 Q 180 330 256 350 Q 300 340 340 315 L 350 330 Q 300 360 256 370 Q 170 350 130 300 Z"
+        fill="url(#blueGrad)"/>
+
+  <!-- Top right purple curve -->
+  <path d="M 370 285 Q 332 330 256 350 Q 212 340 172 315 L 162 330 Q 212 360 256 370 Q 342 350 382 300 Z"
+        fill="url(#purpleGrad)"/>
+
+  <!-- Outer white ring -->
+  <circle cx="256" cy="256" r="90" fill="#FFFFFF"/>
+  
+  <!-- Outer iris ring (purple) -->
+  <circle cx="256" cy="256" r="85" fill="#5B4E8B"/>
+  
+  <!-- Middle white ring -->
+  <circle cx="256" cy="256" r="55" fill="#FFFFFF"/>
+  
+  <!-- Inner iris (darker purple) -->
+  <circle cx="256" cy="256" r="50" fill="#4A3D6E"/>
+  
+  <!-- Pupil -->
+  <circle cx="256" cy="256" r="30" fill="#2E2548"/>
+  
+  <!-- White highlight -->
+  <ellipse cx="270" cy="245" rx="12" ry="15" fill="#FFFFFF" opacity="0.9"/>
+</svg>
