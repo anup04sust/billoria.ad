@@ -1,0 +1,179 @@
+/* === Areas Carousel Section === */
+.areas-carousel-section {
+  background: var(--color-white);
+  overflow: hidden;
+}
+
+.areas-carousel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.areas-carousel__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.areas-carousel__subtitle {
+  font-size: 1.125rem;
+  color: var(--color-gray-600);
+}
+
+.areas-carousel__controls {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.areas-carousel__button {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: var(--color-white);
+  border: 2px solid var(--color-gray-200);
+  border-radius: var(--radius-md);
+  color: var(--color-gray-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.areas-carousel__button:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  transform: scale(1.05);
+}
+
+/* Carousel Container */
+.areas-carousel {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+
+.areas-carousel__container {
+  display: flex;
+  gap: 1.5rem;
+  padding:  0 1rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.areas-carousel__container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Area Card */
+.area-card {
+  flex-shrink: 0;
+  width: 320px;
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+
+.area-card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-4px);
+}
+
+.area-card__image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.area-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.area-card:hover .area-card__img {
+  transform: scale(1.1);
+}
+
+.area-card__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.area-card__count {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md);
+}
+
+.area-card__content {
+  padding: 1.5rem;
+}
+
+.area-card__name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gray-900);
+  margin-bottom: 0.25rem;
+}
+
+.area-card__district {
+  font-size: 0.875rem;
+  color: var(--color-gray-600);
+  margin-bottom: 1rem;
+}
+
+.area-card__button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-gray-50);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.area-card__button:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .areas-carousel__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .areas-carousel__title {
+    font-size: 2rem;
+  }
+
+  .area-card {
+    width: 280px;
+  }
+}
