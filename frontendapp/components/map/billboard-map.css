@@ -2,7 +2,7 @@
 .billboard-map-section {
   position: relative;
   width: 100%;
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 3rem);
   min-height: 500px;
 }
 
@@ -336,7 +336,7 @@
 /* Mobile Responsive */
 @media (max-width: 767px) {
   .billboard-map-section {
-    height: calc(100svh - 4rem);
+    height: calc(100svh - 3rem);
   }
 
   /* Move zoom controls slightly down on mobile */

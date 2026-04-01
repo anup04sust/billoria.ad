@@ -58,6 +58,8 @@ export interface Billboard {
   };
   is_premium?: string;
   is_active?: string;
+  is_sponsored?: string;
+  is_featured?: string;
   hero_image?: {
     original: string;
     large: string;

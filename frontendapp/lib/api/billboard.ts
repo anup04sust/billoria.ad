@@ -139,6 +139,24 @@ export const billboardAPI = {
   },
 
   /**
+   * Get single billboard by UUID (for public URLs)
+   */
+  async getByUuid(uuid: string): Promise<BillboardResponse> {
+    const response = await fetchWithFallback(`/api/v1/billboard/uuid/${uuid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch billboard: ${response.statusText}`);
+    }
+
+    return response.json();
+  },
+
+  /**
    * Get all billboards with coordinates (for map display)
    */
   async listForMap(): Promise<Billboard[]> {

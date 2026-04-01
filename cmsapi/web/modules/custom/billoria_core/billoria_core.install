@@ -75,6 +75,7 @@ function _billoria_core_assign_permissions(): void {
       'manage pricing',
       'send notifications',
       'access billoria api',
+      'manage sponsored featured',
     ],
     'billboard_owner' => [
       'manage own billboards',

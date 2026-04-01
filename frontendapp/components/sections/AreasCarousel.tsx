@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import Link from 'next/link';
 import './areas-carousel.css';
 
 const tier1Areas = [
@@ -108,7 +109,7 @@ export function AreasCarousel() {
           </button>
           <div className="areas-carousel__container" ref={scrollContainerRef}>
             {tier1Areas.map((area) => (
-              <article key={area.id} className="area-card">
+              <Link key={area.id} href={`/billboards?zone=${encodeURIComponent(area.name)}`} className="area-card">
                 <div className="area-card__image">
                   <img src={area.image} alt={area.name} className="area-card__img" />
                   <div className="area-card__overlay">
@@ -118,9 +119,9 @@ export function AreasCarousel() {
                 <div className="area-card__content">
                   <h3 className="area-card__name">{area.name}</h3>
                   <p className="area-card__district">{area.district}</p>
-                  <button className="area-card__button">View Billboards</button>
+                  <span className="area-card__button">View Billboards</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

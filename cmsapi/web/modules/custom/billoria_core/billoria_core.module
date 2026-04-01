@@ -99,7 +99,7 @@ function billoria_core_entity_update(EntityInterface $entity): void {
       if ($original && $entity->hasField('field_verification_status')) {
         $old_status = $original->get('field_verification_status')->value;
         $new_status = $entity->get('field_verification_status')->value;
-        
+
         if ($old_status !== $new_status) {
           \Drupal::service('billoria_core.notification_service')
             ->notifyBillboardStatusChange($entity, $old_status, $new_status);
@@ -126,10 +126,10 @@ function _billoria_core_generate_billboard_code(NodeInterface $node): string {
       $district = strtoupper(substr($term->label(), 0, 3));
     }
   }
-  
+
   $timestamp = substr(time(), -6);
   $random = strtoupper(substr(md5(uniqid()), 0, 4));
-  
+
   return sprintf('BB-%s-%s-%s', $district ?: 'GEN', $timestamp, $random);
 }
 
@@ -168,6 +168,36 @@ function billoria_core_cron(): void {
 }
 
 /**
+ * Implements hook_form_alter().
+ *
+ * Restrict sponsored and featured fields to administrators only.
+ */
+function billoria_core_form_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state, string $form_id): void {
+  // Only act on billboard node forms.
+  if (!in_array($form_id, ['node_billboard_form', 'node_billboard_edit_form'])) {
+    return;
+  }
+
+  $account = \Drupal::currentUser();
+  $can_manage = $account->hasPermission('manage sponsored featured') || $account->hasPermission('administer billoria') || in_array('administrator', $account->getRoles());
+
+  foreach (['field_is_sponsored', 'field_is_featured'] as $field_name) {
+    if (isset($form[$field_name])) {
+      if (!$can_manage) {
+        $form[$field_name]['#access'] = FALSE;
+      }
+    }
+  }
+
+  // Fix latitude/longitude step validation (Drupal core floating-point bug).
+  foreach (['field_latitude', 'field_longitude'] as $coord_field) {
+    if (isset($form[$coord_field]['widget'][0]['value'])) {
+      $form[$coord_field]['widget'][0]['value']['#step'] = 'any';
+    }
+  }
+}
+
+/**
  * Implements hook_jsonapi_entity_filter_access().
  */
 function billoria_core_jsonapi_entity_filter_access(EntityInterface $entity, AccountInterface $account) {
@@ -176,6 +206,6 @@ function billoria_core_jsonapi_entity_filter_access(EntityInterface $entity, Acc
     // Allow filtering but respect access control.
     return AccessResult::neutral();
   }
-  
+
   return AccessResult::neutral();
 }

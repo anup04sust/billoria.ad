@@ -1,0 +1,142 @@
+/* === Billboard Gallery === */
+.bb-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Main Image ── */
+.bb-gallery__main {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-gray-100, #f3f4f6);
+}
+
+.bb-gallery__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bb-gallery__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--color-gray-400);
+  font-size: 0.875rem;
+}
+
+.bb-gallery__placeholder svg {
+  width: 48px;
+  height: 48px;
+}
+
+/* ── Nav Arrows ── */
+.bb-gallery__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  z-index: 2;
+}
+
+.bb-gallery__nav:hover {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.bb-gallery__nav svg {
+  width: 16px;
+  height: 16px;
+}
+
+.bb-gallery__nav--prev {
+  left: 0.75rem;
+}
+
+.bb-gallery__nav--next {
+  right: 0.75rem;
+}
+
+/* ── Counter ── */
+.bb-gallery__counter {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  padding: 0.2rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-white);
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 999px;
+  z-index: 2;
+}
+
+/* ── Thumbnails ── */
+.bb-gallery__thumbs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.bb-gallery__thumbs::-webkit-scrollbar {
+  display: none;
+}
+
+.bb-gallery__thumb {
+  flex-shrink: 0;
+  width: 64px;
+  height: 48px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+  transition: border-color 0.15s, opacity 0.15s;
+  opacity: 0.6;
+}
+
+.bb-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.bb-gallery__thumb--active {
+  border-color: var(--color-primary);
+  opacity: 1;
+}
+
+.bb-gallery__thumb:hover {
+  opacity: 1;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .bb-gallery__main {
+    border-radius: 0;
+  }
+
+  .bb-gallery__thumbs {
+    padding: 0 1rem;
+  }
+}

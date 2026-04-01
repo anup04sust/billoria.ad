@@ -47,13 +47,10 @@ function billoria_accounts_mail($key, &$message, $params) {
 
 /**
  * Implements hook_user_login().
+ *
+ * Note: Post-login redirects are handled by the Next.js frontend.
+ * This hook intentionally does nothing for headless/API logins.
  */
 function billoria_accounts_user_login($account) {
-  // Redirect to dashboard if user has organization
-  if (!empty($account->get('field_organization')->getValue())) {
-    $response = new \Symfony\Component\HttpFoundation\RedirectResponse(
-      \Drupal\Core\Url::fromRoute('billoria_accounts.organization_dashboard')->toString()
-    );
-    $response->send();
-  }
+  // Redirect logic removed — Next.js frontend handles all post-login routing.
 }

@@ -1,0 +1,13 @@
+/* === Billboard Location Mini Map === */
+.bb-location-map {
+  width: 100%;
+  height: 250px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-gray-100, #f3f4f6);
+}
+
+.bb-location-marker {
+  background: none !important;
+  border: none !important;
+}

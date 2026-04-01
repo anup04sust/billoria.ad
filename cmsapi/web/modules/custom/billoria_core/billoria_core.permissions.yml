@@ -57,3 +57,8 @@ send notifications:
 access billoria api:
   title: 'Access Billoria API'
   description: 'Access custom API endpoints'
+
+manage sponsored featured:
+  title: 'Manage sponsored and featured billboards'
+  description: 'Set billboards as sponsored or featured listings'
+  restrict access: true

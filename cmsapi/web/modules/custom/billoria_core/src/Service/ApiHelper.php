@@ -99,6 +99,8 @@ class ApiHelper {
       'field_owner_contact_number' => 'owner_contact_number',
       'field_is_premium' => 'is_premium',
       'field_is_active' => 'is_active',
+      'field_is_sponsored' => 'is_sponsored',
+      'field_is_featured' => 'is_featured',
     ];
 
     foreach ($field_mappings as $field_name => $key) {

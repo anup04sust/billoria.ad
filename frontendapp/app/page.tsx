@@ -22,7 +22,7 @@ export default async function Home() {
       {/* 1. Fixed Solid Header */}
       <Header />
 
-      <main style={{ paddingTop: '4rem' }}>
+      <main style={{ paddingBottom: 0 }}>
         {/* 2. Full-Screen Map Section - starts below header */}
         <BillboardMapWrapper billboards={billboards} />
 

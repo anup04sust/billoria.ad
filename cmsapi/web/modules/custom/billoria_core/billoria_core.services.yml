@@ -2,53 +2,83 @@ services:
   # Security Services (CSRF, Rate Limiting, Pattern Detection)
   billoria_core.pattern_detector:
     class: Drupal\billoria_core\Service\PatternDetectionService
-    arguments: ['@database', '@config.factory', '@logger.factory']
+    arguments: ["@database", "@config.factory", "@logger.factory"]
 
   billoria_core.security:
     class: Drupal\billoria_core\Service\ApiSecurityService
     arguments:
-      - '@csrf_token'
-      - '@flood'
-      - '@billoria_core.pattern_detector'
-      - '@config.factory'
-      - '@request_stack'
-      - '@logger.factory'
+      - "@csrf_token"
+      - "@flood"
+      - "@billoria_core.pattern_detector"
+      - "@config.factory"
+      - "@request_stack"
+      - "@logger.factory"
 
   # Business Logic Services
   billoria_core.billboard_manager:
     class: Drupal\billoria_core\Service\BillboardManager
-    arguments: ['@entity_type.manager', '@current_user', '@logger.factory']
+    arguments: ["@entity_type.manager", "@current_user", "@logger.factory"]
 
   billoria_core.booking_manager:
     class: Drupal\billoria_core\Service\BookingManager
-    arguments: ['@entity_type.manager', '@current_user', '@logger.factory', '@billoria_core.billboard_manager']
+    arguments:
+      [
+        "@entity_type.manager",
+        "@current_user",
+        "@logger.factory",
+        "@billoria_core.billboard_manager",
+      ]
 
   billoria_core.agency_manager:
     class: Drupal\billoria_core\Service\AgencyManager
-    arguments: ['@entity_type.manager', '@current_user', '@logger.factory']
+    arguments: ["@entity_type.manager", "@current_user", "@logger.factory"]
 
   billoria_core.notification_service:
     class: Drupal\billoria_core\Service\NotificationService
-    arguments: ['@entity_type.manager', '@logger.factory', '@plugin.manager.mail']
+    arguments:
+      ["@entity_type.manager", "@logger.factory", "@plugin.manager.mail"]
 
   billoria_core.pricing_calculator:
     class: Drupal\billoria_core\Service\PricingCalculator
-    arguments: ['@logger.factory']
+    arguments: ["@logger.factory"]
 
   billoria_core.verification_service:
     class: Drupal\billoria_core\Service\VerificationService
-    arguments: ['@entity_type.manager', '@current_user', '@logger.factory']
+    arguments: ["@entity_type.manager", "@current_user", "@logger.factory"]
 
   billoria_core.api_helper:
     class: Drupal\billoria_core\Service\ApiHelper
-    arguments: ['@entity_type.manager', '@logger.factory']
+    arguments: ["@entity_type.manager", "@logger.factory"]
 
   billoria_core.workflow_manager:
     class: Drupal\billoria_core\Service\WorkflowManager
-    arguments: ['@entity_type.manager', '@current_user', '@logger.factory', '@billoria_core.notification_service']
+    arguments:
+      [
+        "@entity_type.manager",
+        "@current_user",
+        "@logger.factory",
+        "@billoria_core.notification_service",
+      ]
 
   billoria_core.event_subscriber:
     class: Drupal\billoria_core\EventSubscriber\BilloriaCoreSubscriber
-    arguments: ['@billoria_core.notification_service', '@billoria_core.security', '@logger.factory']
+    arguments:
+      [
+        "@billoria_core.notification_service",
+        "@billoria_core.security",
+        "@logger.factory",
+      ]
     tags:
       - { name: event_subscriber }
+
+  # API-Only Access Control (blocks non-admin users from CMS UI)
+  billoria_core.api_only_access_subscriber:
+    class: Drupal\billoria_core\EventSubscriber\ApiOnlyAccessSubscriber
+    arguments: ["@current_user"]
+    tags:
+      - { name: event_subscriber }
+
+  # AI Services (Ollama Integration)
+  billoria_core.ollama_ai:
+    class: Drupal\billoria_core\Service\OllamaAiService
+    arguments: ["@http_client", "@config.factory", "@logger.factory"]

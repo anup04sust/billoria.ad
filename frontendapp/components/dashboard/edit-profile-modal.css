@@ -1,0 +1,293 @@
+/* === Edit Profile Modal === */
+
+.epm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.epm-modal {
+  background: #fff;
+  border-radius: 0.125rem;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.epm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.epm-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.epm-close {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: #f3f4f6;
+  border-radius: 0.125rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
+}
+
+.epm-close:hover {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+.epm-close svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ── Tabs ── */
+.epm-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 1.5rem;
+  flex-shrink: 0;
+}
+
+.epm-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.epm-tab svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.epm-tab:hover {
+  color: #059669;
+}
+
+.epm-tab--active {
+  color: #059669;
+  border-bottom-color: #059669;
+  font-weight: 600;
+}
+
+/* ── Body ── */
+.epm-body {
+  overflow-y: auto;
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.epm-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.epm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.epm-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.epm-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+
+.epm-label--checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  padding-top: 0.75rem;
+}
+
+.epm-hint {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.epm-input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.125rem;
+  font-size: 0.9375rem;
+  color: #111827;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.epm-input:focus {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+
+.epm-input--readonly {
+  background: #f9fafb;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.epm-textarea {
+  resize: vertical;
+  min-height: 3.5rem;
+  font-family: inherit;
+}
+
+.epm-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.625rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+.epm-checkgroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.epm-checkitem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+  user-select: none;
+}
+
+.epm-checkitem:has(.epm-checkbox:checked) {
+  border-color: #059669;
+  background: rgba(5, 150, 105, 0.08);
+  color: #059669;
+}
+
+.epm-checkbox {
+  accent-color: #059669;
+  width: 0.875rem;
+  height: 0.875rem;
+  cursor: pointer;
+}
+
+.epm-divider {
+  border: none;
+  border-top: 1px solid #f3f4f6;
+  margin: 0.25rem 0;
+}
+
+/* ── Error ── */
+.epm-error {
+  padding: 0.625rem 1.5rem;
+  background: #fef2f2;
+  border-top: 1px solid #fecaca;
+  font-size: 0.875rem;
+  color: #dc2626;
+  flex-shrink: 0;
+}
+
+/* ── Footer ── */
+.epm-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.epm-btn {
+  padding: 0.5625rem 1.25rem;
+  border-radius: 0.125rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+  border: 1px solid transparent;
+}
+
+.epm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.epm-btn--cancel {
+  background: #fff;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.epm-btn--cancel:hover:not(:disabled) {
+  background: #f9fafb;
+}
+
+.epm-btn--save {
+  background: #059669;
+  color: #fff;
+  border-color: #059669;
+}
+
+.epm-btn--save:hover:not(:disabled) {
+  background: #047857;
+  border-color: #047857;
+}

@@ -1,0 +1,312 @@
+/* === Dashboard Shared Styles === */
+
+/* ── Shell ── */
+.db-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #F0FDF4;
+}
+
+.db-main {
+  flex: 1;
+  margin-left: 256px;
+  padding-top: 3.75rem;
+  min-height: 100vh;
+}
+
+.db-content {
+  padding: 2rem 1.75rem;
+}
+
+/* ── Page header ── */
+.db-page-header {
+  margin-bottom: 1.75rem;
+}
+
+.db-page-header__title {
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin: 0 0 0.25rem;
+}
+
+.db-page-header__sub {
+  font-size: 0.875rem;
+  color: var(--color-gray-500);
+  margin: 0;
+}
+
+/* ── Stat cards row ── */
+.db-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+
+.db-stat {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: 0.125rem;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.db-stat__icon-wrap {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.125rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.db-stat__icon-wrap svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.db-stat__icon-wrap--red    { background: rgba(5, 150, 105, 0.1);  color: #059669; }
+.db-stat__icon-wrap--blue   { background: rgba(13, 46, 26, 0.1);   color: #0D2E1A; }
+.db-stat__icon-wrap--green  { background: rgba(52, 211, 153, 0.12); color: #059669; }
+.db-stat__icon-wrap--amber  { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+
+.db-stat__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.db-stat__value {
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  line-height: 1;
+}
+
+.db-stat__label {
+  font-size: 0.8125rem;
+  color: var(--color-gray-500);
+  font-weight: 400;
+}
+
+.db-stat__trend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.125rem;
+}
+
+.db-stat__trend--up   { color: #059669; }
+.db-stat__trend--down { color: var(--color-primary); }
+.db-stat__trend--neutral { color: var(--color-gray-400); }
+
+.db-stat__trend svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* ── Two-column content grid ── */
+.db-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* ── Panel / Card ── */
+.db-panel {
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: 0.125rem;
+  overflow: hidden;
+}
+
+.db-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.125rem 1.5rem;
+  border-bottom: 1px solid var(--color-gray-100, #f3f4f6);
+}
+
+.db-panel__title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin: 0;
+}
+
+.db-panel__link {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #059669;
+  text-decoration: none;
+}
+
+.db-panel__link:hover {
+  text-decoration: underline;
+}
+
+.db-panel__body {
+  padding: 1.5rem;
+}
+
+/* ── Table ── */
+.db-table-wrap {
+  overflow-x: auto;
+}
+
+.db-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.db-table th {
+  text-align: left;
+  padding: 0.625rem 1rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gray-500);
+  background: var(--color-gray-50, #f9fafb);
+  border-bottom: 1px solid var(--color-gray-200, #e5e7eb);
+}
+
+.db-table td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--color-gray-100, #f3f4f6);
+  color: var(--color-gray-700);
+  vertical-align: middle;
+}
+
+.db-table tr:last-child td {
+  border-bottom: none;
+}
+
+.db-table tr:hover td {
+  background: var(--color-gray-50, #f9fafb);
+}
+
+/* ── Status pill ── */
+.db-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.db-pill--green   { background: rgba(52, 211, 153, 0.15); color: #059669; }
+.db-pill--red     { background: rgba(239, 68, 68, 0.1);   color: #dc2626; }
+.db-pill--amber   { background: rgba(245, 158, 11, 0.12); color: #d97706; }
+.db-pill--blue    { background: rgba(13, 46, 26, 0.1);    color: #0D2E1A; }
+.db-pill--gray    { background: var(--color-gray-100); color: var(--color-gray-600); }
+
+/* ── Quick actions ── */
+.db-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.db-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-gray-200, #e5e7eb);
+  border-radius: 0.125rem;
+  background: transparent;
+  color: var(--color-gray-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.db-action-btn:hover {
+  background: #F0FDF4;
+  border-color: #059669;
+  color: #059669;
+}
+
+.db-action-btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+}
+
+.db-action-btn--primary {
+  background: #059669;
+  border-color: #059669;
+  color: #fff;
+}
+
+.db-action-btn--primary:hover {
+  background: #047857;
+  border-color: #047857;
+  color: #fff;
+}
+
+/* ── Empty state ── */
+.db-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  color: var(--color-gray-400);
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.db-empty svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0.4;
+}
+
+.db-empty p {
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .db-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .db-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .db-main {
+    margin-left: 0;
+  }
+
+  .db-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .db-content {
+    padding: 1.25rem 1rem;
+  }
+}

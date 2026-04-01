@@ -254,6 +254,38 @@ class BillboardApiController extends ControllerBase {
   }
 
   /**
+   * Get billboard details by UUID.
+   *
+   * GET /api/v1/billboard/uuid/{uuid}
+   */
+  public function readByUuid(string $uuid): JsonResponse {
+    $nodes = $this->entityTypeManager()->getStorage('node')
+      ->loadByProperties(['uuid' => $uuid, 'type' => 'billboard']);
+
+    if (empty($nodes)) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Billboard not found', 404),
+        404
+      );
+    }
+
+    $billboard = reset($nodes);
+
+    if (!$billboard->access('view', $this->currentUser())) {
+      return new JsonResponse(
+        $this->apiHelper->buildErrorResponse('Access denied', 403),
+        403
+      );
+    }
+
+    $formatted = $this->apiHelper->formatBillboard($billboard);
+
+    return new JsonResponse(
+      $this->apiHelper->buildSuccessResponse($formatted)
+    );
+  }
+
+  /**
    * List billboards endpoint.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request

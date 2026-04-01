@@ -35,9 +35,9 @@
   align-items: center;
   justify-content: center;
   background: var(--color-white);
-  border: 2px solid var(--color-gray-200);
+  border: 2px solid var(--color-primary);
   border-radius: var(--radius-md);
-  color: var(--color-gray-700);
+  color: var(--color-primary);
   cursor: pointer;
   transition: all var(--transition-fast);
 }
@@ -195,10 +195,10 @@
     width: 2.25rem;
     height: 2.25rem;
     font-size: 1.125rem;
-    background: rgba(255, 255, 255, 0.92);
-    border: 1px solid var(--color-gray-200);
-    color: var(--color-gray-700);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    background: var(--color-white);
+    border: 1.5px solid var(--color-primary);
+    color: var(--color-primary);
+    box-shadow: 0 2px 8px rgba(193, 18, 31, 0.12);
     align-items: center;
     justify-content: center;
     cursor: pointer;

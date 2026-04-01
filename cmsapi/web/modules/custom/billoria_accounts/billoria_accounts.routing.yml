@@ -1,5 +1,15 @@
 # REST API Routes for headless Next.js frontend
 
+billoria_accounts.api.auth_login:
+  path: '/api/v1/auth/login'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiAuthController::login'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie', 'basic_auth']
+
 billoria_accounts.api.register:
   path: '/api/v1/register'
   defaults:
@@ -49,6 +59,26 @@ billoria_accounts.api.organization_status:
   requirements:
     _user_is_logged_in: 'TRUE'
   methods: [GET]
+
+billoria_accounts.api.update_user_profile:
+  path: '/api/v1/user/profile'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiProfileController::updateUserProfile'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [PATCH]
+  options:
+    _auth: ['cookie']
+
+billoria_accounts.api.update_organization:
+  path: '/api/v1/organization/{nid}'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiProfileController::updateOrganization'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [PATCH]
+  options:
+    _auth: ['cookie']
 
 billoria_accounts.api.request_phone_otp:
   path: '/api/v1/request-phone-otp'

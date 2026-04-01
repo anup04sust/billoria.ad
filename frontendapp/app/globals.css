@@ -45,9 +45,9 @@
   
   /* Border Radius */
   --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.25rem;
   
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -159,6 +159,12 @@ button {
     padding-top: 5rem;
     padding-bottom: 5rem;
   }
+}
+
+/* === Main Content === */
+main {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 /* === Fix Leaflet Icon Paths === */

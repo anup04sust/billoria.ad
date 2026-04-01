@@ -162,7 +162,7 @@ background-color: var(--color-white, #ffffff);
   width: 100%;
   max-width: 580px;
   position: relative;
-  z-index: 1;
+  z-index: 1;   ][===-48]
 }
 
 .reg-panel__mobile-logo {

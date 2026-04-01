@@ -262,13 +262,13 @@
 @media (max-width: 768px) {
   .list-widget {
     position: fixed;
-    top: 4rem;
+    top: 3rem;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 4rem);
-    height: calc(100dvh - 4rem);
+    height: calc(100vh - 3rem);
+    height: calc(100dvh - 3rem);
     border-radius: 0;
     z-index: 1050;
   }

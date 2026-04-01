@@ -136,14 +136,15 @@ export function ServicesSection() {
       {/* Overlay with blur */}
       <div className="services-section__overlay" />
       
-      <div className="services-section__header">
-        <h2 className="services-section__title">Complete Outdoor Advertising Solutions</h2>
-        <p className="services-section__subtitle">
-          From billboard discovery to campaign execution — everything you need for successful OOH advertising
-        </p>
-      </div>
+      <div className="container">
+        <div className="services-section__header">
+          <h2 className="services-section__title">Complete Outdoor Advertising Solutions</h2>
+          <p className="services-section__subtitle">
+            From billboard discovery to campaign execution — everything you need for successful OOH advertising
+          </p>
+        </div>
       
-      <div className="services-grid">
+        <div className="services-grid">
         {services.map((service) => (
           <article
             key={service.id}
@@ -167,6 +168,7 @@ export function ServicesSection() {
             </div>
           </article>
         ))}
+        </div>
       </div>
     </section>
   );

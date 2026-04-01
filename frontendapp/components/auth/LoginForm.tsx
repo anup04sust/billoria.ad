@@ -1,23 +1,43 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { authAPI } from '@/lib/api/auth';
+import { getDashboardRoute } from '@/app/dashboard/page';
 import './login.css';
 
 export function LoginForm() {
+  const searchParams = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  // Redirect immediately if already authenticated
+  useEffect(() => {
+    const user = authAPI.getCurrentUser();
+    if (user) window.location.href = searchParams.get('next') || getDashboardRoute(user.roles);
+  }, [searchParams]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError('');
     setLoading(true);
-    // TODO: Replace with authAPI.login()
-    await new Promise((r) => setTimeout(r, 800));
+
+    const form = e.currentTarget;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    const password = (form.elements.namedItem('password') as HTMLInputElement).value;
+
+    const result = await authAPI.login(email, password);
     setLoading(false);
-    setError('Invalid email or password. Please try again.');
+
+    if (result.success && result.user) {
+      const next = searchParams.get('next');
+      window.location.href = next || getDashboardRoute(result.user.roles);
+    } else {
+      setError(result.error ?? 'Login failed. Please try again.');
+    }
   }
 
   return (
