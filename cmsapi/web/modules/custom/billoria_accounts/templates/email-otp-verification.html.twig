@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
+    <title>Verify Your Email - Billoria</title>
+    <!--[if mso]>
+    <style>
+        * { font-family: sans-serif !important; }
+    </style>
+    <![endif]-->
+    <style>
+        :root {
+            color-scheme: light;
+            supported-color-schemes: light;
+        }
+        html, body {
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: 100% !important;
+            width: 100% !important;
+            background: #f4f4f7;
+        }
+        * {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        div[style*="margin: 16px 0"] {
+            margin: 0 !important;
+        }
+        table, td {
+            mso-table-lspace: 0pt !important;
+            mso-table-rspace: 0pt !important;
+        }
+        table {
+            border-spacing: 0 !important;
+            border-collapse: collapse !important;
+            table-layout: fixed !important;
+            margin: 0 auto !important;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+        }
+        a {
+            text-decoration: none;
+        }
+        *[x-apple-data-detectors], .unstyle-auto-detected-links *, .aBn {
+            border-bottom: 0 !important;
+            cursor: default !important;
+            color: inherit !important;
+            text-decoration: none !important;
+            font-size: inherit !important;
+            font-family: inherit !important;
+            font-weight: inherit !important;
+            line-height: inherit !important;
+        }
+        .im { color: inherit !important; }
+        .a6S { display: none !important; opacity: 0.01 !important; }
+        img.g-img + div { display: none !important; }
+        @media only screen and (min-device-width: 320px) and (max-device-width: 374px) {
+            u ~ div .email-container { min-width: 320px !important; }
+        }
+        @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+            u ~ div .email-container { min-width: 375px !important; }
+        }
+        @media only screen and (min-device-width: 414px) {
+            u ~ div .email-container { min-width: 414px !important; }
+        }
+    </style>
+    <style>
+        .button-td, .button-a {
+            transition: all 100ms ease-in;
+        }
+        .button-td-primary:hover, .button-a-primary:hover {
+            background: #1a56db !important;
+            border-color: #1a56db !important;
+        }
+        @media screen and (max-width: 600px) {
+            .email-container { width: 100% !important; margin: auto !important; }
+            .fluid { max-width: 100% !important; height: auto !important; margin-left: auto !important; margin-right: auto !important; }
+            .stack-column, .stack-column-center { display: block !important; width: 100% !important; max-width: 100% !important; direction: ltr !important; }
+            .stack-column-center { text-align: center !important; }
+            .center-on-narrow { text-align: center !important; display: block !important; margin-left: auto !important; margin-right: auto !important; float: none !important; }
+            table.center-on-narrow { display: inline-block !important; }
+            .email-container p { font-size: 16px !important; }
+        }
+    </style>
+</head>
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f4f4f7;">
+    <center role="article" aria-roledescription="email" lang="en" style="width: 100%; background-color: #f4f4f7;">
+        <!--[if mso | IE]>
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f4f4f7;">
+        <tr>
+        <td>
+        <![endif]-->
+        
+        <!-- Visually Hidden Preheader Text -->
+        <div style="max-height:0; overflow:hidden; mso-hide:all;" aria-hidden="true">
+            Your verification code is {{ otp_code }}. Valid for {{ expiry_minutes }} minutes.
+        </div>
+
+        <!-- Email Container -->
+        <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="margin: auto;" class="email-container">
+            
+            <!-- Header Spacer -->
+            <tr>
+                <td style="padding: 20px 0; text-align: center;">
+                    <!-- Logo (Base64 Encoded) -->
+                    <img src="{{ logo_base64 }}" width="150" height="auto" alt="Billoria" border="0" style="height: auto; font-family: sans-serif; font-size: 15px; line-height: 15px; color: #1f2937; max-width: 150px; display: block; margin: 0 auto;">
+                </td>
+            </tr>
+
+            <!-- Email Body : BEGIN -->
+            <tr>
+                <td style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        
+                        <!-- Hero Image -->
+                        <tr>
+                            <td style="padding: 40px 40px 20px; text-align: center;">
+                                <!-- Security Icon SVG -->
+                                <div style="width: 80px; height: 80px; margin: 0 auto; background: #eff6ff; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L4 5V11C4 16.55 7.84 21.74 12 23C16.16 21.74 20 16.55 20 11V5L12 2Z" fill="#1e40af" opacity="0.2"/>
+                                        <path d="M12 2L4 5V11C4 16.55 7.84 21.74 12 23C16.16 21.74 20 16.55 20 11V5L12 2Z" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M9 12L11 14L15 10" stroke="#1e40af" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Title -->
+                        <tr>
+                            <td style="padding: 0 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 28px; line-height: 36px; color: #1f2937; font-weight: 700; text-align: center;">
+                                Verify Your Email
+                            </td>
+                        </tr>
+
+                        <!-- Greeting -->
+                        <tr>
+                            <td style="padding: 20px 40px 10px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; color: #4b5563; text-align: center;">
+                                Hi {{ user_name }},
+                            </td>
+                        </tr>
+
+                        <!-- Body Copy -->
+                        <tr>
+                            <td style="padding: 0 40px 30px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; color: #6b7280; text-align: center;">
+                                We received a request to verify your email address for your Billoria account. Use the code below to complete the verification:
+                            </td>
+                        </tr>
+
+                        <!-- OTP Code Box -->
+                        <tr>
+                            <td style="padding: 0 40px 30px;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td style="background: #f9fafb; border: 2px dashed #d1d5db; border-radius: 8px; padding: 24px; text-align: center;">
+                                            <div style="font-family: 'Courier New', monospace; font-size: 32px; font-weight: 700; letter-spacing: 8px; color: #1e40af;">
+                                                {{ otp_code }}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- Expiry Notice -->
+                        <tr>
+                            <td style="padding: 0 40px 30px; text-align: center;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" style="margin: auto;">
+                                    <tr>
+                                        <td style="background: #fef3c7; border-left: 4px solid #f59e0b; border-radius: 4px; padding: 12px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #92400e;">
+                                            <strong>⏱️ This code expires in {{ expiry_minutes }} minutes</strong>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- Security Warning -->
+                        <tr>
+                            <td style="padding: 0 40px 30px;">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td style="background: #fef2f2; border-left: 4px solid #dc2626; border-radius: 4px; padding: 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #7f1d1d;">
+                                            <strong style="color: #991b1b;">⚠️ Security Notice</strong><br>
+                                            <span style="color: #991b1b;">Never share this code with anyone. Billoria staff will never ask for your verification code.</span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+
+                        <!-- Didn't Request -->
+                        <tr>
+                            <td style="padding: 0 40px 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #9ca3af; text-align: center;">
+                                If you didn't request this verification code, you can safely ignore this email. Your account remains secure.
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+            <!-- Email Body : END -->
+
+            <!-- Footer : BEGIN -->
+            <tr>
+                <td style="padding: 30px 40px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 12px; line-height: 18px; color: #9ca3af; text-align: center;">
+                    <p style="margin: 0 0 10px;">
+                        <strong style="color: #6b7280;">Billoria</strong><br>
+                        Bangladesh's Leading Billboard Marketplace
+                    </p>
+                    <p style="margin: 0 0 10px;">
+                        <a href="{{ unsubscribe_url }}" style="color: #6b7280; text-decoration: underline;">Unsubscribe</a> •
+                        <a href="{{ help_url }}" style="color: #6b7280; text-decoration: underline;">Help Center</a> •
+                        <a href="{{ privacy_url }}" style="color: #6b7280; text-decoration: underline;">Privacy Policy</a>
+                    </p>
+                    <p style="margin: 0; color: #9ca3af;">
+                        © {{ current_year }} Billoria. All rights reserved.
+                    </p>
+                </td>
+            </tr>
+            <!-- Footer : END -->
+
+        </table>
+        
+        <!--[if mso | IE]>
+        </td>
+        </tr>
+        </table>
+        <![endif]-->
+    </center>
+</body>
+</html>

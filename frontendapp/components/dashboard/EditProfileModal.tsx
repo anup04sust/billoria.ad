@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { profileAPI } from '@/lib/api/profile';
 import type { ProfileUser, ProfileOrganization, UpdateUserPayload, UpdateOrgPayload } from '@/lib/api/profile';
+import profileOptions from '@/data/profile-options.json';
 import './edit-profile-modal.css';
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
@@ -51,6 +52,7 @@ const SERVICE_OPTIONS = [
 export interface EditProfileModalProps {
   user: ProfileUser;
   org?: ProfileOrganization;
+  section?: 'personal' | 'organization';
   onClose: () => void;
   onSaved: (updatedUser: ProfileUser, updatedOrg?: ProfileOrganization) => void;
 }
@@ -58,13 +60,15 @@ export interface EditProfileModalProps {
 type Tab = 'personal' | 'organization';
 
 // ── Component ─────────────────────────────────────────────────────────────────
-export function EditProfileModal({ user, org, onClose, onSaved }: EditProfileModalProps) {
-  const [tab, setTab] = useState<Tab>('personal');
+export function EditProfileModal({ user, org, section, onClose, onSaved }: EditProfileModalProps) {
+  const initialTab = section || (org ? 'personal' : 'personal');
+  const [tab, setTab] = useState<Tab>(initialTab);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const overlayRef = useRef<HTMLDivElement>(null);
 
   // ── Personal fields ──────────────────────────────────────────────────────
+  const [fullName, setFullName]           = useState(user.name ?? '');
   const [mobileNumber, setMobileNumber]   = useState(user.mobileNumber ?? '');
   const [designation, setDesignation]     = useState(user.designation ?? '');
   const [department, setDepartment]       = useState(user.department ?? '');
@@ -117,6 +121,7 @@ export function EditProfileModal({ user, org, onClose, onSaved }: EditProfileMod
 
       if (tab === 'personal') {
         const payload: UpdateUserPayload = {
+          name:         fullName     || null,
           mobileNumber: mobileNumber || null,
           designation:  designation  || null,
           department:   department   || null,
@@ -202,9 +207,18 @@ export function EditProfileModal({ user, org, onClose, onSaved }: EditProfileMod
           {tab === 'personal' && (
             <div className="epm-section">
               <div className="epm-row">
+                <label className="epm-label">Username</label>
+                <input className="epm-input epm-input--readonly" value={user.username} readOnly />
+              </div>
+              <div className="epm-row">
                 <label className="epm-label">Full Name</label>
-                <input className="epm-input epm-input--readonly" value={user.name} readOnly />
-                <span className="epm-hint">Name changes must be requested via support.</span>
+                <input
+                  className="epm-input"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Your full name"
+                  type="text"
+                />
               </div>
               <div className="epm-row">
                 <label className="epm-label">Email Address</label>
@@ -228,7 +242,13 @@ export function EditProfileModal({ user, org, onClose, onSaved }: EditProfileMod
                     value={designation}
                     onChange={(e) => setDesignation(e.target.value)}
                     placeholder="e.g. Marketing Manager"
+                    list="designation-options"
                   />
+                  <datalist id="designation-options">
+                    {profileOptions.designations.map((option) => (
+                      <option key={option} value={option} />
+                    ))}
+                  </datalist>
                 </div>
                 <div className="epm-row">
                   <label className="epm-label">Department</label>
@@ -237,7 +257,13 @@ export function EditProfileModal({ user, org, onClose, onSaved }: EditProfileMod
                     value={department}
                     onChange={(e) => setDepartment(e.target.value)}
                     placeholder="e.g. Marketing"
+                    list="department-options"
                   />
+                  <datalist id="department-options">
+                    {profileOptions.departments.map((option) => (
+                      <option key={option} value={option} />
+                    ))}
+                  </datalist>
                 </div>
               </div>
             </div>

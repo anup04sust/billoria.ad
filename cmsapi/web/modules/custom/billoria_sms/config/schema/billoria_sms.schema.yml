@@ -1,0 +1,13 @@
+billoria_sms.settings:
+  type: config_object
+  label: 'SMS API settings'
+  mapping:
+    api_key:
+      type: string
+      label: 'Alpha SMS API Key'
+    sender_id:
+      type: string
+      label: 'Default Sender ID'
+    otp_template:
+      type: text
+      label: 'OTP Message Template'

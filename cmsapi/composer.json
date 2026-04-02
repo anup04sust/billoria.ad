@@ -27,7 +27,9 @@
         "drupal/focal_point": "^2.1",
         "drupal/gin": "^5.0",
         "drupal/imageapi_optimize": "^4.1",
+        "drupal/mailsystem": "^4.5",
         "drupal/pathauto": "^1.14",
+        "drupal/symfony_mailer": "^1.6",
         "drupal/token": "^1.17",
         "drush/drush": "^13.7"
     },

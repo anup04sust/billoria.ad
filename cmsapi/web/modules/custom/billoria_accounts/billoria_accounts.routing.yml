@@ -80,6 +80,37 @@ billoria_accounts.api.update_organization:
   options:
     _auth: ['cookie']
 
+billoria_accounts.api.upload_organization_logo:
+  path: '/api/v1/organization/{nid}/logo'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiProfileController::uploadOrganizationLogo'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie']
+
+billoria_accounts.api.delete_organization_logo:
+  path: '/api/v1/organization/{nid}/logo'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiProfileController::deleteOrganizationLogo'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [DELETE]
+  options:
+    _auth: ['cookie']
+
+billoria_accounts.api.upload_verification_documents:
+  path: '/api/v1/organization/{nid}/verification-documents'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiProfileController::uploadVerificationDocuments'
+    _format: json
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie']
+
 billoria_accounts.api.request_phone_otp:
   path: '/api/v1/request-phone-otp'
   defaults:
@@ -87,3 +118,55 @@ billoria_accounts.api.request_phone_otp:
   requirements:
     _user_is_logged_in: 'TRUE'
   methods: [POST]
+
+# ── OTP-based Verification System (Generic Table) ──
+
+billoria_accounts.api.send_email_otp:
+  path: '/api/v1/verification/email/send-otp'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::sendEmailOtp'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie']
+
+billoria_accounts.api.verify_email_otp:
+  path: '/api/v1/verification/email/verify-otp'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::verifyEmailOtp'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie']
+
+billoria_accounts.api.send_phone_otp:
+  path: '/api/v1/verification/phone/send-otp'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::sendPhoneOtp'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie']
+
+billoria_accounts.api.verify_phone_otp:
+  path: '/api/v1/verification/phone/verify-otp'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::verifyPhoneOtp'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [POST]
+  options:
+    _auth: ['cookie']
+
+billoria_accounts.api.verification_status:
+  path: '/api/v1/verification/status'
+  defaults:
+    _controller: '\Drupal\billoria_accounts\Controller\ApiVerificationController::getVerificationStatus'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  methods: [GET]
+  options:
+    _auth: ['cookie']

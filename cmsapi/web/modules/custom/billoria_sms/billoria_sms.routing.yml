@@ -1,0 +1,7 @@
+billoria_sms.settings:
+  path: '/admin/config/billoria/sms'
+  defaults:
+    _form: '\Drupal\billoria_sms\Form\SmsSettingsForm'
+    _title: 'SMS API Settings'
+  requirements:
+    _permission: 'administer site configuration'

@@ -1,0 +1,6 @@
+billoria_sms.settings:
+  title: 'SMS Settings'
+  description: 'Configure Alpha SMS API for OTP verification and notifications.'
+  parent: billoria_core.admin
+  route_name: billoria_sms.settings
+  weight: 10

@@ -1,0 +1,137 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for billoria_accounts module.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function billoria_accounts_schema() {
+  $schema['billoria_user_verifications'] = [
+    'description' => 'Stores verification codes and attempts for user email, phone, and other verification processes.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique verification record ID.',
+      ],
+      'uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The {users}.uid this verification belongs to.',
+      ],
+      'verification_type' => [
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Type of verification: email, phone, sms, etc.',
+      ],
+      'identifier' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The value being verified (email address, phone number, etc.).',
+      ],
+      'code' => [
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The verification code (OTP, token, etc.).',
+      ],
+      'code_hash' => [
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'description' => 'Hashed version of the code for secure comparison.',
+      ],
+      'status' => [
+        'type' => 'varchar',
+        'length' => 16,
+        'not null' => TRUE,
+        'default' => 'pending',
+        'description' => 'Status: pending, verified, expired, failed, cancelled.',
+      ],
+      'attempts' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Number of verification attempts made.',
+      ],
+      'max_attempts' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 5,
+        'description' => 'Maximum number of attempts allowed.',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp when the verification code was created.',
+      ],
+      'expires' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp when the verification code expires.',
+      ],
+      'verified_at' => [
+        'type' => 'int',
+        'not null' => FALSE,
+        'default' => NULL,
+        'description' => 'Timestamp when verification was completed.',
+      ],
+      'last_attempt_at' => [
+        'type' => 'int',
+        'not null' => FALSE,
+        'default' => NULL,
+        'description' => 'Timestamp of the last verification attempt.',
+      ],
+      'metadata' => [
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => FALSE,
+        'description' => 'JSON-encoded metadata (e.g., IP address, user agent, delivery status).',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'uid' => ['uid'],
+      'verification_type' => ['verification_type'],
+      'identifier' => ['identifier'],
+      'status' => ['status'],
+      'created' => ['created'],
+      'expires' => ['expires'],
+      'uid_type' => ['uid', 'verification_type'],
+      'uid_type_status' => ['uid', 'verification_type', 'status'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function billoria_accounts_install() {
+  \Drupal::messenger()->addMessage(t('Billoria Accounts module installed successfully. User verification table created.'));
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function billoria_accounts_uninstall() {
+  // Cleanup is automatic via hook_schema().
+  \Drupal::messenger()->addMessage(t('Billoria Accounts module uninstalled. User verification data removed.'));
+}

@@ -1,0 +1,9 @@
+name: 'Billoria SMS'
+type: module
+description: 'Alpha SMS API integration for sending SMS notifications and OTP verification'
+package: Billoria
+core_version_requirement: ^11
+dependencies:
+  - billoria_core
+  - drupal:key
+configure: billoria_sms.settings

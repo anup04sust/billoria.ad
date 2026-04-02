@@ -23,6 +23,14 @@
   overflow: hidden;
 }
 
+.epm-modal form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
 /* ── Header ── */
 .epm-header {
   display: flex;
@@ -107,8 +115,9 @@
 
 /* ── Body ── */
 .epm-body {
-  overflow-y: auto;
+  overflow-y: scroll;
   flex: 1;
+  min-height: 0;
   padding: 1.5rem;
 }
 
@@ -249,11 +258,16 @@
 /* ── Footer ── */
 .epm-footer {
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.75rem;
   padding: 1rem 1.5rem;
   border-top: 1px solid #e5e7eb;
   flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  background: #fff;
+  z-index: 10;
 }
 
 .epm-btn {
@@ -291,3 +305,120 @@
   background: #047857;
   border-color: #047857;
 }
+
+.epm-logo-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.epm-logo-preview {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: #fff;
+}
+
+.epm-logo-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.epm-logo-controls input[type="file"] {
+  width: 100%;
+}
+
+.epm-btn--secondary {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.epm-btn--secondary:hover:not(:disabled) {
+  background: #e5e7eb;
+}
+
+.epm-btn--danger {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.epm-btn--danger:hover:not(:disabled) {
+  background: #fecaca;
+}
+
+.epm-drop-zone {
+  border: 2px dashed #d1d5db;
+  border-radius: 0.375rem;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: #f9fafb;
+}
+
+.epm-drop-zone:hover {
+  border-color: #059669;
+  background: rgba(5, 150, 105, 0.05);
+}
+
+.epm-drop-zone--active {
+  border-color: #059669;
+  background: rgba(5, 150, 105, 0.1);
+}
+
+.epm-drop-zone-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.epm-drop-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #6b7280;
+}
+
+.epm-drop-text {
+  font-size: 0.875rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.epm-drop-hint {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.epm-progress {
+  position: relative;
+  width: 100%;
+  height: 1.5rem;
+  background: #e5e7eb;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.epm-progress-bar {
+  height: 100%;
+  background: #059669;
+  transition: width 0.2s;
+}
+
+.epm-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+}
+

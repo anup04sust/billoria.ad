@@ -1,0 +1,7 @@
+services:
+  billoria_sms.sender:
+    class: Drupal\billoria_sms\Service\SmsSender
+    arguments:
+      - '@http_client'
+      - '@config.factory'
+      - '@logger.factory'

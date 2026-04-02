@@ -32,6 +32,22 @@ function billoria_core_theme($existing, $type, $theme, $path): array {
 }
 
 /**
+ * Implements hook_page_attachments().
+ */
+function billoria_core_page_attachments(array &$attachments): void {
+  // Attach admin menu icon library on admin pages.
+  $route_match = \Drupal::routeMatch();
+  $route_name = $route_match->getRouteName();
+  
+  // Attach to all admin routes to ensure icon appears in admin menu.
+  if (strpos($route_name, 'system.admin') === 0 || 
+      strpos($route_name, 'billoria_core') === 0 ||
+      \Drupal::service('router.admin_context')->isAdminRoute()) {
+    $attachments['#attached']['library'][] = 'billoria_core/admin_icon';
+  }
+}
+
+/**
  * Implements hook_node_presave().
  */
 function billoria_core_node_presave(NodeInterface $node): void {

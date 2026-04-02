@@ -1,0 +1,106 @@
+billoria_core.settings:
+  type: config_object
+  label: 'Billoria Platform Settings'
+  mapping:
+    # Platform Information
+    site_name:
+      type: string
+      label: 'Platform Name'
+    site_tagline:
+      type: string
+      label: 'Tagline'
+    contact_email:
+      type: email
+      label: 'Contact Email'
+    support_phone:
+      type: string
+      label: 'Support Phone'
+    
+    # Business Settings
+    commission_rate:
+      type: float
+      label: 'Platform Commission Rate (%)'
+    vat_rate:
+      type: float
+      label: 'VAT Rate (%)'
+    currency:
+      type: string
+      label: 'Currency'
+    min_booking_duration:
+      type: integer
+      label: 'Minimum Booking Duration (days)'
+    
+    # Verification Settings
+    auto_approve_agencies:
+      type: boolean
+      label: 'Auto-approve agency registrations'
+    require_document_verification:
+      type: boolean
+      label: 'Require document verification'
+    email_verification_required:
+      type: boolean
+      label: 'Require email verification'
+    phone_verification_required:
+      type: boolean
+      label: 'Require phone verification'
+    trust_score_threshold:
+      type: integer
+      label: 'Minimum Trust Score for Bookings'
+    
+    # API Settings
+    api_enabled:
+      type: boolean
+      label: 'Enable API access'
+    api_rate_limit:
+      type: integer
+      label: 'API Rate Limit (requests/minute)'
+    cors_allowed_origins:
+      type: text
+      label: 'CORS Allowed Origins'
+    
+    # Email Settings
+    from_email:
+      type: email
+      label: 'From Email Address'
+    from_name:
+      type: string
+      label: 'From Name'
+    admin_notification_email:
+      type: email
+      label: 'Admin Notification Email'
+    
+    # Feature Flags
+    enable_booking:
+      type: boolean
+      label: 'Enable Booking System'
+    enable_payments:
+      type: boolean
+      label: 'Enable Payment Processing'
+    enable_reviews:
+      type: boolean
+      label: 'Enable Reviews & Ratings'
+    enable_analytics:
+      type: boolean
+      label: 'Enable Analytics Dashboard'
+    maintenance_mode:
+      type: boolean
+      label: 'Maintenance Mode'
+    
+    # Geographic Settings
+    default_country:
+      type: string
+      label: 'Default Country'
+    timezone:
+      type: string
+      label: 'Default Timezone'
+    
+    # Advanced Settings
+    debug_mode:
+      type: boolean
+      label: 'Debug Mode'
+    cache_lifetime:
+      type: integer
+      label: 'API Cache Lifetime (seconds)'
+    session_timeout:
+      type: integer
+      label: 'Session Timeout (seconds)'

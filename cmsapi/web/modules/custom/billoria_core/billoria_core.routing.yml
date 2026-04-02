@@ -98,6 +98,16 @@ billoria_core.api.billboard_delete:
 
 # AI API Endpoints (Ollama Integration)
 
+# Admin Configuration
+
+billoria_core.settings:
+  path: "/admin/config/billoria/core"
+  defaults:
+    _form: '\Drupal\billoria_core\Form\BilloriaSettingsForm'
+    _title: "Billoria Platform Settings"
+  requirements:
+    _permission: "administer site configuration"
+
 billoria_core.api.ai_chat:
   path: "/api/v1/ai/chat"
   defaults:

@@ -1,0 +1,67 @@
+/**
+ * Billoria Admin Menu Icon
+ * Custom icon for Billoria top-level admin menu in Gin theme
+ */
+
+/* Gin Admin Theme - Top level menu icon */
+.toolbar-menu__item--billoria-core-admin > .toolbar-menu__item__link::before,
+a[href*="/admin/config/billoria/core"]::before,
+.menu-item--billoria-core-admin > a::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  vertical-align: middle;
+  background-image: url('../images/billoria-icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+}
+
+/* Hover state */
+.toolbar-menu__item--billoria-core-admin > .toolbar-menu__item__link:hover::before,
+a[href*="/admin/config/billoria/core"]:hover::before {
+  opacity: 1;
+}
+
+/* Active/selected state */
+.toolbar-menu__item--billoria-core-admin.is-active > .toolbar-menu__item__link::before,
+.toolbar-menu__item--billoria-core-admin > .toolbar-menu__item__link.is-active::before {
+  opacity: 1;
+  filter: brightness(1.2);
+}
+
+/* Standard Drupal admin menu (fallback) */
+#admin-menu a[href*="billoria"]::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+  background-image: url('../images/billoria-icon.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Gin sidebar - custom color for Billoria section */
+.gin--vertical-toolbar .toolbar-menu__item--billoria-core-admin > .toolbar-menu__item__link {
+  position: relative;
+}
+
+/* Add accent color for Billoria menu items */
+.toolbar-menu__item--billoria-core-admin.is-active {
+  background-color: rgba(var(--gin-color-primary-rgb), 0.1);
+}
+
+/* Responsive - ensure icon visibility on mobile */
+@media (max-width: 768px) {
+  .toolbar-menu__item--billoria-core-admin > .toolbar-menu__item__link::before {
+    width: 18px;
+    height: 18px;
+    margin-right: 6px;
+  }
+}

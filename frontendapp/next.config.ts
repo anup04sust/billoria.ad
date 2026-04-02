@@ -4,6 +4,19 @@ const nextConfig: NextConfig = {
   /* config options here */
   allowedDevOrigins: ['billoria-ad.ddev.site'],
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'billoria-ad-api.ddev.site',
+      },
+      {
+        protocol: 'https',
+        hostname: 'billoria-ad-api.ddev.site',
+      },
+    ],
+  },
+
   // Security headers for production
   async headers() {
     return [

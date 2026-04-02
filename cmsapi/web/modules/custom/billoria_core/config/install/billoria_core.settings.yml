@@ -1,0 +1,31 @@
+site_name: 'Billoria'
+site_tagline: 'Your Billboard Marketplace'
+contact_email: 'support@billoria.ad'
+support_phone: '+880 1812345678'
+commission_rate: 10
+vat_rate: 15
+currency: 'BDT'
+min_booking_duration: 7
+auto_approve_agencies: false
+require_document_verification: true
+email_verification_required: true
+phone_verification_required: true
+trust_score_threshold: 40
+api_enabled: true
+api_rate_limit: 60
+cors_allowed_origins: |
+  http://localhost:3000
+  https://billoria-ad.ddev.site:3000
+from_email: 'noreply@billoria.ad'
+from_name: 'Billoria Platform'
+admin_notification_email: 'admin@billoria.ad'
+enable_booking: true
+enable_payments: false
+enable_reviews: true
+enable_analytics: true
+maintenance_mode: false
+default_country: 'BD'
+timezone: 'Asia/Dhaka'
+debug_mode: false
+cache_lifetime: 3600
+session_timeout: 86400

@@ -7,48 +7,22 @@ import { DashboardTopbar } from '@/components/dashboard/DashboardTopbar';
 import { authAPI } from '@/lib/api/auth';
 import { profileAPI, ProfileAuthError } from '@/lib/api/profile';
 import type { UserProfile, ProfileOrganization } from '@/lib/api/profile';
-import { EditProfileModal } from '@/components/dashboard/EditProfileModal';
+import { EditPersonalModal } from '@/components/dashboard/EditPersonalModal';
+import { EditOrganizationModal } from '@/components/dashboard/EditOrganizationModal';
+import { EditServiceCoverageModal } from '@/components/dashboard/EditServiceCoverageModal';
 import '@/components/dashboard/dashboard-sidebar.css';
 import '@/components/dashboard/dashboard-topbar.css';
 import '@/components/dashboard/dashboard.css';
 import '@/components/dashboard/profile.css';
-
-// ── Icons ────────────────────────────────────────────────────────────────────
-const IconUser = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
-  </svg>
-);
-const IconBuilding = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="1" /><path d="M9 22V12h6v10M9 7h1m4 0h1M9 11h1m4 0h1" />
-  </svg>
-);
-const IconShield = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-  </svg>
-);
-const IconMap = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" /><line x1="8" y1="2" x2="8" y2="18" /><line x1="16" y1="6" x2="16" y2="22" />
-  </svg>
-);
-const IconEdit = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
-  </svg>
-);
-const IconCheck = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-    <polyline points="20 6 9 17 4 12" />
-  </svg>
-);
-const IconClock = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-  </svg>
-);
+import {
+  IconUser,
+  IconBuilding,
+  IconShield,
+  IconMap,
+  IconEdit,
+  IconCheck,
+  IconClock,
+} from '@/lib/icons/ui-icons';
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function Field({ label, value }: { label: string; value?: string | number | null }) {
@@ -142,12 +116,9 @@ function Skeleton() {
 }
 
 // ── Organisation card ─────────────────────────────────────────────────────────
-function OrgCard({ org }: { org: ProfileOrganization }) {
+function OrgCard({ org, onEdit }: { org: ProfileOrganization; onEdit?: () => void }) {
   const isVerified = org.verificationStatus === 'verified';
-  const regions =
-    org.brandDetails?.preferredRegions ??
-    org.agencyDetails?.preferredRegions ??
-    [];
+
 
   return (
     <div className="db-profile-card db-profile-card--full">
@@ -157,13 +128,14 @@ function OrgCard({ org }: { org: ProfileOrganization }) {
         <h2 className="db-profile-card__title">
           {org.type === 'brand' ? 'Brand' : org.type === 'agency' ? 'Agency' : 'Organization'} Information
         </h2>
-        <span style={{ marginLeft: 'auto' }}>
-          {isVerified ? (
-            <span className="db-profile-hero__verified"><IconCheck /> Verified</span>
-          ) : (
-            <span className="db-profile-hero__verified db-profile-hero__verified--pending"><IconClock /> {org.verificationStatus}</span>
-          )}
-        </span>
+        {onEdit && (
+          <button className="db-profile-card__edit-btn" type="button" onClick={onEdit}>
+            <IconEdit /> Edit
+          </button>
+        )}
+        {isVerified && (
+          <span className="db-profile-hero__verified" style={{ marginLeft: onEdit ? '0.5rem' : 'auto' }}><IconCheck /> Verified</span>
+        )}
       </div>
 
       <div className="db-profile-card__body">
@@ -201,17 +173,6 @@ function OrgCard({ org }: { org: ProfileOrganization }) {
                 value={org.brandDetails.bookingDuration ? DURATION_LABELS[org.brandDetails.bookingDuration] ?? org.brandDetails.bookingDuration : null}
               />
             </div>
-
-            <hr style={{ border: 'none', borderTop: '1px solid var(--color-gray-100, #f3f4f6)', margin: '0.25rem 0' }} />
-            <div className="db-profile-card__head" style={{ paddingBottom: '0.25rem' }}>
-              <span className="db-profile-card__head-icon"><IconMap /></span>
-              <h3 className="db-profile-card__title" style={{ fontSize: '0.875rem' }}>Service Coverage</h3>
-            </div>
-            <div className="db-profile-fields-grid">
-              <Field label="Division" value={org.division?.name} />
-              <Field label="District" value={org.district?.name} />
-              <Field label="Office Address" value={org.fullAddress} />
-            </div>
           </>
         )}
 
@@ -237,12 +198,37 @@ function OrgCard({ org }: { org: ProfileOrganization }) {
             )}
           </>
         )}
+      </div>
+    </div>
+  );
+}
 
-        {/* Preferred regions */}
+// ── Service Coverage Card ──────────────────────────────────────────────────────
+function ServiceCoverageCard({ org, onEdit }: { org: ProfileOrganization; onEdit: () => void }) {
+  const regions = org.agencyDetails?.preferredRegions ?? org.brandDetails?.preferredRegions ?? [];
+
+  return (
+    <div className="db-profile-card db-profile-card--full">
+      <div className="db-profile-card__head">
+        <span className="db-profile-card__head-icon"><IconMap /></span>
+        <h2 className="db-profile-card__title">Service Coverage</h2>
+        <button className="db-profile-card__edit-btn" type="button" onClick={onEdit}>
+          <IconEdit /> Edit
+        </button>
+      </div>
+      <div className="db-profile-card__body">
+        <div className="db-profile-fields-grid">
+          <Field label="Division" value={org.division?.name} />
+          <Field label="District" value={org.district?.name} />
+          <Field label="Office Address" value={org.fullAddress} />
+          <Field label="Nationwide" value={org.nationwideService ? 'Yes' : 'No'} />
+          <Field label="International" value={org.internationalService ? 'Yes' : 'No'} />
+        </div>
+
         {regions.length > 0 && (
-          <div className="db-profile-field">
+          <div className="db-profile-field" style={{ marginTop: '1rem' }}>
             <span className="db-profile-field__label">Preferred Regions</span>
-            <div className="db-profile-tags">
+            <div className="db-profile-tags" style={{ marginTop: '0.25rem' }}>
               {regions.map((r) => (
                 <span key={r.id} className="db-profile-tag">{r.name}</span>
               ))}
@@ -260,7 +246,9 @@ export default function BrandProfilePage() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const [editOpen, setEditOpen] = useState(false);
+  const [editPersonal, setEditPersonal] = useState(false);
+  const [editOrg, setEditOrg] = useState(false);
+  const [editCoverage, setEditCoverage] = useState(false);
 
   useEffect(() => {
     if (!authAPI.isLoggedIn()) {
@@ -317,11 +305,6 @@ export default function BrandProfilePage() {
                       )}
                     </div>
                   </div>
-                  <div className="db-profile-hero__actions">
-                    <button className="db-profile-hero__edit-btn" type="button" onClick={() => setEditOpen(true)}>
-                      <IconEdit /> Edit Profile
-                    </button>
-                  </div>
                 </div>
               </div>
 
@@ -332,6 +315,9 @@ export default function BrandProfilePage() {
                   <div className="db-profile-card__head">
                     <span className="db-profile-card__head-icon"><IconUser /></span>
                     <h2 className="db-profile-card__title">Personal Information</h2>
+                    <button className="db-profile-card__edit-btn" type="button" onClick={() => setEditPersonal(true)}>
+                      <IconEdit /> Edit
+                    </button>
                   </div>
                   <div className="db-profile-card__body">
                     <Field label="Full Name" value={user?.name} />
@@ -371,20 +357,46 @@ export default function BrandProfilePage() {
               </div>
 
               {/* ── Organisation card (full width) ── */}
-              {org && <OrgCard org={org} />}
+              {org && <OrgCard org={org} onEdit={() => setEditOrg(true)} />}
 
-              {/* ── Edit modal ── */}
-              {editOpen && user && (
-                <EditProfileModal
+              {/* ── Service Coverage Card ── */}
+              {org && <ServiceCoverageCard org={org} onEdit={() => setEditCoverage(true)} />}
+
+              {/* ── Edit modals ── */}
+              {editPersonal && user && (
+                <EditPersonalModal
                   user={user}
+                  onClose={() => setEditPersonal(false)}
+                  onSaved={(updatedUser) => {
+                    setProfile((prev) => prev ? { ...prev, user: updatedUser } : prev);
+                  }}
+                />
+              )}
+
+              {editOrg && org && (
+                <EditOrganizationModal
                   org={org}
-                  onClose={() => setEditOpen(false)}
-                  onSaved={(updatedUser, updatedOrg) => {
+                  onClose={() => setEditOrg(false)}
+                  onSaved={(updatedOrg) => {
                     setProfile((prev) => prev ? {
                       ...prev,
-                      user: updatedUser,
                       organizations: prev.organizations.map((o) =>
-                        updatedOrg && o.id === updatedOrg.id ? updatedOrg : o
+                        o.id === updatedOrg.id ? updatedOrg : o
+                      ),
+                    } : prev);
+                  }}
+                />
+              )}
+
+              {editCoverage && org && (
+                <EditServiceCoverageModal
+                  org={org}
+                  onClose={() => setEditCoverage(false)}
+                  onSaved={(updatedOrg) => {
+                    setProfile((prev) => prev ? {
+                      ...prev,
+                      organizations: prev.organizations.map((o) =>
+                        o.id === updatedOrg.id ? updatedOrg : o
                       ),
                     } : prev);
                   }}
