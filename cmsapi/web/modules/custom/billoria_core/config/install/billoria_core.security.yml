@@ -64,6 +64,13 @@ rate_limit:
       identifier: 'user'
       pattern_check: false
 
+    # Notifications (read-heavy): 300 per hour per user
+    api_notifications:
+      limit: 300
+      window: 3600
+      identifier: 'user'
+      pattern_check: false
+
     # Default for unspecified endpoints: 60 per hour
     api_default:
       limit: 60

@@ -1,0 +1,177 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Billoria Notifications module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function billoria_notifications_schema() {
+  $schema['billoria_notifications'] = [
+    'description' => 'Stores user notifications for the Billoria platform.',
+    'fields' => [
+      'nid' => [
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique notification ID.',
+      ],
+      'uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The {users}.uid that owns this notification.',
+      ],
+      'type' => [
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The notification type (booking, verification, system, etc.).',
+      ],
+      'title' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The notification title.',
+      ],
+      'message' => [
+        'type' => 'text',
+        'size' => 'normal',
+        'not null' => TRUE,
+        'description' => 'The notification message body.',
+      ],
+      'metadata' => [
+        'type' => 'text',
+        'size' => 'normal',
+        'not null' => FALSE,
+        'description' => 'JSON metadata (entity IDs, action URLs, etc.).',
+      ],
+      'is_read' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Whether the notification has been read (0 = unread, 1 = read).',
+      ],
+      'priority' => [
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+        'default' => 'normal',
+        'description' => 'Priority level: low, normal, high, urgent.',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp when the notification was created.',
+      ],
+      'read_at' => [
+        'type' => 'int',
+        'not null' => FALSE,
+        'description' => 'Timestamp when the notification was read.',
+      ],
+      'expires_at' => [
+        'type' => 'int',
+        'not null' => FALSE,
+        'description' => 'Timestamp when the notification expires.',
+      ],
+    ],
+    'primary key' => ['nid'],
+    'indexes' => [
+      'uid' => ['uid'],
+      'type' => ['type'],
+      'is_read' => ['is_read'],
+      'created' => ['created'],
+      'uid_read' => ['uid', 'is_read'],
+    ],
+  ];
+
+  $schema['billoria_fcm_tokens'] = [
+    'description' => 'Stores Firebase Cloud Messaging device tokens for push notifications.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique token ID.',
+      ],
+      'uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'The {users}.uid that owns this token.',
+      ],
+      'token' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'The FCM device token.',
+      ],
+      'device_type' => [
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+        'default' => 'web',
+        'description' => 'Device type: web, android, ios.',
+      ],
+      'device_name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'description' => 'Optional device name/identifier.',
+      ],
+      'is_active' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 1,
+        'description' => 'Whether the token is active (0 = inactive, 1 = active).',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp when the token was registered.',
+      ],
+      'updated' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Timestamp when the token was last updated.',
+      ],
+    ],
+    'primary key' => ['id'],
+    'unique keys' => [
+      'token' => ['token'],
+    ],
+    'indexes' => [
+      'uid' => ['uid'],
+      'uid_active' => ['uid', 'is_active'],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function billoria_notifications_install() {
+  \Drupal::messenger()->addStatus(__FUNCTION__);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function billoria_notifications_uninstall() {
+  \Drupal::messenger()->addStatus(__FUNCTION__);
+}

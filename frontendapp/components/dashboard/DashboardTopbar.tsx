@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { authAPI } from '@/lib/api/auth';
+import { NotificationCenter } from '@/components/notifications/NotificationCenter';
 import './dashboard-topbar.css';
 
 interface DashboardTopbarProps {
@@ -40,12 +41,7 @@ export function DashboardTopbar({ title, subtitle, role }: DashboardTopbarProps)
 
       <div className="db-topbar__right">
         {/* Notifications */}
-        <button className="db-topbar__icon-btn" type="button" aria-label="Notifications">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0" />
-          </svg>
-          <span className="db-topbar__badge">3</span>
-        </button>
+        <NotificationCenter />
 
         {/* Divider */}
         <span className="db-topbar__divider" />

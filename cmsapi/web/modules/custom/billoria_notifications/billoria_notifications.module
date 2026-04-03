@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Billoria Notifications module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function billoria_notifications_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.billoria_notifications':
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Billoria Notifications module provides a comprehensive user notification system for billboard bookings, verifications, and platform updates.') . '</p>';
+      $output .= '<h3>' . t('Features') . '</h3>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('Create and manage user notifications') . '</li>';
+      $output .= '<li>' . t('REST API endpoints for frontend integration') . '</li>';
+      $output .= '<li>' . t('Mark notifications as read/unread') . '</li>';
+      $output .= '<li>' . t('Notification types: booking, verification, system, etc.') . '</li>';
+      $output .= '<li>' . t('Priority levels: low, normal, high, urgent') . '</li>';
+      $output .= '<li>' . t('Auto-expiration of time-sensitive notifications') . '</li>';
+      $output .= '</ul>';
+      $output .= '<h3>' . t('API Endpoints') . '</h3>';
+      $output .= '<ul>';
+      $output .= '<li><code>GET /api/v1/notifications</code> - ' . t('List notifications') . '</li>';
+      $output .= '<li><code>GET /api/v1/notifications/unread-count</code> - ' . t('Get unread count') . '</li>';
+      $output .= '<li><code>POST /api/v1/notifications/{nid}/mark-read</code> - ' . t('Mark as read') . '</li>';
+      $output .= '<li><code>POST /api/v1/notifications/mark-all-read</code> - ' . t('Mark all as read') . '</li>';
+      $output .= '<li><code>DELETE /api/v1/notifications/{nid}</code> - ' . t('Delete notification') . '</li>';
+      $output .= '</ul>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function billoria_notifications_cron() {
+  $config = \Drupal::config('billoria_notifications.firebase');
+  
+  // Check if cleanup is enabled.
+  if (!$config->get('cleanup_enabled')) {
+    return;
+  }
+
+  // Clean up expired notifications.
+  $notification_manager = \Drupal::service('billoria_notifications.manager');
+  $deleted = $notification_manager->deleteExpiredNotifications();
+  
+  if ($deleted > 0) {
+    \Drupal::logger('billoria_notifications')->info('Deleted @count expired notifications during cron.', [
+      '@count' => $deleted,
+    ]);
+  }
+
+  // Clean up inactive FCM tokens.
+  $firebase_service = \Drupal::service('billoria_notifications.firebase');
+  $deleted_tokens = $firebase_service->cleanupInactiveTokens();
+  
+  if ($deleted_tokens > 0) {
+    \Drupal::logger('billoria_notifications')->info('Deleted @count inactive FCM tokens during cron.', [
+      '@count' => $deleted_tokens,
+    ]);
+  }
+}

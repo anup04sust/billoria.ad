@@ -74,6 +74,46 @@ NEXT_PUBLIC_API_URL=http://billoria-ad-api.ddev.site
 - **Routing**: Define in `module.routing.yml` with `_format: json` for APIs
 - **Permissions**: Check with `$this->currentUser()->hasPermission('permission_name')`
 
+### CSS (Frontend)
+- **File Location**: Co-locate CSS with components (e.g., `BillboardMap.tsx` + `billboard-map.css` in same directory)
+- **BEM Naming**: Use BEM methodology for class names (`.block__element--modifier`)
+  ```css
+  .epm-overlay { }              /* Block */
+  .epm-modal { }                /* Block */
+  .epm-header__title { }        /* Element */
+  .epm-btn--primary { }         /* Modifier */
+  ```
+- **Prefix Convention**: Use abbreviated component prefix for scoping
+  - `.epm-*` for EditPersonalModal
+  - `.mfm-*` for MapFilterModal
+  - `.pnp-*` for PushNotificationPrompt
+- **Import Pattern**: Import CSS at top of component file
+  ```typescript
+  import './component-name.css';
+  ```
+- **CSS Variables**: Use defined CSS variables from `styles/globals.css` for brand colors
+  ```css
+  background: var(--color-primary);        /* #C1121F */
+  background: var(--color-primary-dark);   /* #780000 */
+  color: var(--color-text-primary);
+  ```
+- **Avoid Inline Tailwind**: Do NOT use inline Tailwind classes for modal/component styling
+  - ❌ `className="fixed inset-0 bg-black/50"`
+  - ✅ `className="epm-overlay"` + external CSS file
+- **Tailwind Usage**: Reserve Tailwind for:
+  - Utility-first page layouts
+  - Rapid prototyping
+  - Simple one-off spacing/sizing adjustments
+- **Modal Pattern**: Follow established structure
+  ```tsx
+  <div className="prefix-overlay" />
+  <div className="prefix-modal">
+    <div className="prefix-header">...</div>
+    <div className="prefix-body">...</div>
+    <div className="prefix-footer">...</div>
+  </div>
+  ```
+
 ### Naming Conventions
 - **API responses**: camelCase fields (`accountType`, `mobileNumber`, `billedId`)
 - **Drupal fields**: snake_case with `field_` prefix (`field_mobile_number`, `field_org_type`)
@@ -81,6 +121,8 @@ NEXT_PUBLIC_API_URL=http://billoria-ad-api.ddev.site
 
 ### Example Files
 - [frontendapp/components/map/BillboardMap.tsx](../frontendapp/components/map/BillboardMap.tsx) — Client component pattern
+- [frontendapp/components/dashboard/EditPersonalModal.tsx](../frontendapp/components/dashboard/EditPersonalModal.tsx) + [edit-profile-modal.css](../frontendapp/components/dashboard/edit-profile-modal.css) — Modal component with BEM CSS
+- [frontendapp/components/notifications/PushNotificationPrompt.tsx](../frontendapp/components/notifications/PushNotificationPrompt.tsx) + [push-notification-prompt.css](../frontendapp/components/notifications/push-notification-prompt.css) — CSS naming and structure reference
 - [frontendapp/types/billboard.ts](../frontendapp/types/billboard.ts) — Type definitions
 - [frontendapp/ONBOARDING_INTEGRATION.md](../frontendapp/ONBOARDING_INTEGRATION.md) — API integration guide
 - `cmsapi/web/modules/custom/billoria_core/src/Controller/BillboardApiController.php` — API controller pattern

@@ -8,6 +8,14 @@ import { SearchOverlay } from '@/components/shared/SearchOverlay';
 import { authAPI } from '@/lib/api/auth';
 import { getDashboardRoute } from '@/app/dashboard/page';
 
+function getProfileRoute(roles: string[]): string {
+  if (roles.includes('platform_admin')) return '/admin/profile';
+  if (roles.includes('agency'))          return '/agency/profile';
+  if (roles.includes('billboard_owner')) return '/owner/profile';
+  if (roles.includes('brand_user'))      return '/brand/profile';
+  return '/dashboard'; // fallback
+}
+
 function UserMenu() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -46,6 +54,7 @@ function UserMenu() {
   }
 
   const dashboardHref = getDashboardRoute(user.roles);
+  const profileHref = getProfileRoute(user.roles);
   const roles = user.roles;
   const isAgency  = roles.includes('agency');
   const isBrand   = roles.includes('brand_user');
@@ -85,7 +94,7 @@ function UserMenu() {
             Dashboard
           </Link>
 
-          {/* Profile */}
+          {/* Profile{profileHref}
           <Link href="/profile" className="site-header__dropdown-item" onClick={() => setOpen(false)} role="menuitem">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
               <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />

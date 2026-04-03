@@ -1,0 +1,6 @@
+server_key: ''
+service_account_json: ''
+use_v1_api: true
+auto_push: true
+cleanup_enabled: true
+token_retention_days: 30

@@ -1,0 +1,8 @@
+services:
+  billoria_notifications.manager:
+    class: Drupal\billoria_notifications\NotificationManager
+    arguments: ['@database', '@current_user', '@datetime.time', '@logger.factory', '@billoria_notifications.firebase']
+  
+  billoria_notifications.firebase:
+    class: Drupal\billoria_notifications\FirebaseService
+    arguments: ['@database', '@logger.factory', '@config.factory']

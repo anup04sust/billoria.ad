@@ -1,0 +1,7 @@
+system.admin_config_billoria:
+  path: '/admin/config/billoria'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Billoria'
+  requirements:
+    _permission: 'access administration pages'

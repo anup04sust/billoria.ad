@@ -1,0 +1,4 @@
+administer billoria notifications:
+  title: 'Administer Billoria Notifications'
+  description: 'Configure notification and Firebase push notification settings.'
+  restrict access: true

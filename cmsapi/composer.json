@@ -31,7 +31,8 @@
         "drupal/pathauto": "^1.14",
         "drupal/symfony_mailer": "^1.6",
         "drupal/token": "^1.17",
-        "drush/drush": "^13.7"
+        "drush/drush": "^13.7",
+        "kreait/firebase-php": "^8.2"
     },
     "conflict": {
         "drupal/drupal": "*"

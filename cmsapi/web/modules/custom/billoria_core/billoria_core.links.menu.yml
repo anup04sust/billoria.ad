@@ -1,8 +1,8 @@
 billoria_core.admin:
-  title: 'Billoria'
+  title: 'Billoria Settings'
   description: 'Manage Billoria billboard marketplace platform'
-  parent: system.admin
-  route_name: billoria_core.settings
+  parent: system.admin_config
+  route_name: system.admin_config_billoria
   weight: -15
 
 billoria_core.settings:

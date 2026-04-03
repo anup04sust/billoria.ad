@@ -100,6 +100,15 @@ billoria_core.api.billboard_delete:
 
 # Admin Configuration
 
+# Billoria admin overview page
+system.admin_config_billoria:
+  path: "/admin/config/billoria"
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: "Billoria"
+  requirements:
+    _permission: "access administration pages"
+
 billoria_core.settings:
   path: "/admin/config/billoria/core"
   defaults:

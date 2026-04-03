@@ -137,6 +137,11 @@ class BilloriaCoreSubscriber implements EventSubscriberInterface {
       '/api/v1/request-phone-otp' => 'api_resend',
     ];
 
+    // Check for notifications endpoint patterns
+    if (preg_match('#^/api/v1/notifications#', $path)) {
+      return 'api_notifications';
+    }
+
     // Check for organization status endpoint pattern
     if (preg_match('#^/api/v1/organization/\d+/status$#', $path)) {
       return 'api_default';

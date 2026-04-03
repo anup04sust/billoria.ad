@@ -1,0 +1,124 @@
+/**
+ * @file
+ * Styles for Send Notification form.
+ */
+
+.notification-preview {
+  margin-top: 2rem;
+}
+
+.notification-preview-box {
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notification-preview-normal {
+  border-color: #0d6efd;
+  background: #e7f3ff;
+}
+
+.notification-preview-high {
+  border-color: #fd7e14;
+  background: #fff3cd;
+}
+
+.notification-preview-urgent {
+  border-color: #dc3545;
+  background: #f8d7da;
+}
+
+.notification-preview-low {
+  border-color: #6c757d;
+  background: #e9ecef;
+}
+
+.preview-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #6c757d;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.preview-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.preview-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #212529;
+}
+
+.preview-message {
+  font-size: 0.95rem;
+  color: #495057;
+  line-height: 1.5;
+}
+
+/* Fieldset styling */
+#billoria-notifications-send-form fieldset {
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+#billoria-notifications-send-form fieldset legend {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #212529;
+  padding: 0 0.5rem;
+}
+
+/* Push notification section */
+.form-item-push-section-send-push {
+  background: #e7f3ff;
+  border-left: 4px solid #0d6efd;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.form-item-push-section-send-push label {
+  font-weight: 600;
+  color: #0d6efd;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .notification-preview-box {
+    padding: 1rem;
+  }
+  
+  #billoria-notifications-send-form fieldset {
+    padding: 1rem;
+  }
+}
+
+/* Warning message for "all users" */
+.messages--warning {
+  margin: 1rem 0;
+}
+
+/* Action buttons */
+.form-actions {
+  padding-top: 1rem;
+  border-top: 2px solid #dee2e6;
+  margin-top: 2rem;
+}
+
+.form-actions .button--primary {
+  background-color: #C1121F;
+  border-color: #780000;
+}
+
+.form-actions .button--primary:hover {
+  background-color: #780000;
+}

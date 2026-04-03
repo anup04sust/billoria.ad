@@ -1,0 +1,11 @@
+send_form:
+  version: 1.0
+  css:
+    theme:
+      css/send-form.css: {}
+  js:
+    js/send-form.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupal.ajax

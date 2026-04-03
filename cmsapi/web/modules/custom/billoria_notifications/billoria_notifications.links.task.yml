@@ -1,0 +1,11 @@
+billoria_notifications.send:
+  route_name: billoria_notifications.send
+  title: 'Send Notification'
+  base_route: billoria_notifications.send
+  weight: 0
+
+billoria_notifications.settings_tab:
+  route_name: billoria_notifications.settings
+  title: 'Settings'
+  base_route: billoria_notifications.send
+  weight: 10

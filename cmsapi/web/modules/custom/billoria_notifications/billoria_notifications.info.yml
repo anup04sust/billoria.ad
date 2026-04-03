@@ -1,0 +1,10 @@
+name: Billoria Notifications
+type: module
+description: "User notification system for billboard bookings, verifications, and platform updates."
+package: Billoria
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:user
+  - drupal:rest
+  - drupal:serialization
+  - billoria_core:billoria_core

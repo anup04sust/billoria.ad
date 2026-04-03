@@ -1,0 +1,13 @@
+billoria_notifications.admin:
+  title: 'Notifications'
+  route_name: billoria_notifications.settings
+  description: 'Configure notification and Firebase push notification settings.'
+  parent: billoria_core.admin
+  weight: 10
+
+billoria_notifications.send:
+  title: 'Send Notification'
+  route_name: billoria_notifications.send
+  description: 'Send notifications to users with push notification support.'
+  parent: billoria_core.admin
+  weight: 5

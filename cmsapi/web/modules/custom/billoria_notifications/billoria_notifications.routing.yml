@@ -1,0 +1,100 @@
+billoria_notifications.list:
+  path: '/api/v1/notifications'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\NotificationApiController::list'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+  methods: [GET]
+
+# Admin settings page
+billoria_notifications.settings:
+  path: '/admin/config/billoria/notifications'
+  defaults:
+    _form: '\Drupal\billoria_notifications\Form\NotificationSettingsForm'
+    _title: 'Notification Settings'
+  requirements:
+    _permission: 'administer billoria notifications'
+
+# Admin send notification page
+billoria_notifications.send:
+  path: '/admin/content/notifications/send'
+  defaults:
+    _form: '\Drupal\billoria_notifications\Form\SendNotificationForm'
+    _title: 'Send Notification'
+  requirements:
+    _permission: 'administer billoria notifications'
+
+billoria_notifications.unread_count:
+  path: '/api/v1/notifications/unread-count'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\NotificationApiController::unreadCount'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+  methods: [GET]
+
+billoria_notifications.mark_read:
+  path: '/api/v1/notifications/{nid}/mark-read'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\NotificationApiController::markAsRead'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+    nid: \d+
+  methods: [POST]
+
+billoria_notifications.mark_all_read:
+  path: '/api/v1/notifications/mark-all-read'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\NotificationApiController::markAllAsRead'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+  methods: [POST]
+
+billoria_notifications.delete:
+  path: '/api/v1/notifications/{nid}'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\NotificationApiController::delete'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+    nid: \d+
+  methods: [DELETE]
+
+# FCM Token Management
+billoria_notifications.register_token:
+  path: '/api/v1/notifications/fcm/register'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\FcmTokenController::registerToken'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+  methods: [POST]
+
+billoria_notifications.unregister_token:
+  path: '/api/v1/notifications/fcm/unregister'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\FcmTokenController::unregisterToken'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+  methods: [POST]
+
+billoria_notifications.list_tokens:
+  path: '/api/v1/notifications/fcm/tokens'
+  defaults:
+    _controller: '\Drupal\billoria_notifications\Controller\FcmTokenController::listTokens'
+    _format: 'json'
+  requirements:
+    _permission: 'access content'
+    _format: 'json'
+  methods: [GET]
