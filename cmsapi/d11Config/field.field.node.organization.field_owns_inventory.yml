@@ -1,0 +1,21 @@
+uuid: e0ed4757-f15c-4d47-9e6a-25158a6426cf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_owns_inventory
+    - node.type.organization
+id: node.organization.field_owns_inventory
+field_name: field_owns_inventory
+entity_type: node
+bundle: organization
+label: 'Do you own billboard inventory?'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

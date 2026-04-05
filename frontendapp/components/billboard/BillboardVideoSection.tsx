@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
+import { IconPlay } from '@/lib/icons/ui-icons';
 import './billboard-video-section.css';
 
 interface BillboardVideoSectionProps {
@@ -40,9 +41,7 @@ export function BillboardVideoSection({
       <div className="bb-video-section__player">
         {/* Play icon overlay */}
         <div className="bb-video-section__play-hint" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 5v14l11-7z" />
-          </svg>
+          <IconPlay />
         </div>
 
         <video

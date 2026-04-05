@@ -6,6 +6,7 @@ import { DashboardSidebar } from '@/components/dashboard/DashboardSidebar';
 import { DashboardTopbar } from '@/components/dashboard/DashboardTopbar';
 import { authAPI } from '@/lib/api/auth';
 import { notificationAPI, type Notification } from '@/lib/api/notifications';
+import { IconCheck, IconTrash } from '@/lib/icons/ui-icons';
 import '@/components/dashboard/dashboard-sidebar.css';
 import '@/components/dashboard/dashboard-topbar.css';
 import '@/components/dashboard/dashboard.css';
@@ -216,9 +217,7 @@ export default function AgencyNotificationsPage() {
                         onClick={() => handleMarkAsRead(notification.nid)}
                         title="Mark as read"
                       >
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
+                        <IconCheck />
                       </button>
                     )}
                     <button
@@ -226,10 +225,7 @@ export default function AgencyNotificationsPage() {
                       onClick={() => handleDelete(notification.nid)}
                       title="Delete"
                     >
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-                        <polyline points="3 6 5 6 21 6" />
-                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
-                      </svg>
+                      <IconTrash />
                     </button>
                   </div>
                 </div>

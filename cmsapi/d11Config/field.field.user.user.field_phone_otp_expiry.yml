@@ -1,0 +1,20 @@
+uuid: 70a1fbbe-fc4f-4f0d-a8fa-ef07daafc497
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_phone_otp_expiry
+  module:
+    - user
+id: user.user.field_phone_otp_expiry
+field_name: field_phone_otp_expiry
+entity_type: user
+bundle: user
+label: 'Phone OTP Expiry'
+description: ''
+required: false
+translatable: true
+default_value: null
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

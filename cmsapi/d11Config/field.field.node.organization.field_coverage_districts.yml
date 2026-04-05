@@ -1,0 +1,24 @@
+uuid: 4cd36402-4c07-4a0e-b3e9-c2a9cb2f8b4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_coverage_districts
+    - node.type.organization
+    - taxonomy.vocabulary.district
+id: node.organization.field_coverage_districts
+field_name: field_coverage_districts
+entity_type: node
+bundle: organization
+label: 'Coverage Districts'
+description: 'Districts where you have billboard inventory'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      district: district
+field_type: entity_reference

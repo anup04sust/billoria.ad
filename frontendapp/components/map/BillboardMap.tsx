@@ -11,6 +11,7 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 import type { Billboard } from '@/types/billboard';
 import { billboardAPI } from '@/lib/api/billboard';
 import { getBillboardMarkerIcon } from '@/lib/icons/map-markers';
+import { IconChevronDown } from '@/lib/icons/ui-icons';
 import './billboard-map.css';
 import { MapSkeleton } from './MapSkeleton';
 import 'leaflet/dist/leaflet.css';
@@ -263,9 +264,7 @@ export function BillboardMap({ billboards: propBillboards }: BillboardMapProps) 
       {/* Scroll down indicator */}
       {showScrollHint && (
         <div className="billboard-map-scroll-hint">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="6 9 12 15 18 9" />
-          </svg>
+          <IconChevronDown />
         </div>
       )}
     </section>

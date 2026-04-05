@@ -1,0 +1,25 @@
+uuid: 68e19230-4961-4322-83d8-5fc88c8c7fd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_profile_completion
+    - node.type.organization
+id: node.organization.field_profile_completion
+field_name: field_profile_completion
+entity_type: node
+bundle: organization
+label: 'Profile Completion %'
+description: 'Auto-calculated completion percentage'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

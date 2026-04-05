@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Billboard } from '@/types/billboard';
+import { IconImagePlaceholder } from '@/lib/icons/ui-icons';
 import './billboard-list-card.css';
 
 function formatPrice(price?: string, currency?: string) {
@@ -20,11 +21,7 @@ export function BillboardListCard({ billboard: b }: { billboard: Billboard }) {
           <img src={b.hero_image.medium} alt={b.hero_image.alt || b.title} className="bl-card__img" />
         ) : (
           <div className="bl-card__img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <circle cx="8.5" cy="8.5" r="1.5" />
-              <path d="M21 15l-5-5L5 21" />
-            </svg>
+            <IconImagePlaceholder />
           </div>
         )}
         {b.is_premium === '1' && <span className="bl-card__premium-badge">Premium</span>}

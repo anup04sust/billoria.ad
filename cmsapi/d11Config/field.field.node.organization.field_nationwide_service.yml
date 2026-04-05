@@ -1,0 +1,21 @@
+uuid: 53c5c5eb-bac1-4ae6-9994-d83823f22e8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_nationwide_service
+    - node.type.organization
+id: node.organization.field_nationwide_service
+field_name: field_nationwide_service
+entity_type: node
+bundle: organization
+label: 'Nationwide Service'
+description: 'Organization provides service nationwide.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

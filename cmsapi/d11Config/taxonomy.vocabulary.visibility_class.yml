@@ -1,0 +1,9 @@
+uuid: 7e50c109-43ae-466e-8e88-54fdc52d99eb
+langcode: en
+status: true
+dependencies: {  }
+name: 'Visibility Class'
+vid: visibility_class
+description: 'Billboard visibility quality rating'
+weight: 10
+new_revision: false

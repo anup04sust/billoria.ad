@@ -4,24 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { profileAPI } from '@/lib/api/profile';
 import type { ProfileUser, ProfileOrganization, UpdateUserPayload, UpdateOrgPayload } from '@/lib/api/profile';
 import profileOptions from '@/data/profile-options.json';
+import { IconX, IconUser, IconBuilding } from '@/lib/icons/ui-icons';
 import './edit-profile-modal.css';
-
-// ── Icons ─────────────────────────────────────────────────────────────────────
-const IconX = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-);
-const IconUser = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
-  </svg>
-);
-const IconBuilding = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="3" width="18" height="18" rx="1" /><path d="M9 22V12h6v10M9 7h1m4 0h1M9 11h1m4 0h1" />
-  </svg>
-);
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const BUDGET_OPTIONS = [

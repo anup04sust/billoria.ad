@@ -1,0 +1,9 @@
+uuid: e51bb69d-9800-49e7-b27a-51b280c3b9de
+langcode: en
+status: true
+dependencies: {  }
+name: 'City Corporation'
+vid: city_corporation
+description: 'Bangladesh city corporations'
+weight: 6
+new_revision: false

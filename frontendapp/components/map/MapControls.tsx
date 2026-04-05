@@ -3,6 +3,7 @@
 import { useMap } from 'react-leaflet';
 import { useState, useRef, useCallback } from 'react';
 import L from 'leaflet';
+import { IconZoomIn, IconZoomOut, IconCrosshair, IconFilter, IconList } from '@/lib/icons/ui-icons';
 
 /* ── Human location marker icon (SVG data‑URI) ── */
 const HUMAN_MARKER_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="40" height="56" viewBox="0 0 40 56">
@@ -94,12 +95,7 @@ export function MapControls({ onFilterClick, onListViewClick, filterActive, list
         title="Zoom In"
         aria-label="Zoom in"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="7" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          <line x1="11" y1="8" x2="11" y2="14" />
-          <line x1="8" y1="11" x2="14" y2="11" />
-        </svg>
+        <IconZoomIn />
       </button>
 
       <button
@@ -108,11 +104,7 @@ export function MapControls({ onFilterClick, onListViewClick, filterActive, list
         title="Zoom Out"
         aria-label="Zoom out"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="11" cy="11" r="7" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          <line x1="8" y1="11" x2="14" y2="11" />
-        </svg>
+        <IconZoomOut />
       </button>
 
       <button
@@ -121,14 +113,7 @@ export function MapControls({ onFilterClick, onListViewClick, filterActive, list
         title="Near Me"
         aria-label="Find my location"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="12" r="3" />
-          <path d="M12 2v3" />
-          <path d="M12 19v3" />
-          <path d="M2 12h3" />
-          <path d="M19 12h3" />
-          <circle cx="12" cy="12" r="8" strokeWidth="1.5" strokeDasharray="3 2" />
-        </svg>
+        <IconCrosshair />
       </button>
 
       <button
@@ -137,9 +122,7 @@ export function MapControls({ onFilterClick, onListViewClick, filterActive, list
         title="Filter"
         aria-label="Filter billboards"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-        </svg>
+        <IconFilter />
       </button>
 
       <button
@@ -148,14 +131,7 @@ export function MapControls({ onFilterClick, onListViewClick, filterActive, list
         title="List View"
         aria-label="Switch to list view"
       >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="8" y1="6" x2="21" y2="6" />
-          <line x1="8" y1="12" x2="21" y2="12" />
-          <line x1="8" y1="18" x2="21" y2="18" />
-          <line x1="3" y1="6" x2="3.01" y2="6" />
-          <line x1="3" y1="12" x2="3.01" y2="12" />
-          <line x1="3" y1="18" x2="3.01" y2="18" />
-        </svg>
+        <IconList />
       </button>
     </div>
   );

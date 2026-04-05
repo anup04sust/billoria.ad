@@ -1,0 +1,25 @@
+uuid: 77755c9d-4106-4698-956e-6122e13db1d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_district
+    - taxonomy.vocabulary.city_corporation
+    - taxonomy.vocabulary.district
+id: taxonomy_term.city_corporation.field_district
+field_name: field_district
+entity_type: taxonomy_term
+bundle: city_corporation
+label: District
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      district: district
+    auto_create: false
+field_type: entity_reference

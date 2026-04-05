@@ -1,0 +1,20 @@
+uuid: 4904da8c-3958-460a-99b1-512a44fca958
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_area_zone
+field_name: field_area_zone
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

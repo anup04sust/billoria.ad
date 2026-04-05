@@ -7,6 +7,7 @@ import { BillboardListFilters, EMPTY_LIST_FILTERS, TIER_AREAS, type ListFilters 
 import { BillboardListCard } from './BillboardListCard';
 import { SponsoredCarousel } from './SponsoredCarousel';
 import { FeaturedBillboards } from './FeaturedBillboards';
+import { IconFilterLines, IconSearch, IconChevronLeft, IconChevronRight } from '@/lib/icons/ui-icons';
 import '@/components/billboard/billboard-list-page.css';
 
 const PER_PAGE = 12;
@@ -121,9 +122,7 @@ export function BillboardListPageClient({ billboards }: BillboardListPageClientP
             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
             type="button"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="4" y1="6" x2="20" y2="6" /><line x1="4" y1="12" x2="14" y2="12" /><line x1="4" y1="18" x2="10" y2="18" />
-            </svg>
+            <IconFilterLines />
             Filters
           </button>
           <div className="bl-page__sort">
@@ -178,10 +177,7 @@ export function BillboardListPageClient({ billboards }: BillboardListPageClientP
             paginated.filter((b) => !featuredIds.has(b.id)).map((b) => <BillboardListCard key={b.id} billboard={b} />)
           ) : (
             <div className="bl-page__empty">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="11" cy="11" r="8" />
-                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-              </svg>
+              <IconSearch />
               <p>No billboards match your filters</p>
             </div>
           )}
@@ -195,7 +191,7 @@ export function BillboardListPageClient({ billboards }: BillboardListPageClientP
                 onClick={() => setPage(page - 1)}
                 aria-label="Previous page"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="15 18 9 12 15 6" /></svg>
+                <IconChevronLeft />
               </button>
               {pageNumbers[0] > 1 && (
                 <>
@@ -224,7 +220,7 @@ export function BillboardListPageClient({ billboards }: BillboardListPageClientP
                 onClick={() => setPage(page + 1)}
                 aria-label="Next page"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6" /></svg>
+                <IconChevronRight />
               </button>
             </nav>
           )}

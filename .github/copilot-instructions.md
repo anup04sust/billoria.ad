@@ -75,6 +75,31 @@ NEXT_PUBLIC_API_URL=http://billoria-ad-api.ddev.site
 - **Permissions**: Check with `$this->currentUser()->hasPermission('permission_name')`
 
 ### CSS (Frontend)
+
+### SVG Icons (Frontend)
+- **Icon Library**: All SVG icons must be defined as React components in `lib/icons/ui-icons.tsx`
+- **Never inline SVGs** directly in component JSX — always import from the icon library
+  - ❌ `<svg viewBox="0 0 24 24">...</svg>` directly in a component
+  - ✅ `import { IconEdit } from '@/lib/icons/ui-icons';` then `<IconEdit />`
+- **Naming**: Use `Icon` prefix + PascalCase descriptor (`IconBillboard`, `IconCheckCircle`, `IconArchive`)
+- **Adding new icons**: Export a new named function from `lib/icons/ui-icons.tsx`
+  ```typescript
+  export function IconExample() {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="..." />
+      </svg>
+    );
+  }
+  ```
+- **Usage**: Import and use as a component
+  ```typescript
+  import { IconEdit, IconBillboard } from '@/lib/icons/ui-icons';
+  // In JSX:
+  <IconEdit />
+  ```
+
+### CSS Styling (Frontend)
 - **File Location**: Co-locate CSS with components (e.g., `BillboardMap.tsx` + `billboard-map.css` in same directory)
 - **BEM Naming**: Use BEM methodology for class names (`.block__element--modifier`)
   ```css
@@ -182,3 +207,5 @@ See [docs/PROJECT_ROADMAP.md](../docs/PROJECT_ROADMAP.md) for phase planning
 - **Next.js version**: 16.2.1 has breaking changes from training data — consult Next.js docs before implementing features
 - **API client**: Not yet implemented in `lib/api/` — create following patterns in [ONBOARDING_INTEGRATION.md](../frontendapp/ONBOARDING_INTEGRATION.md)
 - **TODO markers**: Existing code has `// TODO: Replace with API call` comments marking incomplete integrations
+
+- **Billboard API**: Use UUID (not NID) for all API endpoints and frontend integration. All billboard lookups, edits, and references must use the UUID field, not the numeric node ID (NID). This applies to both backend controller routes and all frontend API calls.

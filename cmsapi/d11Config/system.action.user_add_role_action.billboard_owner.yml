@@ -1,0 +1,14 @@
+uuid: 2efcc0b1-07f4-4d73-b3a9-5f6c1de4161e
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.billboard_owner
+  module:
+    - user
+id: user_add_role_action.billboard_owner
+label: 'Add the Billboard Owner role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: billboard_owner

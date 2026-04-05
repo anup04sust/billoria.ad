@@ -39,7 +39,7 @@
 /* ── Stat cards row ── */
 .db-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.25rem;
   margin-bottom: 1.75rem;
 }
@@ -75,6 +75,7 @@
 .db-stat__icon-wrap--blue   { background: rgba(13, 46, 26, 0.1);   color: #0D2E1A; }
 .db-stat__icon-wrap--green  { background: rgba(52, 211, 153, 0.12); color: #059669; }
 .db-stat__icon-wrap--amber  { background: rgba(245, 158, 11, 0.1); color: #d97706; }
+.db-stat__icon-wrap--gray   { background: rgba(107, 114, 128, 0.1); color: #6b7280; }
 
 .db-stat__body {
   display: flex;

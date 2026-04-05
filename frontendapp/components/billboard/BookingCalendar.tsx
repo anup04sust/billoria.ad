@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { IconChevronLeft, IconChevronRight } from '@/lib/icons/ui-icons';
 import './booking-calendar.css';
 
 interface BookingCalendarProps {
@@ -116,9 +117,7 @@ export function BookingCalendar({ bookedDates = [], bookingMode }: BookingCalend
           aria-label="Previous month"
           type="button"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <IconChevronLeft />
         </button>
         <span className="bb-booking-cal__month-label">{MONTH_NAMES[month]} {year}</span>
         <button
@@ -127,9 +126,7 @@ export function BookingCalendar({ bookedDates = [], bookingMode }: BookingCalend
           aria-label="Next month"
           type="button"
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
+          <IconChevronRight />
         </button>
       </div>
 

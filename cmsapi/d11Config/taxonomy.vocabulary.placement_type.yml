@@ -1,0 +1,9 @@
+uuid: d93f98b3-d2d5-4081-b362-99955eec5c8b
+langcode: en
+status: true
+dependencies: {  }
+name: 'Placement Type'
+vid: placement_type
+description: 'Billboard placement location types (Roadside, Divider, Rooftop, etc.)'
+weight: 1
+new_revision: false

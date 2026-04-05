@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import type { Billboard } from '@/types/billboard';
+import { IconX } from '@/lib/icons/ui-icons';
 import './billboard-detail-widget.css';
 
 interface BillboardDetailWidgetProps {
@@ -22,10 +23,7 @@ export function BillboardDetailWidget({ billboard, onClose }: BillboardDetailWid
       <div className="detail-widget__header">
         <h3 className="detail-widget__title">Billboard Details</h3>
         <button className="detail-widget__close" onClick={handleClose} aria-label="Close details">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+          <IconX />
         </button>
       </div>
 

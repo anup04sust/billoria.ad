@@ -1,0 +1,19 @@
+uuid: 8a5747f1-7a43-4dc4-9cee-5ff822de4c17
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_business_reg_number
+    - node.type.organization
+id: node.organization.field_business_reg_number
+field_name: field_business_reg_number
+entity_type: node
+bundle: organization
+label: 'Business Registration Number'
+description: 'Trade License or Company Registration Number'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

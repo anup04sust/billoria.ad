@@ -1,0 +1,14 @@
+uuid: f0518a70-17fd-4472-a536-9345c3e30358
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.brand_user
+  module:
+    - user
+id: user_add_role_action.brand_user
+label: 'Add the Brand User role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: brand_user

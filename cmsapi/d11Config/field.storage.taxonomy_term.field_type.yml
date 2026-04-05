@@ -1,0 +1,30 @@
+uuid: faa232c5-964d-41e4-b9cf-adaa7185c71c
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - taxonomy
+id: taxonomy_term.field_type
+field_name: field_type
+entity_type: taxonomy_term
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: upazila
+      label: Upazila
+    -
+      value: thana
+      label: 'Thana (Metropolitan)'
+    -
+      value: pourashava
+      label: Pourashava
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

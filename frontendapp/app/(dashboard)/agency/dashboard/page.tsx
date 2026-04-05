@@ -9,6 +9,7 @@ import { authAPI } from '@/lib/api/auth';
 import '@/components/dashboard/dashboard-sidebar.css';
 import '@/components/dashboard/dashboard-topbar.css';
 import '@/components/dashboard/dashboard.css';
+import { IconBillboard, IconCalendar, IconClock, IconCurrency, IconChevronUp, IconChevronDown, IconSearch, IconBriefcase, IconUsers, IconBarChart } from '@/lib/icons/ui-icons';
 
 const RECENT_BOOKINGS = [
   { id: 'BK-1041', billboard: 'Gulshan-2 Junction Billboard', location: 'Dhaka', period: 'Apr 1 – Apr 30', status: 'active', amount: '৳120,000' },
@@ -46,13 +47,13 @@ export default function AgencyDashboardPage() {
           <div className="db-stats">
             <div className="db-stat">
               <div className="db-stat__icon-wrap db-stat__icon-wrap--red">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="12" rx="1" /><line x1="12" y1="16" x2="12" y2="21" /><line x1="8" y1="21" x2="16" y2="21" /></svg>
+                <IconBillboard />
               </div>
               <div className="db-stat__body">
                 <span className="db-stat__value">24</span>
                 <span className="db-stat__label">Active Campaigns</span>
                 <span className="db-stat__trend db-stat__trend--up">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
+                  <IconChevronUp />
                   +3 this month
                 </span>
               </div>
@@ -60,13 +61,13 @@ export default function AgencyDashboardPage() {
 
             <div className="db-stat">
               <div className="db-stat__icon-wrap db-stat__icon-wrap--blue">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="3" y1="10" x2="21" y2="10" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="16" y1="2" x2="16" y2="6" /></svg>
+                <IconCalendar />
               </div>
               <div className="db-stat__body">
                 <span className="db-stat__value">67</span>
                 <span className="db-stat__label">Booked Billboards</span>
                 <span className="db-stat__trend db-stat__trend--up">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="18 15 12 9 6 15" /></svg>
+                  <IconChevronUp />
                   +7 this week
                 </span>
               </div>
@@ -74,7 +75,7 @@ export default function AgencyDashboardPage() {
 
             <div className="db-stat">
               <div className="db-stat__icon-wrap db-stat__icon-wrap--amber">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                <IconClock />
               </div>
               <div className="db-stat__body">
                 <span className="db-stat__value">8</span>
@@ -85,13 +86,13 @@ export default function AgencyDashboardPage() {
 
             <div className="db-stat">
               <div className="db-stat__icon-wrap db-stat__icon-wrap--green">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="M12 6v12M9 9h4.5a2.5 2.5 0 010 5H9m0 0h5" /></svg>
+                <IconCurrency />
               </div>
               <div className="db-stat__body">
                 <span className="db-stat__value">৳18.4L</span>
                 <span className="db-stat__label">Total Spend (MTD)</span>
                 <span className="db-stat__trend db-stat__trend--down">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
+                  <IconChevronDown />
                   -5% vs last month
                 </span>
               </div>
@@ -142,20 +143,20 @@ export default function AgencyDashboardPage() {
               </div>
               <div className="db-panel__body">
                 <div className="db-actions">
-                  <Link href="/billboards" className="db-action-btn db-action-btn--primary">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-                    Find Billboards
+                  <Link href="/agency/billboards" className="db-action-btn db-action-btn--primary">
+                    <IconSearch />
+                    Own BillBoard
                   </Link>
                   <Link href="/agency/campaigns" className="db-action-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" /></svg>
+                    <IconBriefcase />
                     New Campaign
                   </Link>
                   <Link href="/agency/clients" className="db-action-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>
+                    <IconUsers />
                     Manage Clients
                   </Link>
                   <Link href="/agency/analytics" className="db-action-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /><line x1="2" y1="20" x2="22" y2="20" /></svg>
+                    <IconBarChart />
                     View Analytics
                   </Link>
                 </div>

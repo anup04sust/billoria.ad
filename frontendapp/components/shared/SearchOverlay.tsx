@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect, useRef, useCallback } from 'react';
 import type { Billboard } from '@/types/billboard';
 import { billboardAPI } from '@/lib/api/billboard';
+import { IconSearch, IconBillboard, IconLocationPin, IconGlobe, IconChevronRight } from '@/lib/icons/ui-icons';
 import './search-overlay.css';
 
 interface SearchOverlayProps {
@@ -129,10 +130,7 @@ export function SearchOverlay({ open, onClose }: SearchOverlayProps) {
     <div className="search-overlay" onClick={handleOverlayClick}>
       <div className="search-overlay__modal">
         <div className="search-overlay__input-row">
-          <svg className="search-overlay__input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
+          <span className="search-overlay__input-icon"><IconSearch /></span>
           <input
             ref={inputRef}
             type="text"
@@ -174,18 +172,18 @@ export function SearchOverlay({ open, onClose }: SearchOverlayProps) {
                   <a key={`${item.type}-${i}`} href={item.href} className="search-overlay__result" onClick={onClose}>
                     <span className="search-overlay__result-icon">
                       {item.type === 'billboard' ? (
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="14" rx="2" /><line x1="7" y1="21" x2="7" y2="17" /><line x1="17" y1="21" x2="17" y2="17" /></svg>
+                        <IconBillboard />
                       ) : item.type === 'location' ? (
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                        <IconLocationPin />
                       ) : (
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></svg>
+                        <IconGlobe />
                       )}
                     </span>
                     <span className="search-overlay__result-info">
                       <span className="search-overlay__result-label">{item.label}</span>
                       {item.sub && <span className="search-overlay__result-sub">{item.sub}</span>}
                     </span>
-                    <svg className="search-overlay__result-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+                    <span className="search-overlay__result-arrow"><IconChevronRight /></span>
                   </a>
                 ))}
               </div>

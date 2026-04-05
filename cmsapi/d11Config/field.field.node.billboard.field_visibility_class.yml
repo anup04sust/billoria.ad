@@ -1,0 +1,25 @@
+uuid: dfa49754-a416-4a34-9886-2de6fd87022c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_visibility_class
+    - node.type.billboard
+    - taxonomy.vocabulary.visibility_class
+id: node.billboard.field_visibility_class
+field_name: field_visibility_class
+entity_type: node
+bundle: billboard
+label: 'Visibility Class'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      visibility_class: visibility_class
+    auto_create: false
+field_type: entity_reference

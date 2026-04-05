@@ -1,0 +1,36 @@
+uuid: 06154099-4654-498c-a685-a717e04c33dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_owner_organization
+    - node.type.billboard
+    - node.type.organization
+  module:
+    - ai_translate
+third_party_settings:
+  ai_translate:
+    entity_reference:
+      translate_references: default
+    translate_references: default
+id: node.billboard.field_owner_organization
+field_name: field_owner_organization
+entity_type: node
+bundle: billboard
+label: 'Owner Organization'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      organization: organization
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

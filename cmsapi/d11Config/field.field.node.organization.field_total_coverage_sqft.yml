@@ -1,0 +1,23 @@
+uuid: 88a89624-4e63-489b-815f-7c9fff584d49
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_total_coverage_sqft
+    - node.type.organization
+id: node.organization.field_total_coverage_sqft
+field_name: field_total_coverage_sqft
+entity_type: node
+bundle: organization
+label: 'Total Coverage Area (sq ft)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,14 @@
+uuid: 9de4cd05-4b08-441a-9a1b-9e349f12809c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.billboard_owner
+  module:
+    - user
+id: user_remove_role_action.billboard_owner
+label: 'Remove the Billboard Owner role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: billboard_owner

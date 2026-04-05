@@ -1,0 +1,30 @@
+uuid: f1cf1240-8820-485a-82c7-75a257089dde
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_portfolio_size
+field_name: field_portfolio_size
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: small
+      label: 'Small (1-10 clients)'
+    -
+      value: medium
+      label: 'Medium (10-50 clients)'
+    -
+      value: large
+      label: 'Large (50+ clients)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: 92d6a549-cf33-4efd-9a70-e890ee772d9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_preferred_regions
+    - node.type.organization
+    - taxonomy.vocabulary.division
+id: node.organization.field_preferred_regions
+field_name: field_preferred_regions
+entity_type: node
+bundle: organization
+label: 'Preferred Advertising Regions'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      division: division
+field_type: entity_reference

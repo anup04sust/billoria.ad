@@ -1,0 +1,21 @@
+uuid: ed030f6a-eed8-454f-99f6-29498a432b50
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_facing_direction
+    - node.type.billboard
+  module:
+    - options
+id: node.billboard.field_facing_direction
+field_name: field_facing_direction
+entity_type: node
+bundle: billboard
+label: 'Facing Direction'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

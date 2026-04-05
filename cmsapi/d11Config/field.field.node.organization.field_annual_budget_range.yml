@@ -1,0 +1,21 @@
+uuid: 09995802-1478-4e4d-88db-6d69feaac982
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_annual_budget_range
+    - node.type.organization
+  module:
+    - options
+id: node.organization.field_annual_budget_range
+field_name: field_annual_budget_range
+entity_type: node
+bundle: organization
+label: 'Annual Marketing Budget Range'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

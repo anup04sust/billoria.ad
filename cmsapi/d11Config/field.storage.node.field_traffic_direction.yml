@@ -1,0 +1,20 @@
+uuid: 0baf79a2-f1c3-4aa6-851e-07145aad2f65
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_traffic_direction
+field_name: field_traffic_direction
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { SearchOverlay } from '@/components/shared/SearchOverlay';
 import { authAPI } from '@/lib/api/auth';
 import { getDashboardRoute } from '@/app/dashboard/page';
+import { IconUser, IconSearch, IconMenu, IconGrid, IconBriefcase, IconBillboard, IconLogout } from '@/lib/icons/ui-icons';
 
 function getProfileRoute(roles: string[]): string {
   if (roles.includes('platform_admin')) return '/admin/profile';
@@ -45,10 +46,7 @@ function UserMenu() {
   if (!user) {
     return (
       <Link href="/login" className="site-header__user-btn" aria-label="Sign in">
-        <svg className="site-header__icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 3a4 4 0 100 8 4 4 0 000-8z" />
-        </svg>
+        <span className="site-header__icon"><IconUser /></span>
       </Link>
     );
   }
@@ -87,43 +85,32 @@ function UserMenu() {
 
           {/* Dashboard */}
           <Link href={dashboardHref} className="site-header__dropdown-item" onClick={() => setOpen(false)} role="menuitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" />
-            </svg>
+            <IconGrid />
             Dashboard
           </Link>
 
           {/* Profile{profileHref}
           <Link href="/profile" className="site-header__dropdown-item" onClick={() => setOpen(false)} role="menuitem">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" />
-            </svg>
+            <IconUser />
             My Profile
           </Link>
 
           {/* Role-specific page */}
           {isAgency && (
             <Link href="/agency/dashboard" className="site-header__dropdown-item" onClick={() => setOpen(false)} role="menuitem">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
-              </svg>
+              <IconBriefcase />
               Agency Portal
             </Link>
           )}
           {isBrand && (
             <Link href="/brand/dashboard" className="site-header__dropdown-item" onClick={() => setOpen(false)} role="menuitem">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
-              </svg>
+              <IconBriefcase />
               Brand Portal
             </Link>
           )}
           {isOwner && (
             <Link href="/owner/dashboard" className="site-header__dropdown-item" onClick={() => setOpen(false)} role="menuitem">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="4" width="20" height="12" rx="1" /><line x1="12" y1="16" x2="12" y2="21" /><line x1="8" y1="21" x2="16" y2="21" />
-              </svg>
+              <IconBillboard />
               Owner Portal
             </Link>
           )}
@@ -132,9 +119,7 @@ function UserMenu() {
 
           {/* Logout */}
           <button className="site-header__dropdown-item site-header__dropdown-item--danger" onClick={handleLogout} role="menuitem" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9" />
-            </svg>
+            <IconLogout />
             Sign Out
           </button>
         </div>
@@ -177,19 +162,7 @@ export function Header() {
           <div className="site-header__actions">
             {/* Search Icon */}
             <button className="site-header__search-btn" aria-label="Search" onClick={() => setSearchOpen(true)}>
-              <svg 
-                className="site-header__icon" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" 
-                />
-              </svg>
+              <span className="site-header__icon"><IconSearch /></span>
             </button>
 
             {/* User Account */}
@@ -197,19 +170,7 @@ export function Header() {
 
             {/* Mobile Menu Button */}
             <button className="site-header__nav-toggle" aria-label="Menu">
-              <svg 
-                className="site-header__icon" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M4 6h16M4 12h16M4 18h16" 
-                />
-              </svg>
+              <span className="site-header__icon"><IconMenu /></span>
             </button>
           </div>
         </div>

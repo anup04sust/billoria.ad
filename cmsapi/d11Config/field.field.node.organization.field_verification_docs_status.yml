@@ -1,0 +1,21 @@
+uuid: c48ff3c9-f231-4cba-a164-a78156766857
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_verification_docs_status
+    - node.type.organization
+  module:
+    - options
+id: node.organization.field_verification_docs_status
+field_name: field_verification_docs_status
+entity_type: node
+bundle: organization
+label: 'Verification Documents Status'
+description: 'Admin-controlled status for verification documents review'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,141 @@
+uuid: 654524f9-91fc-4136-b0e2-47ab6503ef76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.organization.field_agency_services
+    - field.field.node.organization.field_annual_budget_range
+    - field.field.node.organization.field_booking_duration
+    - field.field.node.organization.field_business_reg_number
+    - field.field.node.organization.field_city_corporation
+    - field.field.node.organization.field_coverage_districts
+    - field.field.node.organization.field_district
+    - field.field.node.organization.field_division
+    - field.field.node.organization.field_establishment_year
+    - field.field.node.organization.field_finance_contact
+    - field.field.node.organization.field_full_address
+    - field.field.node.organization.field_industry_category
+    - field.field.node.organization.field_installation_services
+    - field.field.node.organization.field_international_service
+    - field.field.node.organization.field_inventory_count
+    - field.field.node.organization.field_maintenance_capability
+    - field.field.node.organization.field_mobile_banking
+    - field.field.node.organization.field_nationwide_service
+    - field.field.node.organization.field_official_email
+    - field.field.node.organization.field_official_phone
+    - field.field.node.organization.field_operations_contact
+    - field.field.node.organization.field_org_logo
+    - field.field.node.organization.field_org_type
+    - field.field.node.organization.field_owns_inventory
+    - field.field.node.organization.field_parent_company
+    - field.field.node.organization.field_portfolio_size
+    - field.field.node.organization.field_postal_code
+    - field.field.node.organization.field_preferred_regions
+    - field.field.node.organization.field_primary_admin
+    - field.field.node.organization.field_profile_completion
+    - field.field.node.organization.field_team_members
+    - field.field.node.organization.field_tin
+    - field.field.node.organization.field_total_coverage_sqft
+    - field.field.node.organization.field_trust_score
+    - field.field.node.organization.field_verification_docs
+    - field.field.node.organization.field_verification_docs_status
+    - field.field.node.organization.field_verification_status
+    - field.field.node.organization.field_website
+    - image.style.medium
+    - node.type.organization
+  module:
+    - image
+    - options
+    - user
+id: node.organization.default
+targetEntityType: node
+bundle: organization
+mode: default
+content:
+  field_official_email:
+    type: basic_string
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_org_logo:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: -1
+    region: content
+  field_org_type:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_trust_score:
+    type: number_integer
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_verification_docs_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_verification_status:
+    type: list_default
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_agency_services: true
+  field_annual_budget_range: true
+  field_booking_duration: true
+  field_business_reg_number: true
+  field_city_corporation: true
+  field_coverage_districts: true
+  field_district: true
+  field_division: true
+  field_establishment_year: true
+  field_finance_contact: true
+  field_full_address: true
+  field_industry_category: true
+  field_installation_services: true
+  field_international_service: true
+  field_inventory_count: true
+  field_maintenance_capability: true
+  field_mobile_banking: true
+  field_nationwide_service: true
+  field_official_phone: true
+  field_operations_contact: true
+  field_owns_inventory: true
+  field_parent_company: true
+  field_portfolio_size: true
+  field_postal_code: true
+  field_preferred_regions: true
+  field_primary_admin: true
+  field_profile_completion: true
+  field_team_members: true
+  field_tin: true
+  field_total_coverage_sqft: true
+  field_verification_docs: true
+  field_website: true
+  langcode: true

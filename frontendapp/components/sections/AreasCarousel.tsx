@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import Link from 'next/link';
+import { IconChevronLeft, IconChevronRight } from '@/lib/icons/ui-icons';
 import './areas-carousel.css';
 
 const tier1Areas = [
@@ -80,14 +81,14 @@ export function AreasCarousel() {
               className="areas-carousel__button areas-carousel__button--prev"
               aria-label="Previous"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+              <IconChevronLeft />
             </button>
             <button
               onClick={scrollRight}
               className="areas-carousel__button areas-carousel__button--next"
               aria-label="Next"
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+              <IconChevronRight />
             </button>
           </div>
         </div>
@@ -98,14 +99,14 @@ export function AreasCarousel() {
             className="areas-carousel__button areas-carousel__button--prev areas-carousel__button--mobile"
             aria-label="Previous"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6" /></svg>
+            <IconChevronLeft />
           </button>
           <button
             onClick={scrollRight}
             className="areas-carousel__button areas-carousel__button--next areas-carousel__button--mobile"
             aria-label="Next"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6" /></svg>
+            <IconChevronRight />
           </button>
           <div className="areas-carousel__container" ref={scrollContainerRef}>
             {tier1Areas.map((area) => (

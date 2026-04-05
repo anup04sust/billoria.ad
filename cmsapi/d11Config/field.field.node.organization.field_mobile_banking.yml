@@ -1,0 +1,21 @@
+uuid: 5d351d40-b616-44ed-8131-e76702c200da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mobile_banking
+    - node.type.organization
+  module:
+    - telephone
+id: node.organization.field_mobile_banking
+field_name: field_mobile_banking
+entity_type: node
+bundle: organization
+label: 'Mobile Banking Number'
+description: 'bKash/Nagad number for transactions'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

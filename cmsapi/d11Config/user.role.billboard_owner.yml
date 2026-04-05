@@ -1,0 +1,19 @@
+uuid: 6f81f98a-06f2-481f-9712-adf38c51132f
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.billboard
+    - node.type.organization
+  module:
+    - node
+id: billboard_owner
+label: 'Billboard Owner'
+weight: 5
+is_admin: false
+permissions:
+  - 'create billboard content'
+  - 'delete own billboard content'
+  - 'edit own billboard content'
+  - 'edit own organization content'
+  - 'view own unpublished content'

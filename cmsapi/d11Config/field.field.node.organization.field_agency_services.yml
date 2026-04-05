@@ -1,0 +1,21 @@
+uuid: 7a77878b-c944-42c2-909f-6ce6160f31d5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_agency_services
+    - node.type.organization
+  module:
+    - options
+id: node.organization.field_agency_services
+field_name: field_agency_services
+entity_type: node
+bundle: organization
+label: 'Services Offered'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

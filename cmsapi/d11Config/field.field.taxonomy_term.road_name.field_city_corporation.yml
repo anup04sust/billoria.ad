@@ -1,0 +1,24 @@
+uuid: ca16aec7-94c5-440c-a4c8-a4d15eb520c4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_city_corporation
+    - taxonomy.vocabulary.city_corporation
+    - taxonomy.vocabulary.road_name
+id: taxonomy_term.road_name.field_city_corporation
+field_name: field_city_corporation
+entity_type: taxonomy_term
+bundle: road_name
+label: 'City Corporation'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      city_corporation: city_corporation
+field_type: entity_reference

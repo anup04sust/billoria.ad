@@ -1,0 +1,23 @@
+uuid: 41a92e2b-419f-4df3-abd8-d03b1ae7f50d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_width_ft
+    - node.type.billboard
+id: node.billboard.field_width_ft
+field_name: field_width_ft
+entity_type: node
+bundle: billboard
+label: 'Width (ft)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

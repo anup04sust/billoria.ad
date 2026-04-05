@@ -1,0 +1,23 @@
+uuid: ae714ee8-9087-4770-a275-50190e293d7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_commercial_score
+    - taxonomy.vocabulary.road_name
+id: taxonomy_term.road_name.field_commercial_score
+field_name: field_commercial_score
+entity_type: taxonomy_term
+bundle: road_name
+label: 'Commercial Score'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: 100
+  prefix: ''
+  suffix: ''
+field_type: integer

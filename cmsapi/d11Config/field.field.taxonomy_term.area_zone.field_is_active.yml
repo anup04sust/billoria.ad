@@ -1,0 +1,23 @@
+uuid: 768c144a-57f8-41d8-a528-3b937997674b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_is_active
+    - taxonomy.vocabulary.area_zone
+id: taxonomy_term.area_zone.field_is_active
+field_name: field_is_active
+entity_type: taxonomy_term
+bundle: area_zone
+label: 'Is Active'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

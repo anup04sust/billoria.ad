@@ -1,0 +1,15 @@
+uuid: 3208e565-70c8-43bd-b856-69395a8dc654
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.billboard
+  module:
+    - node
+id: platform_admin
+label: 'Platform Administrator'
+weight: 4
+is_admin: false
+permissions:
+  - 'create billboard content'
+  - 'edit own billboard content'

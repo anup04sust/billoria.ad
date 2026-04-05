@@ -9,6 +9,17 @@ billoria_core.api.csrf_token:
     _access: "TRUE"
   methods: [GET]
 
+# Site Settings Endpoint (public)
+
+billoria_core.api.site_settings:
+  path: "/api/v1/site-settings"
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\SiteSettingsController::get'
+    _title: "Site Settings"
+  requirements:
+    _access: "TRUE"
+  methods: [GET]
+
 # Billboard API Endpoints (Legacy)
 
 billoria_core.billboard_search:
@@ -52,6 +63,37 @@ billoria_core.api.billboard_list:
     _access: "TRUE"
   methods: [GET]
 
+billoria_core.api.billboard_my_list:
+  path: "/api/v1/billboard/my-billboards"
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::myBillboards'
+    _title: "My Billboards"
+  requirements:
+    _user_is_logged_in: "TRUE"
+  methods: [GET]
+  options:
+    _auth: ["cookie", "basic_auth"]
+
+billoria_core.api.billboard_title_suggest:
+  path: "/api/v1/billboard/title-suggest"
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::titleSuggest'
+    _title: "Billboard Title Suggestions"
+  requirements:
+    _user_is_logged_in: "TRUE"
+  methods: [GET]
+  options:
+    _auth: ["cookie", "basic_auth"]
+
+billoria_core.api.billboard_field_config:
+  path: "/api/v1/billboard/field-config"
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::fieldConfig'
+    _title: "Billboard Field Configuration"
+  requirements:
+    _access: "TRUE"
+  methods: [GET]
+
 billoria_core.api.billboard_read:
   path: "/api/v1/billboard/{billboard_id}"
   defaults:
@@ -81,6 +123,18 @@ billoria_core.api.billboard_update:
     _permission: "edit own billboard content"
     billboard_id: \d+
   methods: [PATCH, PUT]
+  options:
+    _auth: ["cookie", "basic_auth"]
+
+billoria_core.api.billboard_publish:
+  path: "/api/v1/billboard/{billboard_id}/publish"
+  defaults:
+    _controller: '\Drupal\billoria_core\Controller\BillboardApiController::publish'
+    _title: "Publish Billboard"
+  requirements:
+    _permission: "edit own billboard content"
+    billboard_id: \d+
+  methods: [POST]
   options:
     _auth: ["cookie", "basic_auth"]
 

@@ -1,0 +1,19 @@
+uuid: fb13da4f-df5d-4b41-a3fc-eb5c8d0cb926
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_parent_company
+    - node.type.organization
+id: node.organization.field_parent_company
+field_name: field_parent_company
+entity_type: node
+bundle: organization
+label: 'Parent Company'
+description: 'If you are a subsidiary'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

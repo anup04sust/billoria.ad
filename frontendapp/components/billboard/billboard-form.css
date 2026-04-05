@@ -1,0 +1,350 @@
+/* === Billboard Form === */
+
+.bf-form {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.bf-form--loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  gap: 1rem;
+  color: var(--color-text-secondary, #666);
+}
+
+.bf-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: var(--color-primary, #C1121F);
+  border-radius: 50%;
+  animation: bf-spin 0.8s linear infinite;
+}
+
+@keyframes bf-spin {
+  to { transform: rotate(360deg); }
+}
+
+.bf-error {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: rgba(193, 18, 31, 0.1);
+  border: 1px solid rgba(193, 18, 31, 0.3);
+  border-radius: 0.375rem;
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+}
+
+.bf-error svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* ── Tabs ── */
+.bf-tabs {
+  display: flex;
+  gap: 0;
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  border-radius: 0.5rem 0.5rem 0 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bf-tabs__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  border: none;
+  background: transparent;
+  color: #6B7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.15s, background 0.15s;
+  flex: 1;
+  justify-content: center;
+}
+
+.bf-tabs__btn:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background: #E5E5E5;
+}
+
+.bf-tabs__btn:hover {
+  color: var(--color-text-primary);
+  background: #F9FAFB;
+}
+
+.bf-tabs__btn--active {
+  color: var(--color-primary);
+  background: rgba(193, 18, 31, 0.04);
+  font-weight: 600;
+}
+
+.bf-tabs__btn--active::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: var(--color-primary);
+  border-radius: 2px 2px 0 0;
+}
+
+.bf-tabs__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #E5E7EB;
+  color: #6B7280;
+  flex-shrink: 0;
+  transition: background 0.15s, color 0.15s;
+}
+
+.bf-tabs__btn--active .bf-tabs__num {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.bf-tabs__label {
+  display: inline;
+}
+
+/* ── Panel ── */
+.bf-panel {
+  background: #fff;
+  border: 1px solid #E5E5E5;
+  border-top: none;
+  border-radius: 0 0 0.5rem 0.5rem;
+  min-height: 280px;
+}
+
+.bf-panel__content {
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Form Rows ── */
+.bf-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.bf-row:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Form Fields ── */
+.bf-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.bf-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.bf-label--required::after {
+  content: ' *';
+  color: var(--color-primary);
+}
+
+.bf-input,
+.bf-select,
+.bf-textarea {
+  padding: 0.625rem 0.875rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-primary);
+  background: #fff;
+  border: 1px solid #D1D5DB;
+  border-radius: 0.375rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.bf-input:focus,
+.bf-select:focus,
+.bf-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(193, 18, 31, 0.1);
+}
+
+.bf-input::placeholder,
+.bf-textarea::placeholder {
+  color: #9CA3AF;
+}
+
+.bf-textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.bf-select {
+  cursor: pointer;
+}
+
+.bf-select:disabled {
+  background: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.bf-input--readonly {
+  background: #f3f4f6;
+  color: #374151;
+  cursor: default;
+  font-weight: 500;
+}
+
+/* ── Checkbox ── */
+.bf-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 0;
+}
+
+.bf-checkbox__input {
+  width: 1.125rem;
+  height: 1.125rem;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.bf-checkbox__label {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ── Actions ── */
+.bf-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #E5E5E5;
+}
+
+.bf-btn {
+  padding: 0.75rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.bf-btn:active {
+  transform: scale(0.98);
+}
+
+.bf-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bf-btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.bf-btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+}
+
+.bf-btn--secondary {
+  background: #F3F4F6;
+  color: var(--color-text-primary);
+}
+
+.bf-btn--secondary:hover:not(:disabled) {
+  background: #E5E7EB;
+}
+
+.bf-btn--success {
+  background: #16A34A;
+  color: #fff;
+}
+
+.bf-btn--success:hover:not(:disabled) {
+  background: #15803D;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bf-form {
+    padding: 1rem;
+  }
+
+  .bf-tabs {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+
+  .bf-tabs__btn {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.8125rem;
+    flex: 0 0 auto;
+  }
+
+  .bf-tabs__label {
+    display: none;
+  }
+
+  .bf-tabs__num {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .bf-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bf-actions {
+    flex-direction: column-reverse;
+  }
+
+  .bf-btn {
+    width: 100%;
+  }
+}

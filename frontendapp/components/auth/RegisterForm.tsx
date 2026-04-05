@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { IconTag, IconNetwork, IconBillboard, IconCheckCircle, IconCheckFilled, IconAlertFilled, IconEyeOff, IconEyeOpen, IconArrowRight, IconArrowLeft } from '@/lib/icons/ui-icons';
 import './register.css';
 
 type AccountType = 'brand' | 'agency' | 'owner';
@@ -12,37 +13,19 @@ const ACCOUNT_TYPES: { value: AccountType; label: string; icon: React.ReactNode;
   {
     value: 'brand',
     label: 'Brand',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/>
-        <line x1="7" y1="7" x2="7.01" y2="7"/>
-      </svg>
-    ),
+    icon: <IconTag />,
     description: 'Advertise on billboards — search, book and manage campaigns',
   },
   {
     value: 'agency',
     label: 'Agency',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="5" r="2"/>
-        <circle cx="4" cy="19" r="2"/>
-        <circle cx="20" cy="19" r="2"/>
-        <path d="M12 7v4M12 11l-6.5 6M12 11l6.5 6"/>
-      </svg>
-    ),
+    icon: <IconNetwork />,
     description: 'Manage outdoor campaigns for clients — media planning & buying',
   },
   {
     value: 'owner',
     label: 'Billboard Owner',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="10" rx="1"/>
-        <line x1="12" y1="13" x2="12" y2="21"/>
-        <line x1="8" y1="21" x2="16" y2="21"/>
-      </svg>
-    ),
+    icon: <IconBillboard />,
     description: 'List your billboard inventory and receive direct booking requests',
   },
 ];
@@ -191,10 +174,7 @@ export function RegisterForm() {
       <div className="reg-page">
         <div className="reg-success">
           <div className="reg-success__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
+            <IconCheckCircle />
           </div>
           <h2>Account created!</h2>
           <p>We&apos;ve sent a verification email to <strong>{form.email}</strong>. Check your inbox and click the link to activate your account.</p>
@@ -223,7 +203,7 @@ export function RegisterForm() {
               <div key={n} className={`reg-brand__step${step === n ? ' reg-brand__step--active' : ''}${step > n ? ' reg-brand__step--done' : ''}`}>
                 <span className="reg-brand__step-num">
                   {step > n ? (
-                    <svg viewBox="0 0 16 16" fill="currentColor"><path fillRule="evenodd" d="M13.707 4.293a1 1 0 010 1.414l-7 7a1 1 0 01-1.414 0l-3-3a1 1 0 011.414-1.414L6 10.586l6.293-6.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                    <IconCheckFilled />
                   ) : n}
                 </span>
                 <span className="reg-brand__step-label">{label}</span>
@@ -254,9 +234,7 @@ export function RegisterForm() {
           </Link>
 
           <Link href="/" className="reg-back-home">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M13 8H3M7 12l-4-4 4-4"/>
-            </svg>
+            <IconArrowLeft />
             Back to Home
           </Link>
 
@@ -493,32 +471,19 @@ function Field({ label, id, required, hint, children }: { label: string; id: str
 }
 
 function AlertIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
-    </svg>
-  );
+  return <IconAlertFilled />;
 }
 
 function EyeIcon({ open }: { open: boolean }) {
-  return open ? (
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 10C3.226 13.307 6.368 15.5 10 15.5c1.394 0 2.717-.356 3.865-.983M6.877 6.877A3 3 0 0113.12 13.12M3 3l14 14"/>
-    </svg>
-  ) : (
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M10 4.5C5.5 4.5 2 10 2 10s3.5 5.5 8 5.5S18 10 18 10s-3.5-5.5-8-5.5z"/>
-      <circle cx="10" cy="10" r="2.5"/>
-    </svg>
-  );
+  return open ? <IconEyeOff /> : <IconEyeOpen />;
 }
 
 function ArrowRight() {
-  return <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>;
+  return <IconArrowRight />;
 }
 
 function ArrowLeft() {
-  return <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M13 8H3M7 12l-4-4 4-4"/></svg>;
+  return <IconArrowLeft />;
 }
 
 function Spinner() {

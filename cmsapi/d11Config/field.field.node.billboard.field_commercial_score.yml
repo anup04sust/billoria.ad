@@ -1,0 +1,23 @@
+uuid: ea812f36-2730-4122-b1a8-3a9c4bd5f0f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_commercial_score
+    - node.type.billboard
+id: node.billboard.field_commercial_score
+field_name: field_commercial_score
+entity_type: node
+bundle: billboard
+label: 'Commercial Score'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

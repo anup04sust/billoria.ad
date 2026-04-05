@@ -1,0 +1,37 @@
+uuid: 1615ad6d-c624-4679-b5e0-c21a9ded5d79
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.upazila_thana.field_city_corporation
+    - field.field.taxonomy_term.upazila_thana.field_district
+    - field.field.taxonomy_term.upazila_thana.field_geo_code
+    - field.field.taxonomy_term.upazila_thana.field_type
+    - taxonomy.vocabulary.upazila_thana
+  module:
+    - text
+id: taxonomy_term.upazila_thana.default
+targetEntityType: taxonomy_term
+bundle: upazila_thana
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_city_corporation:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_district: true
+  field_geo_code: true
+  field_type: true
+  langcode: true

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { authAPI } from '@/lib/api/auth';
 import { NotificationCenter } from '@/components/notifications/NotificationCenter';
+import { IconChevronDown } from '@/lib/icons/ui-icons';
 import './dashboard-topbar.css';
 
 interface DashboardTopbarProps {
@@ -50,9 +51,7 @@ export function DashboardTopbar({ title, subtitle, role }: DashboardTopbarProps)
         <Link href={profileHref} className="db-topbar__profile">
           <div className="db-topbar__avatar">{initials}</div>
           <span className="db-topbar__name">{user?.name ?? 'Account'}</span>
-          <svg className="db-topbar__chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="4 6 8 10 12 6" />
-          </svg>
+          <span className="db-topbar__chevron"><IconChevronDown /></span>
         </Link>
       </div>
     </header>

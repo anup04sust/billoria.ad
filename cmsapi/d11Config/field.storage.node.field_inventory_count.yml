@@ -1,0 +1,20 @@
+uuid: 10ca64a2-0adb-4367-b365-3407689acce7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_inventory_count
+field_name: field_inventory_count
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

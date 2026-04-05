@@ -1,0 +1,11 @@
+display:
+  default:
+    display_title: ডিফল্ট
+    display_options:
+      fields:
+        title:
+          label: শিরোনাম
+        name:
+          label: লেখক
+  attachment_1:
+    display_title: সংযুক্তি

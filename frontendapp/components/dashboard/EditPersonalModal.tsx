@@ -4,14 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import { profileAPI } from '@/lib/api/profile';
 import type { ProfileUser, UpdateUserPayload } from '@/lib/api/profile';
 import profileOptions from '@/data/profile-options.json';
+import { IconX } from '@/lib/icons/ui-icons';
 import './edit-profile-modal.css';
-
-// ── Icons ─────────────────────────────────────────────────────────────────────
-const IconX = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-  </svg>
-);
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 export interface EditPersonalModalProps {

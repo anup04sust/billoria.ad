@@ -1,0 +1,21 @@
+uuid: 37744ba6-6eb7-4382-8a8b-f6bc8cb6cd5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_premium
+    - node.type.billboard
+id: node.billboard.field_is_premium
+field_name: field_is_premium
+entity_type: node
+bundle: billboard
+label: 'Is Premium'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

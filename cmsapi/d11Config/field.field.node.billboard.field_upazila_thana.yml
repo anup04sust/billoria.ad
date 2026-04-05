@@ -1,0 +1,25 @@
+uuid: 7151548b-989f-43b3-aff0-a398b52c845b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_upazila_thana
+    - node.type.billboard
+    - taxonomy.vocabulary.upazila_thana
+id: node.billboard.field_upazila_thana
+field_name: field_upazila_thana
+entity_type: node
+bundle: billboard
+label: 'Upazila / Thana'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      upazila_thana: upazila_thana
+    auto_create: false
+field_type: entity_reference

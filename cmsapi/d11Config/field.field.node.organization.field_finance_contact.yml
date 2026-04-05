@@ -1,0 +1,19 @@
+uuid: de0b6f68-0fa0-4b8c-a877-73441ac23b3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_finance_contact
+    - node.type.organization
+id: node.organization.field_finance_contact
+field_name: field_finance_contact
+entity_type: node
+bundle: organization
+label: 'Finance Contact'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

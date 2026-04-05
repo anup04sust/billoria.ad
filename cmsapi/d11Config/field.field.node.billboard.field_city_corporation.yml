@@ -1,0 +1,25 @@
+uuid: 80c8e176-ea1e-43a1-9a5a-f1861fd81ef3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city_corporation
+    - node.type.billboard
+    - taxonomy.vocabulary.city_corporation
+id: node.billboard.field_city_corporation
+field_name: field_city_corporation
+entity_type: node
+bundle: billboard
+label: 'City Corporation'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      city_corporation: city_corporation
+    auto_create: false
+field_type: entity_reference

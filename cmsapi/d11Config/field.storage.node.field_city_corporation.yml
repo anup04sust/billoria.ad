@@ -1,0 +1,20 @@
+uuid: 652242d1-7eb3-495e-a09a-f63a66532dfa
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - taxonomy
+id: node.field_city_corporation
+field_name: field_city_corporation
+entity_type: node
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

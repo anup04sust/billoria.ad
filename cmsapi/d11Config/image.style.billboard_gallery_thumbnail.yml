@@ -1,0 +1,15 @@
+uuid: 544fab03-7718-43e1-af4f-5f10fe5bae72
+langcode: en
+status: true
+dependencies: {  }
+name: billboard_gallery_thumbnail
+label: 'Billboard Gallery Thumbnail (300×225)'
+effects:
+  dd7aa2b0-0400-42d1-b334-350a045c95ba:
+    uuid: dd7aa2b0-0400-42d1-b334-350a045c95ba
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 300
+      height: 225
+      anchor: center-center

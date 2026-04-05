@@ -1,0 +1,31 @@
+uuid: fabd8927-8200-47c3-9307-36c7528e3a2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.city_corporation.field_district
+    - taxonomy.vocabulary.city_corporation
+  module:
+    - text
+id: taxonomy_term.city_corporation.default
+targetEntityType: taxonomy_term
+bundle: city_corporation
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_district:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 5
+    region: content
+hidden:
+  langcode: true

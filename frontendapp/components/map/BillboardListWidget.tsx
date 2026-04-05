@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback } from 'react';
 import type { Billboard } from '@/types/billboard';
+import { IconX, IconImagePlaceholder, IconChevronLeft, IconChevronRight } from '@/lib/icons/ui-icons';
 import './billboard-list-widget.css';
 
 const PAGE_SIZE = 5;
@@ -34,10 +35,7 @@ export function BillboardListWidget({ billboards, onClose, onBillboardClick }: B
           Billboards <span className="list-widget__count">({billboards.length})</span>
         </h3>
         <button className="list-widget__close" onClick={handleClose} aria-label="Close list view">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+          <IconX />
         </button>
       </div>
 
@@ -62,11 +60,7 @@ export function BillboardListWidget({ billboards, onClose, onBillboardClick }: B
                 />
               ) : (
                 <div className="list-widget__thumb list-widget__thumb--placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <path d="M21 15l-5-5L5 21" />
-                  </svg>
+                  <IconImagePlaceholder />
                 </div>
               )}
               <div className="list-widget__info">
@@ -103,9 +97,7 @@ export function BillboardListWidget({ billboards, onClose, onBillboardClick }: B
             onClick={() => setPage((p) => p - 1)}
             aria-label="Previous page"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
+            <IconChevronLeft />
           </button>
           <span className="list-widget__pager-info">
             {page + 1} / {totalPages}
@@ -116,9 +108,7 @@ export function BillboardListWidget({ billboards, onClose, onBillboardClick }: B
             onClick={() => setPage((p) => p + 1)}
             aria-label="Next page"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
+            <IconChevronRight />
           </button>
         </div>
       )}

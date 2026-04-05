@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { authAPI } from '@/lib/api/auth';
 import { getDashboardRoute } from '@/app/dashboard/page';
+import { IconArrowLeft, IconAlertFilled, IconMail, IconLock, IconEyeOff, IconEyeOpen } from '@/lib/icons/ui-icons';
 import './login.css';
 
 export function LoginForm() {
@@ -75,9 +76,7 @@ export function LoginForm() {
       <div className="login-panel">
         <div className="login-panel__inner">
           <Link href="/" className="login-back-home">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M13 8H3M7 12l-4-4 4-4"/>
-            </svg>
+            <IconArrowLeft />
             Back to Home
           </Link>
 
@@ -90,9 +89,7 @@ export function LoginForm() {
 
           {error && (
             <div className="login-alert" role="alert">
-              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd"/>
-              </svg>
+              <IconAlertFilled />
               {error}
             </div>
           )}
@@ -104,9 +101,7 @@ export function LoginForm() {
               </label>
               <div className="login-form__input-wrap">
                 <span className="login-form__input-icon">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.5 6.5l7.5 5 7.5-5M2.5 5.5h15a1 1 0 011 1v8a1 1 0 01-1 1h-15a1 1 0 01-1-1v-8a1 1 0 011-1z"/>
-                  </svg>
+                  <IconMail />
                 </span>
                 <input
                   id="email"
@@ -131,10 +126,7 @@ export function LoginForm() {
               </div>
               <div className="login-form__input-wrap">
                 <span className="login-form__input-icon">
-                  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
-                    <rect x="3" y="9" width="14" height="10" rx="1" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M7 9V6a3 3 0 016 0v3"/>
-                  </svg>
+                  <IconLock />
                 </span>
                 <input
                   id="password"
@@ -152,14 +144,9 @@ export function LoginForm() {
                   aria-label={showPassword ? 'Hide password' : 'Show password'}
                 >
                   {showPassword ? (
-                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 10C3.226 13.307 6.368 15.5 10 15.5c1.394 0 2.717-.356 3.865-.983M6.877 6.877A3 3 0 0113.12 13.12M3 3l14 14"/>
-                    </svg>
+                    <IconEyeOff />
                   ) : (
-                    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 4.5C5.5 4.5 2 10 2 10s3.5 5.5 8 5.5S18 10 18 10s-3.5-5.5-8-5.5z"/>
-                      <circle cx="10" cy="10" r="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                    <IconEyeOpen />
                   )}
                 </button>
               </div>

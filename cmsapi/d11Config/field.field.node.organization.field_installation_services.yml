@@ -1,0 +1,21 @@
+uuid: 9f24e4be-9d62-4b86-b67e-099dea10264f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_installation_services
+    - node.type.organization
+id: node.organization.field_installation_services
+field_name: field_installation_services
+entity_type: node
+bundle: organization
+label: 'Offer Installation Services'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

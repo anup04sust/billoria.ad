@@ -1,0 +1,21 @@
+uuid: 1215a1d5-b483-42e9-be30-04ccb001a528
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_mobile_number
+  module:
+    - telephone
+    - user
+id: user.user.field_mobile_number
+field_name: field_mobile_number
+entity_type: user
+bundle: user
+label: 'Mobile Number'
+description: 'Your mobile number (required for verification)'
+required: true
+translatable: true
+default_value: null
+default_value_callback: ''
+settings: {  }
+field_type: telephone

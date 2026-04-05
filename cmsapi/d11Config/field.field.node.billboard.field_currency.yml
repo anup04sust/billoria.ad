@@ -1,0 +1,21 @@
+uuid: fed64038-7f0b-4f5a-8d75-cd01c3478ef5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_currency
+    - node.type.billboard
+  module:
+    - options
+id: node.billboard.field_currency
+field_name: field_currency
+entity_type: node
+bundle: billboard
+label: Currency
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

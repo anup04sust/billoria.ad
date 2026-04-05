@@ -1,0 +1,20 @@
+uuid: b174a95a-be04-462f-b38a-54d4ff29868c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_trust_score
+field_name: field_trust_score
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

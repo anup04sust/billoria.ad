@@ -1,0 +1,21 @@
+uuid: bc8884d2-bc2b-47f9-8356-5ad1a98b168a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_portfolio_size
+    - node.type.organization
+  module:
+    - options
+id: node.organization.field_portfolio_size
+field_name: field_portfolio_size
+entity_type: node
+bundle: organization
+label: 'Client Portfolio Size'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

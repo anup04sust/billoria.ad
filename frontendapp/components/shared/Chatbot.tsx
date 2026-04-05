@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { aiAPI, type ChatMessage } from '@/lib/api/ai';
+import { IconSend } from '@/lib/icons/ui-icons';
 import './chatbot.css';
 
 interface Message {
@@ -207,9 +208,7 @@ export function Chatbot() {
               onClick={handleSendClick}
               disabled={isLoading || !inputValue.trim()}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
-              </svg>
+              <IconSend />
             </button>
           </div>
         </div>

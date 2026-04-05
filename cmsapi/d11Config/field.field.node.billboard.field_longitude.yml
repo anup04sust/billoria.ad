@@ -1,0 +1,23 @@
+uuid: b6dfee9e-251c-4f4f-9abc-3b81a9f32910
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_longitude
+    - node.type.billboard
+id: node.billboard.field_longitude
+field_name: field_longitude
+entity_type: node
+bundle: billboard
+label: Longitude
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

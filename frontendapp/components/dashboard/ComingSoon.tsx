@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { DashboardSidebar } from '@/components/dashboard/DashboardSidebar';
 import { DashboardTopbar } from '@/components/dashboard/DashboardTopbar';
 import { authAPI } from '@/lib/api/auth';
+import { IconClock } from '@/lib/icons/ui-icons';
 import '@/components/dashboard/dashboard-sidebar.css';
 import '@/components/dashboard/dashboard-topbar.css';
 import '@/components/dashboard/dashboard.css';
@@ -39,11 +40,7 @@ export function ComingSoonPage({ role, title, subtitle, icon }: ComingSoonPagePr
               margin: '0 auto 1.25rem',
             }}>
               {icon ?? (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"
-                  strokeLinecap="round" strokeLinejoin="round" style={{ width: '1.5rem', height: '1.5rem' }}>
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
+                <IconClock />
               )}
             </div>
             <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-gray-900)', margin: '0 0 0.5rem' }}>

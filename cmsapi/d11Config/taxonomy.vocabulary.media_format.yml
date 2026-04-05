@@ -1,0 +1,9 @@
+uuid: 4f8af380-9d93-4abf-b993-36ded33c396d
+langcode: en
+status: true
+dependencies: {  }
+name: 'Media Format'
+vid: media_format
+description: 'Billboard media format types (Static, LED, Digital, etc.)'
+weight: 0
+new_revision: false

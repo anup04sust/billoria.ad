@@ -65,6 +65,9 @@ class ApiHelper {
       'title' => $billboard->getTitle(),
       'billboard_id' => $billboard->hasField('field_billboard_id') ? $billboard->get('field_billboard_id')->value : null,
       'status' => $billboard->isPublished() ? 'published' : 'unpublished',
+      'review_status' => $billboard->hasField('field_review_status') && !$billboard->get('field_review_status')->isEmpty()
+        ? $billboard->get('field_review_status')->value
+        : 'draft',
       'created' => $billboard->getCreatedTime(),
       'updated' => $billboard->getChangedTime(),
     ];

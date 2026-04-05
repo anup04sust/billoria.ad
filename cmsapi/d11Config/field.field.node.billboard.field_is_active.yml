@@ -1,0 +1,21 @@
+uuid: 5009f923-40bd-422a-baa7-e4cdcd466a40
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_active
+    - node.type.billboard
+id: node.billboard.field_is_active
+field_name: field_is_active
+entity_type: node
+bundle: billboard
+label: Active
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

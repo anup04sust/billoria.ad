@@ -1,0 +1,25 @@
+uuid: a3a5b46e-38c2-4895-9000-e2609bb3a9ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_organization
+    - node.type.organization
+  module:
+    - user
+id: user.user.field_organization
+field_name: field_organization
+entity_type: user
+bundle: user
+label: Organizations
+description: 'Organizations this user belongs to'
+required: false
+translatable: true
+default_value: null
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      organization: organization
+field_type: entity_reference

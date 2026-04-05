@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react';
 import type { Billboard } from '@/types/billboard';
+import { IconChevronDown, IconSearch, IconX } from '@/lib/icons/ui-icons';
 import './billboard-list-filters.css';
 
 export const TIER_AREAS: Record<string, string[]> = {
@@ -62,9 +63,7 @@ function FilterGroup({ title, children, defaultOpen = true }: { title: string; c
     <div className="bl-filters__group">
       <button className="bl-filters__group-toggle" onClick={() => setOpen(!open)} type="button">
         <span>{title}</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={open ? 'bl-filters__chevron--open' : ''}>
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
+        <span className={open ? 'bl-filters__chevron--open' : ''}><IconChevronDown /></span>
       </button>
       {open && <div className="bl-filters__group-body">{children}</div>}
     </div>
@@ -156,10 +155,7 @@ export function BillboardListFilters({ billboards, filters, onChange, resultCoun
 
       {/* Search */}
       <div className="bl-filters__search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
+        <IconSearch />
         <input
           type="text"
           placeholder="Search billboards..."
@@ -168,9 +164,7 @@ export function BillboardListFilters({ billboards, filters, onChange, resultCoun
         />
         {filters.search && (
           <button className="bl-filters__search-clear" onClick={() => onChange({ ...filters, search: '' })} type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <IconX />
           </button>
         )}
       </div>

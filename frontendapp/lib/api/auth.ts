@@ -1,3 +1,39 @@
+// ─── CSRF Token Fetcher ─────────────────────────────────────────────────────
+let csrfTokenCache: string | null = null;
+
+/**
+ * Fetches a new CSRF token from the backend and stores it in session/localStorage.
+ */
+export async function fetchCsrfToken(): Promise<string> {
+  const res = await fetch(`${API_BASE_URL}/api/v1/csrf-token`, { credentials: 'include' });
+  if (!res.ok) throw new Error('Failed to fetch CSRF token');
+  const data = await res.json();
+  csrfTokenCache = data.csrf_token;
+  // Optionally, store in session/localStorage for persistence
+  if (typeof window !== 'undefined') {
+    try {
+      const session = getSession();
+      if (session) {
+        session.csrfToken = csrfTokenCache;
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      }
+    } catch {}
+  }
+  return csrfTokenCache;
+}
+
+/**
+ * Ensures a CSRF token is available, fetching if missing.
+ */
+export async function ensureCsrfToken(): Promise<string> {
+  if (csrfTokenCache) return csrfTokenCache;
+  let token = getSession()?.csrfToken;
+  if (token) {
+    csrfTokenCache = token;
+    return token;
+  }
+  return fetchCsrfToken();
+}
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
@@ -107,10 +143,13 @@ export const authAPI = {
    * sessions — no more 403 "anonymous users only" issues.
    */
   async login(email: string, password: string): Promise<LoginResult> {
+    // Ensure CSRF token before login
+    const csrfToken = await ensureCsrfToken();
     let response: Response;
     try {
       response = await apiFetch('/api/v1/auth/login', {
         method: 'POST',
+        headers: { 'X-CSRF-Token': csrfToken },
         body: JSON.stringify({ name: email, pass: password }),
       });
     } catch {
@@ -135,6 +174,7 @@ export const authAPI = {
       };
 
       saveSession(session);
+      csrfTokenCache = data.csrf_token;
       return { success: true, user: session.user };
     }
 
@@ -158,6 +198,7 @@ export const authAPI = {
 
     return { success: false, error: 'Login failed. Please try again.' };
   },
+
 
   /**
    * POST /user/logout?_format=json&token={logoutToken}

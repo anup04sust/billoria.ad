@@ -1,0 +1,8 @@
+display:
+  default:
+    display_title: ডিফল্ট
+    display_options:
+      filters:
+        access:
+          expose:
+            label: 'সর্বশেষ ব্যবহার'

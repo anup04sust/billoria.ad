@@ -1,0 +1,20 @@
+uuid: a3417418-a1ed-4022-8b2c-0d3d2e531665
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - user
+id: node.field_primary_admin
+field_name: field_primary_admin
+entity_type: node
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

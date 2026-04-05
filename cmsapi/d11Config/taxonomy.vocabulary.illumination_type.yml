@@ -1,0 +1,9 @@
+uuid: 61e574f7-bb97-445d-ac8f-c79fce458761
+langcode: en
+status: true
+dependencies: {  }
+name: 'Illumination Type'
+vid: illumination_type
+description: 'Billboard lighting types'
+weight: 11
+new_revision: false

@@ -1,0 +1,15 @@
+uuid: bcd36d17-79c8-420c-a56a-e4539b8705c0
+langcode: en
+status: true
+dependencies: {  }
+name: billboard_hero_thumbnail
+label: 'Billboard Hero Thumbnail (400×300)'
+effects:
+  e6e1df29-1d52-4016-a8e9-be833bef5d63:
+    uuid: e6e1df29-1d52-4016-a8e9-be833bef5d63
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 400
+      height: 300
+      anchor: center-center

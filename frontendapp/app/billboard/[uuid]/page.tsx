@@ -11,6 +11,7 @@ import { BookingCalendar } from '@/components/billboard/BookingCalendar';
 import { Chatbot } from '@/components/shared/Chatbot';
 import { billboardAPI } from '@/lib/api/billboard';
 import type { Billboard } from '@/types/billboard';
+import { IconInfo } from '@/lib/icons/ui-icons';
 import '@/components/billboard/billboard-detail.css';
 
 interface PageProps {
@@ -96,11 +97,7 @@ function ScoreCard({ label, value }: { label: string; value?: string }) {
     <div className="bb-detail__score">
       {tooltip && (
         <span className="bb-detail__score-info">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="16" x2="12" y2="12" />
-            <line x1="12" y1="8" x2="12.01" y2="8" />
-          </svg>
+          <IconInfo />
           <span className="bb-detail__score-tooltip">
             <strong>{tooltip.title}</strong>
             <ul>

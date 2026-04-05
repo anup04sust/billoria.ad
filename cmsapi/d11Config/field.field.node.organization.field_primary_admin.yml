@@ -1,0 +1,21 @@
+uuid: c634b8d3-f1a3-4a60-ac82-51bc7ffb41c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_primary_admin
+    - node.type.organization
+id: node.organization.field_primary_admin
+field_name: field_primary_admin
+entity_type: node
+bundle: organization
+label: 'Primary Administrator'
+description: 'Organization owner/primary contact'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings: {  }
+field_type: entity_reference

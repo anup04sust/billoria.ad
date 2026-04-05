@@ -1,0 +1,22 @@
+uuid: 597a4cff-171b-4820-bd08-dfd87a935269
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_notes
+    - taxonomy.vocabulary.road_name
+  module:
+    - text
+id: taxonomy_term.road_name.field_notes
+field_name: field_notes
+entity_type: taxonomy_term
+bundle: road_name
+label: Notes
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

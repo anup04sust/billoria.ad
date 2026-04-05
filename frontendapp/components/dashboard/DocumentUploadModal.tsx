@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import type { ProfileOrganization } from '@/lib/api/profile';
 import { profileAPI } from '@/lib/api/profile';
-import { IconX } from '@/lib/icons/ui-icons';
+import { IconX, IconUpload } from '@/lib/icons/ui-icons';
 import './edit-profile-modal.css';
 
 interface DocumentUploadModalProps {
@@ -225,11 +225,7 @@ export function DocumentUploadModal({ org, onClose, onSaved }: DocumentUploadMod
                         if (file) handleFileChange(doc.id, file);
                       }}
                     >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                        <polyline points="17 8 12 3 7 8" />
-                        <line x1="12" y1="3" x2="12" y2="15" />
-                      </svg>
+                      <IconUpload />
                       <div style={{ textAlign: 'center' }}>
                         {doc.file ? (
                           <>

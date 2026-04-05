@@ -1,0 +1,11 @@
+uuid: 307397e0-7ef7-4160-8695-afadc1dc0a26
+langcode: en
+status: true
+dependencies: {  }
+name: Billboard
+type: billboard
+description: 'Individual billboard or display asset inventory'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

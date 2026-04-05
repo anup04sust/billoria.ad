@@ -1,0 +1,24 @@
+uuid: 35bd24aa-0355-42b0-b55e-a0315b6602b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_division
+    - taxonomy.vocabulary.district
+    - taxonomy.vocabulary.division
+id: taxonomy_term.district.field_division
+field_name: field_division
+entity_type: taxonomy_term
+bundle: district
+label: Division
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      division: division
+field_type: entity_reference

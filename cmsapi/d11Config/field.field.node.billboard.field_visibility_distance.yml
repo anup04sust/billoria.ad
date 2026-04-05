@@ -1,0 +1,23 @@
+uuid: c2cdd94d-b078-4c14-ac0a-80c4f1b6f610
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_visibility_distance
+    - node.type.billboard
+id: node.billboard.field_visibility_distance
+field_name: field_visibility_distance
+entity_type: node
+bundle: billboard
+label: 'Visibility Distance (m)'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

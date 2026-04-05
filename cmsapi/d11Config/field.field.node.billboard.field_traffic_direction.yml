@@ -1,0 +1,25 @@
+uuid: 948dd94f-cb12-40aa-ae0c-1517ade1fbb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_traffic_direction
+    - node.type.billboard
+    - taxonomy.vocabulary.traffic_direction
+id: node.billboard.field_traffic_direction
+field_name: field_traffic_direction
+entity_type: node
+bundle: billboard
+label: 'Traffic Direction'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      traffic_direction: traffic_direction
+    auto_create: false
+field_type: entity_reference

@@ -4,6 +4,7 @@ export interface Billboard {
   title: string;
   billboard_id?: string;
   status: 'published' | 'unpublished';
+  review_status?: 'draft' | 'pending_review' | 'approved' | 'revision_requested' | 'rejected';
   created: string;
   updated: number;
   media_format?: {

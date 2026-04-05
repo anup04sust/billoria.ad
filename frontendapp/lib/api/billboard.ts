@@ -1,4 +1,5 @@
 import type { Billboard } from '@/types/billboard';
+import { authAPI } from './auth';
 
 // Support multiple API URLs
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 
@@ -17,6 +18,16 @@ async function fetchWithFallback(path: string, options: RequestInit = {}): Promi
     self.indexOf(url) === index // Remove duplicates
   );
 
+  // Auto-attach CSRF token for mutation requests.
+  const method = (options.method || 'GET').toUpperCase();
+  const mutationHeaders: Record<string, string> = {};
+  if (['POST', 'PATCH', 'PUT', 'DELETE'].includes(method)) {
+    const csrfToken = authAPI.getCsrfToken();
+    if (csrfToken) {
+      mutationHeaders['X-CSRF-Token'] = csrfToken;
+    }
+  }
+
   let lastError: Error | null = null;
 
   for (const baseUrl of urls) {
@@ -30,20 +41,16 @@ async function fetchWithFallback(path: string, options: RequestInit = {}): Promi
         credentials: 'include',
         headers: {
           'Accept': 'application/json',
+          ...mutationHeaders,
           ...options.headers,
         },
       });
       
-      if (response.ok) {
-        console.log(`✓ Success with: ${url}`);
-        return response;
-      }
-      
-      console.warn(`✗ Failed with ${response.status}: ${url}`);
-      const errorText = await response.text();
-      console.warn(`Response:`, errorText);
+      // Return any server response (including 4xx/5xx) — only retry on network errors.
+      console.log(`✓ Got response ${response.status} from: ${url}`);
+      return response;
     } catch (error) {
-      console.warn(`✗ Error with ${baseUrl}:`, error);
+      console.warn(`✗ Network error with ${baseUrl}:`, error);
       lastError = error as Error;
     }
   }
@@ -86,6 +93,80 @@ interface BillboardResponse {
   message: string;
   data: Billboard;
   timestamp: number;
+}
+
+export interface TaxonomyOption {
+  id: number;
+  label: string;
+  weight: number;
+  divisionId?: number;
+  districtId?: number;
+  upazilaId?: number;
+  cityCorporationId?: number;
+}
+
+export interface FieldDefinition {
+  type: string;
+  label: string;
+  required: boolean;
+  maxlength?: number;
+  placeholder?: string;
+  description?: string;
+  min?: number;
+  max?: number;
+  default?: string | boolean;
+  options?: string[];
+}
+
+export interface TabDefinition {
+  id: string;
+  label: string;
+  fields: string[];
+}
+
+export interface FieldConfigData {
+  fields: Record<string, FieldDefinition>;
+  options: Record<string, TaxonomyOption[]>;
+  tabs: TabDefinition[];
+}
+
+export interface FieldConfigResponse {
+  success: boolean;
+  message: string;
+  data: FieldConfigData;
+  timestamp: number;
+}
+
+export interface CreateBillboardData {
+  title: string;
+  owner_organization: number;
+  media_format: number;
+  latitude: number;
+  longitude: number;
+  placement_type?: number;
+  display_size?: string;
+  width_ft?: number;
+  height_ft?: number;
+  division?: number;
+  district?: number;
+  upazila_thana?: number;
+  city_corporation?: number;
+  area_zone?: number;
+  road_name?: number;
+  road_type?: number;
+  facing_direction?: string;
+  traffic_direction?: number;
+  visibility_class?: number;
+  illumination_type?: number;
+  rate_card_price?: number;
+  currency?: string;
+  commercial_score?: number;
+  traffic_score?: number;
+  booking_mode?: number;
+  availability_status?: number;
+  owner_contact_number?: string;
+  is_premium?: boolean;
+  is_active?: boolean;
 }
 
 export const billboardAPI = {
@@ -184,5 +265,137 @@ export const billboardAPI = {
       console.error('Error in listForMap:', error);
       throw error;
     }
+  },
+
+  /**
+   * Get billboards owned by current user's organization(s)
+   */
+  async myBillboards(params?: Omit<BillboardListParams, 'owner_organization'>): Promise<BillboardListResponse> {
+    const queryParams = new URLSearchParams();
+    
+    if (params) {
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== undefined && value !== null) {
+          queryParams.append(key, String(value));
+        }
+      });
+    }
+
+    const path = `/api/v1/billboard/my-billboards${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+    
+    const response = await fetchWithFallback(path, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      cache: 'no-store',
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch my billboards: ${response.statusText} - ${errorText}`);
+    }
+
+    return response.json();
+  },
+
+  /**
+   * Autocomplete billboard titles
+   */
+  async titleSuggest(query: string): Promise<{ id: number; title: string }[]> {
+    const response = await fetchWithFallback(`/api/v1/billboard/title-suggest?q=${encodeURIComponent(query)}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    if (!response.ok) return [];
+
+    const data = await response.json();
+    return data?.data?.suggestions || [];
+  },
+
+  /**
+   * Get billboard field configurations and taxonomy options
+   */
+  async fieldConfig(): Promise<FieldConfigResponse> {
+    const response = await fetchWithFallback('/api/v1/billboard/field-config', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch field config: ${response.statusText}`);
+    }
+
+    return response.json();
+  },
+
+  /**
+   * Create a new billboard
+   */
+  async create(data: CreateBillboardData): Promise<BillboardResponse> {
+    const response = await fetchWithFallback('/api/v1/billboard/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to create billboard: ${response.statusText} - ${errorText}`);
+    }
+
+    return response.json();
+  },
+
+  /**
+   * Update an existing billboard
+   */
+  async update(nid: number, data: Partial<CreateBillboardData>): Promise<BillboardResponse> {
+    const response = await fetchWithFallback(`/api/v1/billboard/${nid}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Failed to update billboard: ${response.statusText} - ${errorText}`);
+    }
+
+    return response.json();
+  },
+
+  /**
+   * Publish a billboard (validates required fields server-side)
+   */
+  async publish(nid: number): Promise<BillboardResponse> {
+    const response = await fetchWithFallback(`/api/v1/billboard/${nid}/publish`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      const body = await response.json().catch(() => null);
+      const msg = body?.error || `Failed to publish billboard: ${response.statusText}`;
+      throw new Error(msg);
+    }
+
+    return response.json();
   },
 };

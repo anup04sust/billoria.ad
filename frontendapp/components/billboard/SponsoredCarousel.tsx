@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import type { Billboard } from '@/types/billboard';
+import { IconStar, IconImagePlaceholder, IconChevronLeft, IconChevronRight } from '@/lib/icons/ui-icons';
 import './sponsored-carousel.css';
 
 function formatPrice(price?: string, currency?: string) {
@@ -41,9 +42,7 @@ export function SponsoredCarousel({ billboards }: SponsoredCarouselProps) {
   return (
     <div className="bl-sponsored">
       <div className="bl-sponsored__label">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-        </svg>
+        <IconStar />
         Sponsored
       </div>
       <Link href={`/billboard/${b.uuid}`} className="bl-sponsored__card">
@@ -52,11 +51,7 @@ export function SponsoredCarousel({ billboards }: SponsoredCarouselProps) {
             <img src={b.hero_image.large} alt={b.hero_image.alt || b.title} className="bl-sponsored__img" />
           ) : (
             <div className="bl-sponsored__img-placeholder">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <path d="M21 15l-5-5L5 21" />
-              </svg>
+              <IconImagePlaceholder />
             </div>
           )}
           {b.availability_status?.label && (
@@ -85,10 +80,10 @@ export function SponsoredCarousel({ billboards }: SponsoredCarouselProps) {
       {billboards.length > 1 && (
         <>
           <button className="bl-sponsored__nav bl-sponsored__nav--prev" onClick={(e) => { e.preventDefault(); prev(); }} aria-label="Previous">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="15 18 9 12 15 6" /></svg>
+            <IconChevronLeft />
           </button>
           <button className="bl-sponsored__nav bl-sponsored__nav--next" onClick={(e) => { e.preventDefault(); next(); }} aria-label="Next">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="9 18 15 12 9 6" /></svg>
+            <IconChevronRight />
           </button>
           {/* Dots */}
           <div className="bl-sponsored__dots">

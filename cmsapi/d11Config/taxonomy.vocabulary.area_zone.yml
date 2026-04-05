@@ -1,0 +1,9 @@
+uuid: f53cdccc-aef8-445a-931a-efad675bab50
+langcode: en
+status: true
+dependencies: {  }
+name: 'Area / Zone'
+vid: area_zone
+description: 'Commercial areas and neighborhood zones'
+weight: 7
+new_revision: false

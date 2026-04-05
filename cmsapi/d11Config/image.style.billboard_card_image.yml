@@ -1,0 +1,15 @@
+uuid: 9135d6da-f8ff-4acf-b8db-a7c2792d6eb8
+langcode: en
+status: true
+dependencies: {  }
+name: billboard_card_image
+label: 'Billboard Card Image (600×400)'
+effects:
+  0e6d471a-2332-4f39-bb7b-afc57c8318ad:
+    uuid: 0e6d471a-2332-4f39-bb7b-afc57c8318ad
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 600
+      height: 400
+      anchor: center-center

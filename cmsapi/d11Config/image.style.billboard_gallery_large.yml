@@ -1,0 +1,15 @@
+uuid: 52b16892-46e5-4777-9391-39c231f0845d
+langcode: en
+status: true
+dependencies: {  }
+name: billboard_gallery_large
+label: 'Billboard Gallery Large (1000×750)'
+effects:
+  7e808a09-d9ba-46dd-8b66-344f1cb0eed2:
+    uuid: 7e808a09-d9ba-46dd-8b66-344f1cb0eed2
+    id: image_scale_and_crop
+    weight: 0
+    data:
+      width: 1000
+      height: 750
+      anchor: center-center

@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
 import type { Billboard } from '@/types/billboard';
 import { getTaxonomyIcon } from '@/lib/icons/billboard-icons';
+import { IconX } from '@/lib/icons/ui-icons';
 import './map-filter-modal.css';
 
 /** Extract sorted unique labels from a billboard taxonomy field. */
@@ -179,10 +180,7 @@ export function MapFilterModal({ open, filters, billboards, onClose, onApply }: 
         <div className="map-filter-modal__header">
           <h3>Filter Billboards</h3>
           <button className="map-filter-modal__close" onClick={onClose} aria-label="Close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <IconX />
           </button>
         </div>
 
@@ -379,10 +377,7 @@ export function MapFilterModal({ open, filters, billboards, onClose, onApply }: 
                   onClick={() => removeTag(field, value)}
                   aria-label={`Remove ${value}`}
                 >
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                    <line x1="12" y1="4" x2="4" y2="12" />
-                    <line x1="4" y1="4" x2="12" y2="12" />
-                  </svg>
+                  <IconX />
                 </button>
               </span>
             ))}

@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { profileAPI } from '@/lib/api/profile';
 import type { ProfileOrganization } from '@/lib/api/profile';
+import { IconX, IconDocument } from '@/lib/icons/ui-icons';
 import './edit-profile-modal.css';
 
 export interface EditOrganizationLogoModalProps {
@@ -157,10 +158,7 @@ export function EditOrganizationLogoModal({ org, onClose, onSaved }: EditOrganiz
         <div className="epm-header">
           <h2 className="epm-title">Update Organization Logo</h2>
           <button className="epm-close" type="button" onClick={onClose} aria-label="Close">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
-            </svg>
+            <IconX />
           </button>
         </div>
 
@@ -187,10 +185,7 @@ export function EditOrganizationLogoModal({ org, onClose, onSaved }: EditOrganiz
               onClick={triggerFileSelect}
             >
               <div className="epm-drop-zone-content">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="epm-drop-icon">
-                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
-                  <polyline points="14,2 14,8 20,8"/>
-                </svg>
+                <span className="epm-drop-icon"><IconDocument /></span>
                 <p className="epm-drop-text">
                   {logoFile ? `Selected: ${logoFile.name}` : 'Drag & drop your logo here, or click to browse'}
                 </p>

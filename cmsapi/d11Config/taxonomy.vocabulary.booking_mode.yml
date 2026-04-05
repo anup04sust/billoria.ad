@@ -1,0 +1,9 @@
+uuid: e685da63-4f15-471c-9467-23b7c6ea48ee
+langcode: en
+status: true
+dependencies: {  }
+name: 'Booking Mode'
+vid: booking_mode
+description: 'Billboard booking/reservation modes'
+weight: 12
+new_revision: false

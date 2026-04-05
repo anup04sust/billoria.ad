@@ -1,0 +1,20 @@
+uuid: 5ffca128-947b-4578-bebd-1fd96130ba4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_phone_otp
+  module:
+    - user
+id: user.user.field_phone_otp
+field_name: field_phone_otp
+entity_type: user
+bundle: user
+label: 'Phone OTP'
+description: 'Current OTP for phone verification'
+required: false
+translatable: true
+default_value: null
+default_value_callback: ''
+settings: {  }
+field_type: string

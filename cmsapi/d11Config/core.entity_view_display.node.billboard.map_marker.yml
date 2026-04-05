@@ -1,0 +1,142 @@
+uuid: 0a81667b-eb4d-43ad-93de-94e2e4ce257d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.map_marker
+    - field.field.node.billboard.field_area_zone
+    - field.field.node.billboard.field_availability_status
+    - field.field.node.billboard.field_billboard_id
+    - field.field.node.billboard.field_booking_mode
+    - field.field.node.billboard.field_city_corporation
+    - field.field.node.billboard.field_commercial_score
+    - field.field.node.billboard.field_currency
+    - field.field.node.billboard.field_display_size
+    - field.field.node.billboard.field_district
+    - field.field.node.billboard.field_division
+    - field.field.node.billboard.field_facing_direction
+    - field.field.node.billboard.field_gallery
+    - field.field.node.billboard.field_has_divider
+    - field.field.node.billboard.field_height_ft
+    - field.field.node.billboard.field_hero_image
+    - field.field.node.billboard.field_illumination_type
+    - field.field.node.billboard.field_is_active
+    - field.field.node.billboard.field_is_featured
+    - field.field.node.billboard.field_is_premium
+    - field.field.node.billboard.field_is_sponsored
+    - field.field.node.billboard.field_lane_count
+    - field.field.node.billboard.field_latitude
+    - field.field.node.billboard.field_longitude
+    - field.field.node.billboard.field_media_format
+    - field.field.node.billboard.field_notes
+    - field.field.node.billboard.field_owner_contact_number
+    - field.field.node.billboard.field_owner_organization
+    - field.field.node.billboard.field_owner_vendor_name
+    - field.field.node.billboard.field_placement_type
+    - field.field.node.billboard.field_rate_card_price
+    - field.field.node.billboard.field_review_status
+    - field.field.node.billboard.field_road_name
+    - field.field.node.billboard.field_road_type
+    - field.field.node.billboard.field_traffic_direction
+    - field.field.node.billboard.field_traffic_score
+    - field.field.node.billboard.field_upazila_thana
+    - field.field.node.billboard.field_visibility_class
+    - field.field.node.billboard.field_visibility_distance
+    - field.field.node.billboard.field_width_ft
+    - image.style.billboard_map_marker
+    - node.type.billboard
+  module:
+    - image
+    - user
+id: node.billboard.map_marker
+targetEntityType: node
+bundle: billboard
+mode: map_marker
+content:
+  field_area_zone:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_availability_status:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_display_size:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hero_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: billboard_map_marker
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_rate_card_price:
+    type: number_decimal
+    label: inline
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_billboard_id: true
+  field_booking_mode: true
+  field_city_corporation: true
+  field_commercial_score: true
+  field_currency: true
+  field_district: true
+  field_division: true
+  field_facing_direction: true
+  field_gallery: true
+  field_has_divider: true
+  field_height_ft: true
+  field_illumination_type: true
+  field_is_active: true
+  field_is_featured: true
+  field_is_premium: true
+  field_is_sponsored: true
+  field_lane_count: true
+  field_latitude: true
+  field_longitude: true
+  field_media_format: true
+  field_notes: true
+  field_owner_contact_number: true
+  field_owner_organization: true
+  field_owner_vendor_name: true
+  field_placement_type: true
+  field_review_status: true
+  field_road_name: true
+  field_road_type: true
+  field_traffic_direction: true
+  field_traffic_score: true
+  field_upazila_thana: true
+  field_visibility_class: true
+  field_visibility_distance: true
+  field_width_ft: true
+  langcode: true

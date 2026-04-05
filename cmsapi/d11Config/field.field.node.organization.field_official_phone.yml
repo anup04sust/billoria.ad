@@ -1,0 +1,21 @@
+uuid: 68bce8d7-dfc6-4c19-a604-96a53b143b95
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_official_phone
+    - node.type.organization
+  module:
+    - telephone
+id: node.organization.field_official_phone
+field_name: field_official_phone
+entity_type: node
+bundle: organization
+label: 'Official Phone'
+description: 'Primary business phone number'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

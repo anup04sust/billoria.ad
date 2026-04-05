@@ -1,0 +1,20 @@
+uuid: 590f7b81-685b-4ba4-af99-bceb35676418
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - user
+id: node.field_team_members
+field_name: field_team_members
+entity_type: node
+type: entity_reference
+settings:
+  target_type: user
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
