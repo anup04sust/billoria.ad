@@ -207,3 +207,5 @@ SCRATCH.md
 #scraper
 /scraper
 /scraper/*
+# Ignore everything in scraper except the README.md
+cmsapi/d11Config/billoria_notifications.firebase.yml
