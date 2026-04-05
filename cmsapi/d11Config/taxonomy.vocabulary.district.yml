@@ -1,9 +1,0 @@
-uuid: f4be3e89-463f-4801-be2f-cc3167a282c2
-langcode: en
-status: true
-dependencies: {  }
-name: District
-vid: district
-description: 'Bangladesh districts'
-weight: 4
-new_revision: false

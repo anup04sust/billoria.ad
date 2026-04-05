@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 190" fill="none">
+  <style>
+    .label {
+      font: 700 13px Arial, sans-serif;
+      fill: #1f2937;
+      text-anchor: middle;
+    }
+    .sub {
+      font: 11px Arial, sans-serif;
+      fill: #6b7280;
+      text-anchor: middle;
+    }
+    .stroke-dark { stroke: #334155; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .pole { fill: #455A64; }
+    .inner { fill: white; }
+  </style>
+
+  <!-- ========================= -->
+  <!-- 1. AVAILABLE - STATIC -->
+  <!-- ========================= -->
+  <g id="marker-available" transform="translate(0,0)">
+    <path d="M86 18C56.2 18 32 42.2 32 72c0 42.8 46.2 83.5 51.9 88.3a3.8 3.8 0 0 0 4.9 0C94.8 155.5 141 114.8 141 72c0-29.8-24.2-54-55-54Z" fill="#22C55E"/>
+    <circle cx="86" cy="72" r="35" class="inner"/>
+    <!-- classic roadside billboard -->
+    <rect x="56" y="48" width="46" height="24" rx="3" fill="#16A34A" stroke="#15803D" stroke-width="3"/>
+    <rect x="82" y="72" width="7" height="28" rx="2" class="pole"/>
+    <path d="M85.5 75L96 82" class="stroke-dark"/>
+    <rect x="63" y="54" width="18" height="4" rx="2" fill="white"/>
+    <rect x="63" y="61" width="12" height="3" rx="1.5" fill="white" opacity="0.9"/>
+    <circle cx="92" cy="60" r="4" fill="#FACC15"/>
+
+  </g>
+
+  <!-- ========================= -->
+  <!-- 2. RESERVED - DIGITAL LED -->
+  <!-- ========================= -->
+  <g id="marker-reserved" transform="translate(170,0)">
+    <path d="M86 18C56.2 18 32 42.2 32 72c0 42.8 46.2 83.5 51.9 88.3a3.8 3.8 0 0 0 4.9 0C94.8 155.5 141 114.8 141 72c0-29.8-24.2-54-55-54Z" fill="#F59E0B"/>
+    <circle cx="86" cy="72" r="35" class="inner"/>
+    <!-- LED display -->
+    <rect x="54" y="47" width="52" height="28" rx="4" fill="#0F172A" stroke="#1E293B" stroke-width="3"/>
+    <rect x="58" y="51" width="44" height="20" rx="2.5" fill="#2563EB"/>
+    <rect x="82" y="75" width="7" height="25" rx="2" class="pole"/>
+    <!-- led pixels -->
+    <g opacity="0.55" fill="#93C5FD">
+      <circle cx="64" cy="58" r="1.2"/>
+      <circle cx="70" cy="58" r="1.2"/>
+      <circle cx="76" cy="58" r="1.2"/>
+      <circle cx="82" cy="58" r="1.2"/>
+      <circle cx="88" cy="58" r="1.2"/>
+      <circle cx="94" cy="58" r="1.2"/>
+      <circle cx="64" cy="64" r="1.2"/>
+      <circle cx="70" cy="64" r="1.2"/>
+      <circle cx="76" cy="64" r="1.2"/>
+      <circle cx="82" cy="64" r="1.2"/>
+      <circle cx="88" cy="64" r="1.2"/>
+      <circle cx="94" cy="64" r="1.2"/>
+    </g>
+    <!-- reserved corner ribbon -->
+    <path d="M92 47H106V61Z" fill="#FDE68A"/>
+
+  </g>
+
+  <!-- ========================= -->
+  <!-- 3. BOOKED - MEGABOARD -->
+  <!-- ========================= -->
+  <g id="marker-booked" transform="translate(340,0)">
+    <path d="M86 18C56.2 18 32 42.2 32 72c0 42.8 46.2 83.5 51.9 88.3a3.8 3.8 0 0 0 4.9 0C94.8 155.5 141 114.8 141 72c0-29.8-24.2-54-55-54Z" fill="#EF4444"/>
+    <circle cx="86" cy="72" r="35" class="inner"/>
+    <!-- wide hoarding / megaboard -->
+    <rect x="50" y="49" width="60" height="22" rx="3" fill="#DC2626" stroke="#B91C1C" stroke-width="3"/>
+    <rect x="68" y="71" width="6" height="22" rx="2" class="pole"/>
+    <rect x="97" y="71" width="6" height="22" rx="2" class="pole"/>
+    <path d="M71 74L80 79" class="stroke-dark"/>
+    <path d="M100 74L91 79" class="stroke-dark"/>
+    <!-- booked symbol -->
+    <circle cx="80" cy="60" r="6.5" fill="white" opacity="0.95"/>
+    <path d="M77 60.5L79.5 63L84 57.8" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="86" y="181" class="label">Booked</text>
+    <text x="86" y="166" class="sub">Megaboard</text>
+  </g>
+
+  <!-- ========================= -->
+  <!-- 4. PREMIUM - UNIPOLE -->
+  <!-- ========================= -->
+  <g id="marker-premium" transform="translate(510,0)">
+    <path d="M86 18C56.2 18 32 42.2 32 72c0 42.8 46.2 83.5 51.9 88.3a3.8 3.8 0 0 0 4.9 0C94.8 155.5 141 114.8 141 72c0-29.8-24.2-54-55-54Z" fill="#8B5CF6"/>
+    <circle cx="86" cy="72" r="35" class="inner"/>
+    <!-- tall premium unipole -->
+    <rect x="81" y="60" width="9" height="38" rx="3" class="pole"/>
+    <rect x="58" y="38" width="56" height="20" rx="3" fill="#7C3AED" stroke="#6D28D9" stroke-width="3"/>
+    <path d="M86 58V60" class="stroke-dark"/>
+    <!-- crown/star premium mark -->
+    <path d="M86 43l2.2 4.6 5.1.7-3.7 3.6.9 5-4.5-2.4-4.5 2.4.9-5-3.7-3.6 5.1-.7L86 43Z" fill="#FACC15"/>
+    <rect x="65" y="64" width="20" height="3.5" rx="1.75" fill="#DDD6FE"/>
+    <rect x="65" y="70" width="30" height="3.5" rx="1.75" fill="#DDD6FE" opacity="0.9"/>
+    <text x="86" y="181" class="label">Premium</text>
+    <text x="86" y="166" class="sub">Unipole</text>
+  </g>
+
+  <!-- ========================= -->
+  <!-- 5. MAINTENANCE - SERVICE -->
+  <!-- ========================= -->
+  <g id="marker-maintenance" transform="translate(680,0)">
+    <path d="M86 18C56.2 18 32 42.2 32 72c0 42.8 46.2 83.5 51.9 88.3a3.8 3.8 0 0 0 4.9 0C94.8 155.5 141 114.8 141 72c0-29.8-24.2-54-55-54Z" fill="#64748B"/>
+    <circle cx="86" cy="72" r="35" class="inner"/>
+    <!-- board under maintenance -->
+    <rect x="57" y="48" width="48" height="24" rx="3" fill="#94A3B8" stroke="#64748B" stroke-width="3"/>
+    <rect x="83" y="72" width="7" height="28" rx="2" class="pole"/>
+    <!-- wrench/tool icon -->
+    <path d="M71 63c2.5 2.9 6.7 3.3 9.7 1.1l10.6 10.6-2.9 2.9L77.8 67c-2.8 2.1-6.9 1.7-9.4-1-2.8-3.1-2.8-7.8 0-10.8l3.5 3.4-1.2 3 3.1 1.2 2.9-1.2 1.3-3.1-3.4-3.4c3-2.8 7.7-2.7 10.7 0 .6.6 1.1 1.3 1.4 2.1" fill="#F8FAFC" opacity="0.95"/>
+    <!-- warning stripe -->
+    <path d="M59 69H103" stroke="#F59E0B" stroke-width="3" stroke-dasharray="5 4"/>
+    <text x="86" y="181" class="label">Maintenance</text>
+    <text x="86" y="166" class="sub">Service Mode</text>
+  </g>
+</svg>

@@ -1,9 +1,0 @@
-uuid: f2896a01-c3ce-4e9a-a669-77e79e46ec24
-langcode: en
-status: true
-dependencies: {  }
-name: 'Road Name'
-vid: road_name
-description: 'Specific road and highway names'
-weight: 8
-new_revision: false

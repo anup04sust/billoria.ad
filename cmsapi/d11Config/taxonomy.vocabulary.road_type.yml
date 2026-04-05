@@ -1,9 +1,0 @@
-uuid: d1cb7f9a-6c12-4261-9b46-511446b46c91
-langcode: en
-status: true
-dependencies: {  }
-name: 'Road Type'
-vid: road_type
-description: 'Road classification types (National Highway, City Road, etc.)'
-weight: 2
-new_revision: false

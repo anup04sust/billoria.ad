@@ -1,9 +1,0 @@
-uuid: 8e3ac1c5-b528-4570-b404-75b048c812b2
-langcode: en
-status: true
-dependencies: {  }
-name: 'Upazila / Thana'
-vid: upazila_thana
-description: 'Bangladesh sub-districts (Upazila/Thana level)'
-weight: 5
-new_revision: false

@@ -1,9 +1,0 @@
-uuid: 4d857d78-4378-4895-b7b8-386e853ec103
-langcode: en
-status: true
-dependencies: {  }
-name: 'Availability Status'
-vid: availability_status
-description: 'Billboard availability states'
-weight: 13
-new_revision: false

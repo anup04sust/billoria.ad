@@ -1,9 +1,0 @@
-uuid: 38b236e3-a7f2-4176-acab-630287c25b7e
-langcode: en
-status: true
-dependencies: {  }
-name: 'Traffic Direction'
-vid: traffic_direction
-description: 'Traffic flow directions'
-weight: 9
-new_revision: false

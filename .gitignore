@@ -1,149 +1,89 @@
-# Billoria Project .gitignore
-# Root level gitignore for the entire project
+############################################
+# Billoria root .gitignore
+# Shared repo structure:
+# /application-wiki
+# /cmsapi
+# /docs
+# /frontendapp
+# /scraper
+############################################
 
-###################
-# IDE & Editors
-###################
-# VSCode
-.vscode/
-*.code-workspace
-
-# PhpStorm / IntelliJ IDEA
-.idea/
-*.iml
-*.iws
-*.ipr
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Vim
-*.swp
-*.swo
-*~
-
-# Emacs
-*~
-\#*\#
-.\#*
-
-###################
-# Operating System
-###################
-# macOS
+############################
+# OS files
+############################
 .DS_Store
 .AppleDouble
 .LSOverride
 ._*
 .Spotlight-V100
 .Trashes
-
-# Windows
 Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
-
-# Linux
 .directory
 .Trash-*
 
-###################
-# DDEV
-###################
-# Note: Each .ddev/ directory has its own .gitignore file
-# that handles what should be ignored. We don't need to
-# duplicate those rules here.
-# Important: config.yaml and custom commands should be committed!
+############################
+# Editor / IDE
+############################
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.\#*
+\#*\#
 
-###################
-# Project Files
-###################
-# Environment files - Apply to all subdirectories
-**/.env
-**/.env.*
-!**/.env.example
-**/.env.local
-**/.env.*.local
-**/.env.production
-**/.env.development
-**/.env.test
-.env
-.env.*
-!.env.example
-.env.local
-.env.*.local
-
-# Log files
+############################
+# Logs / temp / caches
+############################
 *.log
 logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Temporary files
 *.tmp
 *.temp
 *.cache
 .cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-###################
-# CMS API (Drupal)
-###################
-# Composer dependencies
-/cmsapi/vendor/
+############################
+# Environment / secrets
+############################
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
 
-# Drupal core (managed by Composer)
-/cmsapi/web/core/
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.sample
+!**/.env.template
 
-# Contributed modules, themes, profiles (managed by Composer)
-/cmsapi/web/modules/contrib/
-/cmsapi/web/themes/contrib/
-/cmsapi/web/profiles/contrib/
-/cmsapi/web/libraries/
+############################
+# Security-sensitive files
+############################
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+id_rsa
+id_rsa.pub
 
-# User-uploaded files
-/cmsapi/web/sites/*/files/
-/cmsapi/web/sites/*/private/
-
-# Configuration files with sensitive data
-/cmsapi/web/sites/*/settings.local.php
-/cmsapi/web/sites/*/settings.ddev.php
-/cmsapi/web/sites/*/services.yml
-# Only ignore main settings.php if you manage it via scripts
-# /cmsapi/web/sites/*/settings.php
-
-# Drupal simpletest
-/cmsapi/web/sites/simpletest/
-
-# Drush
-/cmsapi/drush/contrib/
-/cmsapi/drush/sites/
-
-# Composer lock (uncomment if you want to ignore it - not recommended for most projects)
-# /cmsapi/composer.lock
-
-# Import scripts and data files (local development only)
-/cmsapi/scripts/
-/cmsapi/*.csv
-/cmsapi/*.xlsx
-
-###################
-# Frontend App
-###################
-# Note: frontendapp has its own .gitignore
-# The following are additional patterns not typically in Next.js defaults
-
-# Generated files
-/frontendapp/.next/
-/frontendapp/out/
-/frontendapp/build/
-/frontendapp/dist/
-
-###################
-# Backup & Dumps
-###################
+############################
+# Archives / dumps / backups
+############################
 *.sql
 *.sql.gz
 *.sql.zip
@@ -153,59 +93,101 @@ backup/
 backups/
 dumps/
 
-###################
-# Documentation
-###################
-# Ignore docs folder (local reference only)
-/docs/
-
-# GitHub Wiki is in /application-wiki (separate git repo)
-/application-wiki/
-# Ignore only generated documentation builds (if any)
-# /docs/_build/
-# /docs/.doctrees/
-
-###################
-# Security
-###################
-# SSH keys
-*.pem
-*.key
-id_rsa
-id_rsa.pub
-
-# Certificates
-*.crt
-*.cert
-*.p12
-
-###################
-# Misc
-###################
-# Node modules at root (if any)
-/node_modules/
-
-# Package manager
+############################
+# Node / JS shared
+############################
+node_modules/
 .pnpm-store/
 .yarn/cache/
 .yarn/unplugged/
 .yarn/build-state.yml
 .yarn/install-state.gz
-
-# Testing
-/coverage/
-/.nyc_output/
-
-# Build artifacts
+coverage/
+.nyc_output/
 *.tsbuildinfo
 
-# Project-specific
+########################################
+# cmsapi (Drupal backend)
+########################################
+
+# Composer dependencies
+/cmsapi/vendor/
+
+# Composer-managed Drupal directories
+/cmsapi/web/core/
+/cmsapi/web/modules/contrib/
+/cmsapi/web/themes/contrib/
+/cmsapi/web/profiles/contrib/
+/cmsapi/web/libraries/
+
+# Uploaded / generated site files
+/cmsapi/web/sites/*/files/
+/cmsapi/web/sites/*/private/
+/cmsapi/web/sites/simpletest/
+
+# Local-only Drupal config
+/cmsapi/web/sites/*/settings.local.php
+/cmsapi/web/sites/*/services.local.yml
+
+# Drush local/contrib
+/cmsapi/drush/contrib/
+/cmsapi/drush/sites/
+
+# Local import/export data only
+/cmsapi/*.csv
+/cmsapi/*.xlsx
+
+# Project-specific secret file
+/cmsapi/d11Config/billoria_notifications.firebase.yml
+
+########################################
+# frontendapp (Next.js frontend)
+########################################
+/frontendapp/node_modules/
+/frontendapp/.next/
+/frontendapp/out/
+/frontendapp/build/
+/frontendapp/dist/
+
+# Next local env files
+/frontendapp/.env.local
+/frontendapp/.env.development.local
+/frontendapp/.env.production.local
+/frontendapp/.env.test.local
+
+########################################
+# scraper
+########################################
+
+# Ignore generated/local scraper output,
+# but keep docs if needed
+/scraper/node_modules/
+/scraper/.env
+/scraper/.env.*
+/scraper/output/
+/scraper/tmp/
+/scraper/cache/
+
+########################################
+# docs / wiki generated output
+########################################
+
+# Keep source docs tracked.
+# Ignore only generated builds if they appear.
+/docs/_build/
+/docs/.doctrees/
+/application-wiki/_build/
+/application-wiki/.doctrees/
+
+########################################
+# Root local-only helper notes
+########################################
 PROJECT_NOTES.md
 TODO.md
 SCRATCH.md
 
-#scraper
-/scraper
-/scraper/*
-# Ignore everything in scraper except the README.md
-cmsapi/d11Config/billoria_notifications.firebase.yml
+########################################
+# Optional local scripts/output
+########################################
+*.pid
+/application-wiki

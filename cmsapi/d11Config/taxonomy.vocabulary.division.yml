@@ -1,9 +1,0 @@
-uuid: d3204fbc-aa0e-4791-b8df-6bd9421ee10d
-langcode: en
-status: true
-dependencies: {  }
-name: Division
-vid: division
-description: 'Bangladesh administrative divisions'
-weight: 3
-new_revision: false
